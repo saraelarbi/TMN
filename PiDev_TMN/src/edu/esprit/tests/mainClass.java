@@ -8,11 +8,9 @@ package edu.esprit.tests;
 import edu.esprit.entities.Produit;
 import edu.esprit.entities.Commande;
 import edu.esprit.entities.Panier;
-import edu.esprit.entities.Stock;
 import edu.esprit.services.CommandeCRUD;
 import edu.esprit.services.ProduitCRUD;
 import edu.esprit.services.PanierCRUD;
-import edu.esprit.services.StockCRUD;
 
 import edu.esprit.utils.MyConnection;
 
@@ -25,34 +23,35 @@ public class mainClass {
       MyConnection mc = MyConnection.getInstance();
        MyConnection mc2 = MyConnection.getInstance();
         //System.out.println(mc.hashCode() + "-----" + mc2.hashCode());
-      /* ProduitCRUD pcd= new ProduitCRUD();
-       Produit p2 = new Produit("5hhh","888", "jj", 5, "ll");*/
-        // pcd.ajouterProduit2(p2);
-        //System.out.println(pcd.afficherProduit());
+       //ProduitCRUD pcd= new ProduitCRUD();
+       //Produit p2 = new Produit("2", "jj", 5, "ll");
+        // pcd.Ajouter(p2);
+       //  pcd.Supprimer(3);
+      // pcd.Modifier(p2);
+       // System.out.println(pcd.Afficher());
        
-      // PanierCRUD pncd= new PanierCRUD();
-       //Panier pn2 = new Panier("1",55, 8, "ll");
-       // pncd.modifierPanier(pn2);
-       // pncd.ajouterPanier();
+     PanierCRUD pncd= new PanierCRUD();
+       Panier pn2 = new Panier(2,100000, 8, "ll");
+       pncd.Modifier(pn2);
+      // pncd.Ajouter(pn2);
+    //  pncd.Supprimer(3);
+        System.out.println(pncd.Afficher());
        
-     /* CommandeCRUD ccd= new CommandeCRUD();
-       Commande c2 = new Commande(57,"hh555555","jj","hh",5,55,"ll","jj","jjk");
-        //System.out.println(ccd.afficherCommande());
-        ccd.supprimerCommande(57);*/
+    /* CommandeCRUD ccd= new CommandeCRUD();
+     // Commande c2 = new Commande("57","hh555555","jj","hh",5,55,"ll","jj","jjk");
+      // ccd.Ajouter(c2);
+        System.out.println(ccd.Afficher());
+        
+        ccd.Supprimer("57");
+       */
+   
        
-    /*  StockCRUD scd= new StockCRUD();
-       Stock s2 = new Stock("2","5555555555", "5hhh");
-       
-       scd.supprimerStock("2");*/
-      // scd.ajouterStock2(s2);
+        
       
        
       
        
-       // CommandeCRUD ccd= new CommandeCRUD();
-      // Commande c2 = new Commande(58,"hh","jj","hh",5,55,"ll","jj","jjk");
-      // ccd.ajouterCommande();
-      
+    
     
        
     }

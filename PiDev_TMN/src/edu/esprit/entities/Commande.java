@@ -11,35 +11,23 @@ package edu.esprit.entities;
  */
 public class Commande {
     private int numCmd;
-    private String nom;
-    private String prenom;
-    private String adresse;
-    private int telephone;
-    private float somme_dargent;
-    private String email;
-    private String idU;
-    private String idProduit;
+    private float total;
+    private String quantite;
+    private int idU;
+    private int idProduit;
 
     public Commande(){}
-    public Commande(int numCmd, String nom, String prenom, String adresse, int telephone, float somme_dargent, String email, String idU, String idProduit) {
+    public Commande(int numCmd, float total, String quantite, int idU, int idProduit) {
         this.numCmd = numCmd;
-        this.nom = nom;
-        this.prenom = prenom;
-        this.adresse = adresse;
-        this.telephone = telephone;
-        this.somme_dargent = somme_dargent;
-        this.email = email;
+        this.total = total;
+        this.quantite = quantite;
         this.idU = idU;
         this.idProduit = idProduit;
     }
 
-    public Commande(String nom, String prenom, String adresse, int telephone, float somme_dargent, String email, String idU, String idProduit) {
-        this.nom = nom;
-        this.prenom = prenom;
-        this.adresse = adresse;
-        this.telephone = telephone;
-        this.somme_dargent = somme_dargent;
-        this.email = email;
+    public Commande( float total, String quantite, int idU, int idProduit) {
+        this.total = total;
+        this.quantite = quantite;
         this.idU = idU;
         this.idProduit = idProduit;
     }
@@ -52,73 +40,42 @@ public class Commande {
         this.numCmd = numCmd;
     }
 
-    public String getNom() {
-        return nom;
+   
+    public float getTotal() {
+        return total;
     }
 
-    public void setNom(String nom) {
-        this.nom = nom;
+    public void setTotal(float total) {
+        this.total = total;
     }
 
-    public String getPrenom() {
-        return prenom;
+    public String getQuantite() {
+        return quantite;
     }
 
-    public void setPrenom(String prenom) {
-        this.prenom = prenom;
+    public void setQuantite(String quantite) {
+        this.quantite = quantite;
     }
 
-    public String getAdresse() {
-        return adresse;
-    }
-
-    public void setAdresse(String adresse) {
-        this.adresse = adresse;
-    }
-
-    public int getTelephone() {
-        return telephone;
-    }
-
-    public void setTelephone(int telephone) {
-        this.telephone = telephone;
-    }
-
-    public float getSomme_dargent() {
-        return somme_dargent;
-    }
-
-    public void setSomme_dargent(float somme_dargent) {
-        this.somme_dargent = somme_dargent;
-    }
-
-    public String getEmail() {
-        return email;
-    }
-
-    public void setEmail(String email) {
-        this.email = email;
-    }
-
-    public String getIdU() {
+    public int getIdU() {
         return idU;
     }
 
-    public void setIdU(String idU) {
+    public void setIdU(int idU) {
         this.idU = idU;
     }
 
-    public String getIdProduit() {
+    public int getIdProduit() {
         return idProduit;
     }
 
-    public void setIdProduit(String idProduit) {
+    public void setIdProduit(int idProduit) {
         this.idProduit = idProduit;
     }
 
     @Override
     public String toString() {
-        return "Commande{" + "numCmd=" + numCmd + ", nom=" + nom + ", prenom=" + prenom + ", adresse=" + adresse + ", telephone=" + telephone + ", somme_dargent=" + somme_dargent + ", email=" + email + ", idU=" + idU + ", idProduit=" + idProduit + '}';
+        return "Commande{" + "numCmd=" + numCmd + ", total=" + total + ", quantite=" + quantite + ", idU=" + idU + ", idProduit=" + idProduit + '}';
     }
     
 }

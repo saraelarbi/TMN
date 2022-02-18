@@ -10,7 +10,7 @@ package edu.esprit.entities;
  * @author ASUS CELERON
  */
 public class Panier {
-    private String idPanier;
+    private int idPanier;
     private float prix_des_produits;
     private int nbre_produit;
     private String idProduit;
@@ -24,18 +24,18 @@ public class Panier {
         this.idProduit = idProduit;
     }
 
-    public Panier(String idPanier, float prix_des_produits, int nbre_produit, String idProduit) {
+    public Panier(int idPanier, float prix_des_produits, int nbre_produit, String idProduit) {
         this.idPanier = idPanier;
         this.prix_des_produits = prix_des_produits;
         this.nbre_produit = nbre_produit;
         this.idProduit = idProduit;
     }
 
-    public String getIdPanier() {
+    public int getIdPanier() {
         return idPanier;
     }
 
-    public void setIdPanier(String idPanier) {
+    public void setIdPanier(int idPanier) {
         this.idPanier = idPanier;
     }
 

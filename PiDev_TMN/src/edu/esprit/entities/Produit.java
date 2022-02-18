@@ -10,14 +10,14 @@ package edu.esprit.entities;
  * @author ASUS CELERON
  */
 public class Produit {
-    private String idProduit;
+    private int idProduit;
     private String nom ;
     private String type ; 
     private float prix;
     private String image; 
 
     public Produit(){}
-    public Produit(String idProduit, String nom, String type, float prix, String image) {
+    public Produit(int idProduit, String nom, String type, float prix, String image) {
         this.idProduit = idProduit;
         this.nom = nom;
         this.type = type;
@@ -32,11 +32,11 @@ public class Produit {
         this.image = image;
     }
 
-    public String getIdProduit() {
+    public int getIdProduit() {
         return idProduit;
     }
 
-    public void setIdProduit(String idProduit) {
+    public void setIdProduit(int idProduit) {
         this.idProduit = idProduit;
     }
 
