@@ -2,6 +2,15 @@
 <project-private xmlns="http://www.netbeans.org/ns/project-private/1">
     <editor-bookmarks xmlns="http://www.netbeans.org/ns/editor-bookmarks/2" lastBookmarkId="0"/>
     <open-files xmlns="http://www.netbeans.org/ns/projectui-open-files/2">
-        <group/>
+        <group>
+            <file>file:/C:/Users/ffsga/Documents/NetBeansProjects/TMN/src/entities/Reclamation.java</file>
+            <file>file:/C:/Users/ffsga/Documents/NetBeansProjects/TMN/src/test/NewFXMain.java</file>
+            <file>file:/C:/Users/ffsga/Documents/NetBeansProjects/TMN/src/utils/MyDB.java</file>
+            <file>file:/C:/Users/ffsga/Documents/NetBeansProjects/TMN/src/entities/Publication.java</file>
+            <file>file:/C:/Users/ffsga/Documents/NetBeansProjects/TMN/src/test/main.java</file>
+            <file>file:/C:/Users/ffsga/Documents/NetBeansProjects/TMN/src/services/ServicePublication.java</file>
+            <file>file:/C:/Users/ffsga/Documents/NetBeansProjects/TMN/src/GUI/GestionPublicationFXML.fxml</file>
+            <file>file:/C:/Users/ffsga/Documents/NetBeansProjects/TMN/src/GUI/GestionPublicationFXMLController.java</file>
+        </group>
     </open-files>
 </project-private>
