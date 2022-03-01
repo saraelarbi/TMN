@@ -241,14 +241,14 @@
                   </Lighting>
                </effect>
             </Label>
-            <ImageView fitHeight="243.0" fitWidth="247.0" layoutX="-4.0" layoutY="-10.0">
-               <image>
-                  <Image url="@../../images/272058072_1154385918701731_2340808200172127650_n.jpg" />
-               </image>
-            </ImageView>
             <ImageView fitHeight="17.0" fitWidth="28.0" layoutX="54.0" layoutY="691.0">
                <image>
                   <Image url="@../../images/copyright_PNG52.png" />
+               </image>
+            </ImageView>
+            <ImageView fx:id="logoTMN" fitHeight="236.0" fitWidth="247.0" layoutY="-2.0">
+               <image>
+                  <Image url="@../../../../../Downloads/272058072_1154385918701731_2340808200172127650_n.jpg" />
                </image>
             </ImageView>
          </children>
