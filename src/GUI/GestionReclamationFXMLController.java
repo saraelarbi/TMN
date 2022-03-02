@@ -15,10 +15,13 @@ import java.sql.Statement;
 import java.util.ResourceBundle;
 import javafx.collections.FXCollections;
 import javafx.collections.ObservableList;
+import javafx.collections.transformation.FilteredList;
+import javafx.collections.transformation.SortedList;
 import javafx.event.ActionEvent;
 import javafx.fxml.FXML;
 import javafx.fxml.Initializable;
 import javafx.scene.control.Button;
+import javafx.scene.control.ProgressBar;
 import javafx.scene.control.SortEvent;
 import javafx.scene.control.TableColumn;
 import javafx.scene.control.TableView;
@@ -67,12 +70,18 @@ public class GestionReclamationFXMLController implements Initializable {
     private TextField TextField_id_Pub;
     
     private Connection cnx;
+    @FXML
+    private TextField TextField_Recherche_Reclamation;
+    @FXML
+    private ProgressBar ProgressBarRec;
     /**
      * Initializes the controller class.
      */
     @Override
     public void initialize(URL url, ResourceBundle rb) {
-       AffichageReclamation();
+       TextField_ID_RECLAMATION.setDisable(true);
+        AffichageReclamation();
+       ProgressBarRec.setProgress(0);
     }
 
     @FXML
@@ -154,6 +163,46 @@ public class GestionReclamationFXMLController implements Initializable {
         idBlog.setCellValueFactory(new PropertyValueFactory<>("idBlog"));
 
         AffichageReclamation.setItems(ReclamationList);
+        
+        FilteredList<Reclamation> filteredData = new FilteredList<>(ReclamationList, b -> true);
+
+        // 2. Set the filter Predicate whenever the filter changes.
+        TextField_Recherche_Reclamation.textProperty().addListener((observable, oldValue, newValue) -> {
+            filteredData.setPredicate(reclamation -> {     
+              if (newValue == null || newValue.isEmpty()) {
+                    return true;
+                }
+
+                // Compare first name and last name of every person with filter text.
+                String lowerCaseFilter = newValue.toLowerCase();
+
+                if (reclamation.getDescription().toLowerCase().contains(lowerCaseFilter)) {
+                    return true; 
+                /* } else if (publication.getDesc_Pub().toLowerCase().contains(lowerCaseFilter)) {
+                    return true; 
+                } */ 
+                } else {
+                    return false;
+                }
+            });
+        });
+
+        SortedList<Reclamation> sortedData = new SortedList<>(filteredData);
+        sortedData.comparatorProperty().bind(AffichageReclamation.comparatorProperty());
+        AffichageReclamation.setItems(sortedData);
+
     }
+    
+    public void StartProgrssBar() {
+        double ii=0;
+        
+        do{
+        
+         ii+=0.001;
+         ProgressBarRec.setProgress(1);
+        }while(1>(ii));
+      
+    }
+
 
 }

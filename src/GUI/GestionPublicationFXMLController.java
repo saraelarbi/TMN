@@ -19,6 +19,8 @@ import java.util.Optional;
 import java.util.ResourceBundle;
 import javafx.collections.FXCollections;
 import javafx.collections.ObservableList;
+import javafx.collections.transformation.FilteredList;
+import javafx.collections.transformation.SortedList;
 import javafx.event.ActionEvent;
 import javafx.fxml.FXML;
 import javafx.fxml.Initializable;
@@ -27,6 +29,7 @@ import javafx.scene.control.Button;
 import javafx.scene.control.ButtonType;
 import javafx.scene.control.DatePicker;
 import javafx.scene.control.Label;
+import javafx.scene.control.ProgressBar;
 import javafx.scene.control.TableColumn;
 import javafx.scene.control.TableView;
 import javafx.scene.control.TextField;
@@ -90,6 +93,14 @@ public class GestionPublicationFXMLController implements Initializable {
     private Label file_path;
     @FXML
     private ImageView imageview_Publication;
+    @FXML
+    private ImageView logoTMN;
+    @FXML
+    private TextField TextField_Recherche_Pub;
+    @FXML
+    private ProgressBar ProgressBar;
+    
+    //ProgressBar proBar = new ProgressBar();
 
     /**
      * Initializes the controller class.
@@ -98,6 +109,7 @@ public class GestionPublicationFXMLController implements Initializable {
     public void initialize(URL url, ResourceBundle rb) {
         TextField_ID_PUB.setDisable(true);
         AffichagePublication();
+        ProgressBar.setProgress(0);
     }
 
     @FXML
@@ -123,14 +135,16 @@ public class GestionPublicationFXMLController implements Initializable {
             Date datepub1 = Date.valueOf(str2);
             ServicePublication sPub = new ServicePublication();
             Publication pb = new Publication(1, datepub1, TextField_TITRE_PUB.getText(), TextField_DESC_PUB.getText(), TextField_SOURCE_PUB.getText(), TextField_CATEGORIE_PUB.getText(), file_path.getText());
+            StartProgrssBar();
             sPub.ajouterPB(pb);
             
             Alert alert = new Alert(Alert.AlertType.INFORMATION);
-                alert.setTitle("Alert");
-                alert.setHeaderText(null);
-                alert.setContentText("Success Publication Ajouté!");
-                alert.showAndWait();
-
+            alert.setTitle("Alert");
+            alert.setHeaderText(null);
+            alert.setContentText("Success Publication Ajouté!");
+            alert.showAndWait();
+            
+            ProgressBar.setProgress(0);
             AffichagePublication();
             clear();
         }
@@ -139,70 +153,73 @@ public class GestionPublicationFXMLController implements Initializable {
     @FXML
     private void ModifierPublication(ActionEvent event) {
 
-            if (DatePicker_Date_PUB.getEditor().getText().isEmpty()
-                    | TextField_TITRE_PUB.getText().isEmpty()
-                    | TextField_DESC_PUB.getText().isEmpty()
-                    | TextField_SOURCE_PUB.getText().isEmpty()
-                    | TextField_CATEGORIE_PUB.getText().isEmpty()
-                    | imageview_Publication.getImage() == null) {
+        if (DatePicker_Date_PUB.getEditor().getText().isEmpty()
+                | TextField_TITRE_PUB.getText().isEmpty()
+                | TextField_DESC_PUB.getText().isEmpty()
+                | TextField_SOURCE_PUB.getText().isEmpty()
+                | TextField_CATEGORIE_PUB.getText().isEmpty()
+                | imageview_Publication.getImage() == null) {
 
-                Alert alert = new Alert(Alert.AlertType.ERROR);
+            Alert alert = new Alert(Alert.AlertType.ERROR);
 
-                alert.setTitle("Error Message");
-                alert.setHeaderText(null);
-                alert.setContentText("Veuillez remplir tous les champs!");
-                alert.showAndWait();
+            alert.setTitle("Error Message");
+            alert.setHeaderText(null);
+            alert.setContentText("Veuillez remplir tous les champs!");
+            alert.showAndWait();
 
-            } else {
+        } else {
 
-                 String str2 = DatePicker_Date_PUB.getValue().toString();
-                 String str3 = TextField_ID_PUB.getText();
-                 int idpb = parseInt(str3);
+            String str2 = DatePicker_Date_PUB.getValue().toString();
+            String str3 = TextField_ID_PUB.getText();
+            int idpb = parseInt(str3);
             Date datepub1 = Date.valueOf(str2);
             ServicePublication sPub = new ServicePublication();
             Publication pb = new Publication(idpb, datepub1, TextField_TITRE_PUB.getText(), TextField_DESC_PUB.getText(), TextField_SOURCE_PUB.getText(), TextField_CATEGORIE_PUB.getText(), file_path.getText());
+            StartProgrssBar();
             sPub.modifierPB(pb);
 
-                Alert alert = new Alert(Alert.AlertType.INFORMATION);
-                alert.setTitle("Alert");
-                alert.setHeaderText(null);
-                alert.setContentText("Success Publication Modifié!");
-                alert.showAndWait();
+            Alert alert = new Alert(Alert.AlertType.INFORMATION);
+            alert.setTitle("Alert");
+            alert.setHeaderText(null);
+            alert.setContentText("Success Publication Modifié!");
+            alert.showAndWait();
 
-                AffichagePublication();
-                clear();
+            ProgressBar.setProgress(0);
+            AffichagePublication();
+            clear();
 
-            }
-        
+        }
+
     }
 
     @FXML
     private void SupprimerPublication(ActionEvent event) {
 
-            Alert alert = new Alert(Alert.AlertType.CONFIRMATION);
-            alert.setTitle("Confirmation Message");
-            alert.setHeaderText(null);
-            alert.setContentText("Voulez vous supprimer cette publication ?");
+        Alert alert = new Alert(Alert.AlertType.CONFIRMATION);
+        alert.setTitle("Confirmation Message");
+        alert.setHeaderText(null);
+        alert.setContentText("Voulez vous supprimer cette publication ?");
 
-            Optional<ButtonType> buttonType = alert.showAndWait();
+        Optional<ButtonType> buttonType = alert.showAndWait();
 
-            if (buttonType.get() == ButtonType.OK) {
+        if (buttonType.get() == ButtonType.OK) {
 
-                ServicePublication sPub = new ServicePublication();
-                String idpb = TextField_ID_PUB.getText();
-                sPub.supprimerPB(parseInt(idpb));
-                
+            ServicePublication sPub = new ServicePublication();
+            String idpb = TextField_ID_PUB.getText();
+            StartProgrssBar();
+            sPub.supprimerPB(parseInt(idpb));
 
-            } else {
+        } else {
 
-                return;
+            return;
 
-            }
-
-            AffichagePublication();
-            clear();
-
+        }
         
+        
+        AffichagePublication();
+        clear();
+        ProgressBar.setProgress(0);
+
     }
 
     public ObservableList<Publication> PublicationList() {
@@ -248,6 +265,36 @@ public class GestionPublicationFXMLController implements Initializable {
         image_Pub.setCellValueFactory(new PropertyValueFactory<>("image_Pub"));
 
         AffichagePublication.setItems(PublicationList);
+
+        FilteredList<Publication> filteredData = new FilteredList<>(PublicationList, b -> true);
+
+        // 2. Set the filter Predicate whenever the filter changes.
+        TextField_Recherche_Pub.textProperty().addListener((observable, oldValue, newValue) -> {
+            filteredData.setPredicate(publication -> {     
+              if (newValue == null || newValue.isEmpty()) {
+                    return true;
+                }
+
+                // Compare first name and last name of every person with filter text.
+                String lowerCaseFilter = newValue.toLowerCase();
+
+                if (publication.getTitre_Pub().toLowerCase().contains(lowerCaseFilter)) {
+                    return true; 
+                } else if (publication.getDesc_Pub().toLowerCase().contains(lowerCaseFilter)) {
+                    return true; 
+                } else if (publication.getSource_Pub().toLowerCase().contains(lowerCaseFilter)) {
+                    return true;     
+                } else if (publication.getCategorie_Pub().toLowerCase().contains(lowerCaseFilter)) {
+                    return true;
+                } else {
+                    return false;
+                }
+            });
+        });
+
+        SortedList<Publication> sortedData = new SortedList<>(filteredData);
+        sortedData.comparatorProperty().bind(AffichagePublication.comparatorProperty());
+        AffichagePublication.setItems(sortedData);
 
     }
 
@@ -321,6 +368,17 @@ public class GestionPublicationFXMLController implements Initializable {
         imageview_Publication.setImage(null);
         file_path.setText("");
 
+    }
+    
+    public void StartProgrssBar() {
+        double ii=0;
+        
+        do{
+        
+         ii+=0.001;
+         ProgressBar.setProgress(1);
+        }while(1>(ii));
+      
     }
 
 }
