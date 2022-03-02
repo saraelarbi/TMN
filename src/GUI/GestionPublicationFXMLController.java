@@ -191,6 +191,7 @@ public class GestionPublicationFXMLController implements Initializable {
                 ServicePublication sPub = new ServicePublication();
                 String idpb = TextField_ID_PUB.getText();
                 sPub.supprimerPB(parseInt(idpb));
+                
 
             } else {
 
