@@ -5,7 +5,9 @@
  */
 package GUI;
 
+import services.Interface_Services;
 import entities.Commande;
+import entities.Panier;
 import entities.Produit;
 import java.io.File;
 import static java.lang.Integer.parseInt;
@@ -35,6 +37,7 @@ import javafx.scene.layout.AnchorPane;
 import javafx.stage.FileChooser;
 import javafx.stage.Stage;
 import services.CommandeCRUD;
+import services.PanierCRUD;
 import services.ProduitCRUD;
 import utils.MyConnection;
 
@@ -105,13 +108,40 @@ public class SHOPController implements Initializable {
     private TableColumn<Commande, Integer> idU;
     @FXML
     private TableColumn<Commande, Integer> idP;
-    @FXML
-    private Label file_path1;
+    
     @FXML
     private TextField TextField_idproduit;
     @FXML
     private TextField numCmdMod;
-    private Connection cnx;
+    @FXML
+    private AnchorPane AnchorPane_Panier;
+    @FXML
+    private TextField prix_des_prods;
+    @FXML 
+    private TextField nbre_produit;
+    @FXML 
+    private TextField idProduit_panier;
+    @FXML
+    private TextField IdPanierMod;
+    @FXML
+    private Button AjouterPanier;
+    @FXML
+    private Button SupprimerPanier;
+    @FXML
+    private Button ModiferPanier;
+    @FXML
+    private TableView<Panier> AffichagePanier;
+    @FXML
+    private TableColumn<Panier, Integer> idPanier;
+    @FXML
+    private TableColumn<Panier, Float> prixProds;
+    @FXML
+    private TableColumn<Panier, Integer> nbreProds;
+    @FXML
+    private TableColumn<Panier, Integer> idprod_panier;
+    
+    
+    private Connection cnx2;
 
 
     /**
@@ -121,13 +151,15 @@ public class SHOPController implements Initializable {
     public void initialize(URL url, ResourceBundle rb) {
       AffichageCommande();
       AfficherProd();
+      AffichagePanier();
+
     }    
  public ObservableList<Produit> ProduitList(){
-        cnx = MyConnection.getInstance().getCnx();
+        cnx2 = MyConnection.getInstance().getCnx();
         ObservableList<Produit> ProduitList = FXCollections.observableArrayList();
         String req = "SELECT * FROM produit";
         try{
-            Statement st = cnx.createStatement();
+            Statement st = cnx2.createStatement();
             ResultSet rs = st.executeQuery(req);
             Produit produit;
             while(rs.next()){
@@ -140,18 +172,18 @@ public class SHOPController implements Initializable {
 
     @FXML
     private void AjouterProd(ActionEvent event) {
-        /* ProduitCRUD prod = new ProduitCRUD();
-            Produit pd = new Produit(nom.getText(), type.getText(), Float.parseFloat(prix.getText()), file_path.getText());
-            prod.Ajouter(pd);
+         ProduitCRUD prod = new ProduitCRUD();
+            Produit prd = new Produit(nom.getText(), type.getText(), Float.parseFloat(prix.getText()), file_path.getText());
+            prod.Ajouter(prd);
             AfficherProd();
-            Refresh();
+           Refresh();
 
             
             Alert alert = new Alert(Alert.AlertType.INFORMATION);
                 alert.setTitle("Alert");
                 alert.setHeaderText(null);
                 alert.setContentText("Success Produit Ajouté!");
-                alert.showAndWait();*/
+                alert.showAndWait();
     }
 
     @FXML
@@ -231,11 +263,11 @@ public class SHOPController implements Initializable {
     }
 
     public ObservableList<Commande> CommandeList(){
-        cnx = MyConnection.getInstance().getCnx();
+        cnx2 = MyConnection.getInstance().getCnx();
         ObservableList<Commande> CommandeList = FXCollections.observableArrayList();
         String req = "SELECT * FROM commande";
         try{
-            Statement st = cnx.createStatement();
+            Statement st = cnx2.createStatement();
             ResultSet rs = st.executeQuery(req);
             Commande commande;
             while(rs.next()){
@@ -246,21 +278,7 @@ public class SHOPController implements Initializable {
         return CommandeList;
         
     }
-    @FXML
-    private void AjouterCommande(ActionEvent event) {
-         CommandeCRUD cmd = new CommandeCRUD();
-            Commande cd = new Commande( Float.parseFloat(TextField_totalCMD.getText()), TextField_QtiteCMD.getText(), Integer.parseInt(TextField_idUcmd.getText()),Integer.parseInt(TextField_idproduit.getText()));
-            cmd.Ajouter(cd);
-            AffichageCommande();
-            Refresh();
-
-            
-            Alert alert = new Alert(Alert.AlertType.INFORMATION);
-                alert.setTitle("Alert");
-                alert.setHeaderText(null);
-                alert.setContentText(" Commande Ajouté!");
-                alert.showAndWait();
-    }
+    
 
     @FXML
     private void ModifierCommande(ActionEvent event) {
@@ -271,7 +289,7 @@ public class SHOPController implements Initializable {
             Commande cd = new Commande(idcmd,Float.parseFloat(TextField_totalCMD.getText()), TextField_QtiteCMD.getText(),Integer.parseInt(TextField_idUcmd.getText()), Integer.parseInt(TextField_idproduit.getText()));
             cmd.Modifier(cd);
             AffichageCommande();
-            Refresh();
+            //Refresh();
 
              Alert alert = new Alert(Alert.AlertType.INFORMATION);
                 alert.setTitle("Alert");
@@ -286,7 +304,7 @@ public class SHOPController implements Initializable {
                 String idcmd = numCmdMod.getText();
                 cmd.Supprimer(parseInt(idcmd));
                 AffichageCommande();
-                Refresh();
+               // Refresh();
                 Alert alert = new Alert(Alert.AlertType.INFORMATION);
                 alert.setTitle("Alert");
                 alert.setHeaderText(null);
@@ -303,8 +321,7 @@ public class SHOPController implements Initializable {
         if((num-1) < -1)
             return;
         
-        /*TextField_numCMD.setText(String.valueOf(commande.getNumCmd()));*/
-        //DatePicker_Date_PUB.setText(String.(publication.getDate_Pub()));
+        
         numCmdMod.setText(String.valueOf(commande.getNumCmd()));
         TextField_totalCMD.setText(String.valueOf(commande.getTotal()));
         TextField_QtiteCMD.setText(commande.getQuantite());
@@ -325,6 +342,21 @@ public class SHOPController implements Initializable {
         
         AffichageCommande.setItems(CommandeList);
     }
+    @FXML
+    private void AjouterCommande(ActionEvent event) {
+         CommandeCRUD cmd = new CommandeCRUD();
+            Commande cm = new Commande(Float.parseFloat(TextField_totalCMD.getText()), TextField_QtiteCMD.getText(), Integer.parseInt(TextField_idUcmd.getText()),Integer.parseInt(TextField_idproduit.getText()));
+            cmd.Ajouter(cm);
+            AffichageCommande();
+            //Refresh();
+
+            
+            Alert alert = new Alert(Alert.AlertType.INFORMATION);
+                alert.setTitle("Alert");
+                alert.setHeaderText(null);
+                alert.setContentText(" Commande Ajouté!");
+                alert.showAndWait();
+    }
      public void Refresh() {
 
         nom.setText("");
@@ -333,6 +365,94 @@ public class SHOPController implements Initializable {
         ImageViewer_Prod.setImage(null);
         file_path.setText("");
     
-}
+} 
+    
+    
+    public ObservableList<Panier> PanierList(){
+        cnx2 = MyConnection.getInstance().getCnx();
+        ObservableList<Panier> PanierList = FXCollections.observableArrayList();
+        String req = "SELECT * FROM panier";
+        try{
+            Statement st = cnx2.createStatement();
+            ResultSet rs = st.executeQuery(req);
+            Panier panier;
+            while(rs.next()){
+                panier = new Panier(rs.getInt("idPanier"), rs.getFloat("prix_des_produits"),
+                        rs.getInt("nbre_produit"), rs.getInt("idProduit"));   
+                PanierList.add(panier);
+            }
+        }catch(SQLException e){}
+        return PanierList;
+        
+    }
+    @FXML
+    private void AjouterPanier(ActionEvent event){
+        PanierCRUD pn = new PanierCRUD();
+            Panier cm = new Panier( Float.parseFloat(prix_des_prods.getText()), Integer.parseInt(nbre_produit.getText()), Integer.parseInt(idProduit_panier.getText()));
+            pn.Ajouter(cm);
+            AffichagePanier();
+            //Refresh();
+
+            
+            Alert alert = new Alert(Alert.AlertType.INFORMATION);
+                alert.setTitle("Alert");
+                alert.setHeaderText(null);
+                alert.setContentText(" Panier Ajouté!");
+                alert.showAndWait();}
+    
+    @FXML
+    private void SupprimerPanier(ActionEvent event){
+     PanierCRUD pn = new PanierCRUD();
+                String idpn = IdPanierMod.getText();
+                pn.Supprimer(parseInt(idpn));
+                AffichageCommande();
+               // Refresh();
+                Alert alert = new Alert(Alert.AlertType.INFORMATION);
+                alert.setTitle("Alert");
+                alert.setHeaderText(null);
+                alert.setContentText(" Panier Supprimé!");
+                alert.showAndWait();}
+    @FXML
+    private void ModifierPanier(ActionEvent event){
+        String str1= IdPanierMod.getText();
+        int idpn =parseInt(str1);
+        
+         PanierCRUD pn = new PanierCRUD();
+            Panier pnn = new Panier(idpn,Float.parseFloat(prix_des_prods.getText()), Integer.parseInt(nbre_produit.getText()),Integer.parseInt(idProduit_panier.getText()));
+            pn.Modifier(pnn);
+            AffichagePanier();
+            //Refresh();
+
+             Alert alert = new Alert(Alert.AlertType.INFORMATION);
+                alert.setTitle("Alert");
+                alert.setHeaderText(null);
+                alert.setContentText(" Panier Modifié!");
+                alert.showAndWait();}
+    @FXML
+    private void AffichagePanier(){
+     ObservableList<Panier> PanierList = PanierList();
+        
+        idPanier.setCellValueFactory(new PropertyValueFactory<>("idPanier"));
+        prixProds.setCellValueFactory(new PropertyValueFactory<>("prix_des_produits"));
+        nbreProds.setCellValueFactory(new PropertyValueFactory<>("nbre_produit"));
+        idprod_panier.setCellValueFactory(new PropertyValueFactory<>("idProduit"));
+       
+        
+        AffichagePanier.setItems(PanierList);} 
+    
+    @FXML
+    private void select_panier(MouseEvent event) {
+         Panier panier = AffichagePanier.getSelectionModel().getSelectedItem();
+        int num = AffichagePanier.getSelectionModel().getSelectedIndex();
+        if((num-1) < -1)
+            return;
+        IdPanierMod.setText(String.valueOf(panier.getIdPanier()));
+        prix_des_prods.setText(String.valueOf(panier.getPrix_des_produits()));
+        nbre_produit.setText(String.valueOf(panier.getNbre_produit()));
+        idProduit_panier.setText(String.valueOf(panier.getIdProduit()));
+       
+        
+    }
     
 }
+

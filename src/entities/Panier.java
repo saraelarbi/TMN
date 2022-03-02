@@ -13,18 +13,20 @@ public class Panier {
     private int idPanier;
     private float prix_des_produits;
     private int nbre_produit;
-    private String idProduit;
+    private int idProduit;
+         
+    
 
     public Panier() {
     }
 
-    public Panier(float prix_des_produits, int nbre_produit, String idProduit) {
+    public Panier(float prix_des_produits, int nbre_produit, int idProduit) {
         this.prix_des_produits = prix_des_produits;
         this.nbre_produit = nbre_produit;
         this.idProduit = idProduit;
     }
 
-    public Panier(int idPanier, float prix_des_produits, int nbre_produit, String idProduit) {
+    public Panier(int idPanier, float prix_des_produits, int nbre_produit, int idProduit) {
         this.idPanier = idPanier;
         this.prix_des_produits = prix_des_produits;
         this.nbre_produit = nbre_produit;
@@ -55,11 +57,11 @@ public class Panier {
         this.nbre_produit = nbre_produit;
     }
 
-    public String getIdProduit() {
+    public int getIdProduit() {
         return idProduit;
     }
 
-    public void setIdProduit(String idProduit) {
+    public void setIdProduit(int idProduit) {
         this.idProduit = idProduit;
     }
 

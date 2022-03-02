@@ -44,7 +44,7 @@ public class PanierCRUD implements Interface_Services<Panier> {
             pst.setInt(1, p.getIdPanier());
             pst.setFloat(2, p.getPrix_des_produits());
             pst.setInt(3, p.getNbre_produit());
-            pst.setString(4, p.getIdProduit());
+            pst.setInt(4, p.getIdProduit());
             pst.executeUpdate();
             System.out.println("panier ajoutée");
         } catch (SQLException ex) {
@@ -83,7 +83,7 @@ public class PanierCRUD implements Interface_Services<Panier> {
                p.setIdPanier(rs.getInt("IdPanier"));
                p.setPrix_des_produits(rs.getFloat("Prix_des_produits"));
                p.setNbre_produit(rs.getInt("Nbre_produit"));
-               p.setIdProduit(rs.getString("idProduit"));
+               p.setIdProduit(rs.getInt("idProduit"));
                myList.add(p);
            
            
@@ -106,7 +106,7 @@ public class PanierCRUD implements Interface_Services<Panier> {
             PreparedStatement ps = cnx2.prepareStatement(req);
             ps.setFloat(1, p.getPrix_des_produits());
             ps.setInt(2, p.getNbre_produit());
-            ps.setString(3, p.getIdProduit());
+            ps.setInt(3, p.getIdProduit());
             ps.setInt(4, p.getIdPanier());
             ps.executeUpdate();
             System.out.println("Panier modifié");
