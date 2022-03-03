@@ -7,6 +7,7 @@ package test;
 import entities.Produit;
 import entities.Commande;
 import entities.Panier;
+import entities.testmail;
 import services.CommandeCRUD;
 import services.ProduitCRUD;
 import services.PanierCRUD;
@@ -44,12 +45,13 @@ public class main {
         
        // ccd.Supprimer("57");
        
-    CommandeCRUD pccd= new CommandeCRUD();
-      Commande p22 = new Commande(23, "j5555j", 5, 1);
+   /* CommandeCRUD pccd= new CommandeCRUD();
+      Commande p22 = new Commande(4, "kk", 782, 9);
         pccd.Ajouter(p22);
-        System.out.println(pccd.Afficher());
+        System.out.println(pccd.Afficher());*/
        
-        
+        testmail test = new testmail();
+        test.sendEmail("sara.elarbi@esprit.tn", "hi", "hi try");
     
        
     }

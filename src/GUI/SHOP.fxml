@@ -8,6 +8,7 @@
 <?import javafx.scene.control.TabPane?>
 <?import javafx.scene.control.TableColumn?>
 <?import javafx.scene.control.TableView?>
+<?import javafx.scene.control.TextArea?>
 <?import javafx.scene.control.TextField?>
 <?import javafx.scene.effect.Light.Distant?>
 <?import javafx.scene.effect.Lighting?>
@@ -33,9 +34,9 @@
                      <children>
                         <AnchorPane id="AnchorPane" fx:id="produitanchor" prefHeight="720.0" prefWidth="1280.0" style="-fx-background-color: black;">
                            <children>
-                              <TextField fx:id="nom" layoutX="410.0" layoutY="188.0" prefHeight="25.0" prefWidth="174.0" />
-                              <TextField fx:id="type" layoutX="410.0" layoutY="236.0" prefHeight="25.0" prefWidth="174.0" />
-                              <TextField fx:id="prix" layoutX="410.0" layoutY="284.0" prefWidth="174.0" />
+                              <TextField fx:id="nom" layoutX="410.0" layoutY="188.0" prefHeight="25.0" prefWidth="174.0" promptText="Nom" />
+                              <TextField fx:id="type" layoutX="410.0" layoutY="236.0" prefHeight="25.0" prefWidth="174.0" promptText="Type" />
+                              <TextField fx:id="prix" layoutX="410.0" layoutY="284.0" prefWidth="174.0" promptText="Prix" />
                               <Button fx:id="AjouterProd" layoutX="398.0" layoutY="660.0" mnemonicParsing="false" onAction="#AjouterProd" text="Ajouter" />
                               <Button fx:id="SupprimerProd" layoutX="553.0" layoutY="660.0" mnemonicParsing="false" onAction="#SupprimerProd" text="Supprimer" />
                               <TableView fx:id="AfficherProd" layoutX="830.0" layoutY="137.0" onMouseClicked="#selectProduit" onSort="#AfficherProd" prefHeight="513.0" prefWidth="422.0">
@@ -101,9 +102,9 @@
                                           <Image url="@../../images/copyright_PNG52.png" />
                                        </image>
                                     </ImageView>
-                                    <ImageView fitHeight="236.0" fitWidth="247.0" layoutX="-1.0" layoutY="1.0">
+                                    <ImageView fitHeight="236.0" fitWidth="247.0" layoutX="1.0">
                                        <image>
-                                          <Image url="@../../../../../Pictures/272058072_1154385918701731_2340808200172127650_n.jpg" />
+                                          <Image url="@../tmn.jpg" />
                                        </image>
                                     </ImageView>
                                  </children>
@@ -149,12 +150,19 @@
                                     <Font name="System Bold" size="23.0" />
                                  </font>
                               </Label>
-                              <TextField fx:id="idProduitMod" disable="true" layoutX="430.0" layoutY="625.0" />
+                              <TextField fx:id="idProduitMod" disable="true" layoutX="430.0" layoutY="625.0" promptText="ID Produit" />
                               <Text fill="WHITE" layoutX="279.0" layoutY="638.0" strokeType="OUTSIDE" strokeWidth="0.0" text="IdProduit à modifier">
                                  <font>
                                     <Font size="15.0" />
                                  </font>
                               </Text>
+                              <TextField fx:id="chercher" layoutX="1103.0" layoutY="31.0" onAction="#Chercher" promptText="Nom" />
+                              <Text fill="WHITE" layoutX="992.0" layoutY="48.0" strokeType="OUTSIDE" strokeWidth="0.0" text="Recherche">
+                                 <font>
+                                    <Font size="19.0" />
+                                 </font>
+                              </Text>
+                              <Button fx:id="pdf" layoutX="707.0" layoutY="137.0" mnemonicParsing="false" onAction="#pdf" text="Button" />
                            </children>
                         </AnchorPane>
                      </children>
@@ -167,9 +175,9 @@
                      <children>
                         <AnchorPane id="AnchorPane" fx:id="AnchorPane_Commande" prefHeight="720.0" prefWidth="1280.0" style="-fx-background-color: black;">
                            <children>
-                              <TextField fx:id="TextField_totalCMD" layoutX="410.0" layoutY="188.0" prefHeight="25.0" prefWidth="174.0" />
-                              <TextField fx:id="TextField_QtiteCMD" layoutX="410.0" layoutY="236.0" prefHeight="25.0" prefWidth="174.0" />
-                              <TextField fx:id="TextField_idUcmd" layoutX="410.0" layoutY="284.0" prefHeight="25.0" prefWidth="174.0" />
+                              <TextField fx:id="TextField_totalCMD" layoutX="410.0" layoutY="188.0" prefHeight="25.0" prefWidth="174.0" promptText="Total" />
+                              <TextField fx:id="TextField_QtiteCMD" layoutX="410.0" layoutY="236.0" prefHeight="25.0" prefWidth="174.0" promptText="Quantité" />
+                              <TextField fx:id="TextField_idUcmd" layoutX="410.0" layoutY="284.0" prefHeight="25.0" prefWidth="174.0" promptText="ID Utilisateur" />
                               <Button fx:id="AjouterCommande" layoutX="398.0" layoutY="660.0" mnemonicParsing="false" onAction="#AjouterCommande" text="Ajouter" />
                               <Label graphicTextGap="6.0" layoutX="255.0" layoutY="192.0" prefHeight="17.0" prefWidth="41.0" text="Total">
                                  <textFill>
@@ -322,20 +330,26 @@
                                     </ImageView>
                                     <ImageView fitHeight="236.0" fitWidth="247.0" layoutX="-1.0" layoutY="1.0">
                                        <image>
-                                          <Image url="@../../../../../Pictures/272058072_1154385918701731_2340808200172127650_n.jpg" />
+                                          <Image url="@../tmn.jpg" />
                                        </image>
                                     </ImageView>
                                  </children>
                               </Pane>
-                              <TextField fx:id="TextField_idproduit" layoutX="410.0" layoutY="336.0" prefHeight="25.0" prefWidth="174.0" />
+                              <TextField fx:id="TextField_idproduit" layoutX="410.0" layoutY="336.0" prefHeight="25.0" prefWidth="174.0" promptText="ID Produit" />
                               <Text fill="WHITE" layoutX="255.0" layoutY="351.0" strokeType="OUTSIDE" strokeWidth="0.0" text="id Produit">
                                  <font>
                                     <Font size="15.0" />
                                  </font>
                               </Text>
-                              <TextField fx:id="numCmdMod" disable="true" layoutX="428.0" layoutY="622.0" />
+                              <TextField fx:id="numCmdMod" disable="true" layoutX="428.0" layoutY="622.0" promptText="Numéro Commande" />
+                              <TextField fx:id="chercher_cmd" layoutX="1104.0" layoutY="41.0" onAction="#Chercher_cmd" promptText="Quantité" />
                            </children>
                         </AnchorPane>
+                        <Text fill="WHITE" layoutX="1002.0" layoutY="58.0" strokeType="OUTSIDE" strokeWidth="0.0" text="Recherche">
+                           <font>
+                              <Font size="19.0" />
+                           </font>
+                        </Text>
                      </children>
                   </AnchorPane>
             </content>
@@ -344,11 +358,11 @@
                <content>
                   <AnchorPane minHeight="0.0" minWidth="0.0" prefHeight="180.0" prefWidth="200.0" style="-fx-background-color: black;">
                      <children>
-                        <AnchorPane id="AnchorPane" fx:id="AnchorPane_Panier" prefHeight="720.0" prefWidth="1280.0" style="-fx-background-color: black;">
+                        <AnchorPane id="AnchorPane" fx:id="AnchorPane_Panier" onMouseClicked="#select_panier" prefHeight="720.0" prefWidth="1280.0" style="-fx-background-color: black;">
                            <children>
-                              <TextField fx:id="prix_des_prods" layoutX="410.0" layoutY="188.0" prefHeight="25.0" prefWidth="174.0" />
-                              <TextField fx:id="nbre_produit" layoutX="410.0" layoutY="236.0" prefHeight="25.0" prefWidth="174.0" />
-                              <TextField fx:id="idProduit_panier" layoutX="410.0" layoutY="284.0" prefHeight="25.0" prefWidth="174.0" />
+                              <TextField fx:id="prix_des_prods" layoutX="410.0" layoutY="188.0" prefHeight="25.0" prefWidth="174.0" promptText="Prix des produits" />
+                              <TextField fx:id="nbre_produit" layoutX="410.0" layoutY="236.0" prefHeight="25.0" prefWidth="174.0" promptText="Nombre de produits" />
+                              <TextField fx:id="idProduit_panier" layoutX="410.0" layoutY="284.0" prefHeight="25.0" prefWidth="174.0" promptText="ID Produit" />
                               <Button fx:id="AjouterPanier" layoutX="398.0" layoutY="660.0" mnemonicParsing="false" onAction="#AjouterPanier" text="Ajouter" />
                               <Label graphicTextGap="6.0" layoutX="255.0" layoutY="192.0" prefHeight="21.0" prefWidth="141.0" text="Prix des produits">
                                  <textFill>
@@ -500,7 +514,7 @@
                                     </ImageView>
                                     <ImageView fitHeight="236.0" fitWidth="247.0" layoutX="-1.0" layoutY="1.0">
                                        <image>
-                                          <Image url="@../../../../../Pictures/272058072_1154385918701731_2340808200172127650_n.jpg" />
+                                          <Image url="@../tmn.jpg" />
                                        </image>
                                     </ImageView>
                                  </children>
@@ -508,6 +522,32 @@
                               <TextField fx:id="IdPanierMod" disable="true" layoutX="428.0" layoutY="622.0" />
                            </children>
                         </AnchorPane>
+                     </children>
+                  </AnchorPane>
+               </content>
+            </Tab>
+            <Tab text="SMS">
+               <content>
+                  <AnchorPane fx:id="anchor_sms" minHeight="0.0" minWidth="0.0" prefHeight="180.0" prefWidth="200.0" style="-fx-background-color: black;">
+                     <children>
+                        <Text fill="WHITE" layoutX="640.0" layoutY="204.0" strokeType="OUTSIDE" strokeWidth="0.0" text="Envoyer un SMS">
+                           <font>
+                              <Font size="25.0" />
+                           </font>
+                        </Text>
+                        <TextField fx:id="to" layoutX="644.0" layoutY="259.0" prefHeight="25.0" prefWidth="184.0" />
+                        <TextArea fx:id="msg" layoutX="640.0" layoutY="328.0" prefHeight="200.0" prefWidth="200.0" />
+                        <Button fx:id="envoyer" layoutX="720.0" layoutY="562.0" mnemonicParsing="false" onAction="#envoyer_sms" text="Envoyer" />
+                        <Text fill="WHITE" layoutX="454.0" layoutY="276.0" strokeType="OUTSIDE" strokeWidth="0.0" text="Destinataire">
+                           <font>
+                              <Font size="15.0" />
+                           </font>
+                        </Text>
+                        <Text fill="WHITE" layoutX="454.0" layoutY="350.0" strokeType="OUTSIDE" strokeWidth="0.0" text="Ecrivez votre message">
+                           <font>
+                              <Font size="15.0" />
+                           </font>
+                        </Text>
                      </children>
                   </AnchorPane>
                </content>
