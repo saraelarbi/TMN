@@ -5,8 +5,17 @@
  */
 package GUI;
 
+import com.itextpdf.text.Document;
+import com.itextpdf.text.DocumentException;
+import com.itextpdf.text.Paragraph;
+import com.itextpdf.text.Phrase;
+import com.itextpdf.text.pdf.PdfPCell;
+import com.itextpdf.text.pdf.PdfPTable;
+import com.itextpdf.text.pdf.PdfWriter;
 import entities.Publication;
 import java.io.File;
+import java.io.FileNotFoundException;
+import java.io.FileOutputStream;
 import static java.lang.Integer.parseInt;
 import java.net.URL;
 import java.sql.Connection;
@@ -41,6 +50,8 @@ import javafx.stage.FileChooser;
 import javafx.stage.Stage;
 import services.ServicePublication;
 import utils.MyDB;
+
+
 
 /**
  * FXML Controller class
@@ -99,6 +110,8 @@ public class GestionPublicationFXMLController implements Initializable {
     private TextField TextField_Recherche_Pub;
     @FXML
     private ProgressBar ProgressBar;
+    @FXML
+    private Button Button_PubToPDF;
     
     //ProgressBar proBar = new ProgressBar();
 
@@ -380,5 +393,67 @@ public class GestionPublicationFXMLController implements Initializable {
         }while(1>(ii));
       
     }
+
+    @FXML
+    private void ConvertToPDF(ActionEvent event) {
+        try {
+              Publication publication = AffichagePublication.getSelectionModel().getSelectedItem();    
+          Document document=new Document () ;
+  
+                 PdfWriter.getInstance(document, new FileOutputStream("C:/Users/ffsga/Documents/NetBeansProjects/TMN/images/TMNreclamation.pdf")); 
+            document.open();
+             
+         
+     document.open () ;
+
+        Paragraph para=new Paragraph ("Reclamations :");  
+        document.add (para);
+           
+
+        
+        //simple paragraph
+ 
+                            //add table
+                             PdfPTable pdfPTable =new PdfPTable(7);
+                              
+
+                              PdfPCell pdfCell1 = new PdfPCell(new Phrase("idPub")); 
+                     
+                     
+                            PdfPCell pdfCell2 = new PdfPCell(new Phrase("date_Pub"));
+                             PdfPCell pdfCell3 = new PdfPCell(new Phrase("titre_Pub"));
+                              PdfPCell pdfCell4 = new PdfPCell(new Phrase("desc_Pub"));
+                            PdfPCell pdfCell50 = new PdfPCell(new Phrase("source_Pub"));
+                                    PdfPCell pdfCell5 = new PdfPCell(new Phrase("categorie_Pub:"));
+                                       PdfPCell pdfCell555 = new PdfPCell(new Phrase("image_Pub:")); 
+                                       
+                  
+                                     
+                                       pdfPTable.addCell(pdfCell1);
+                                pdfPTable.addCell(pdfCell2);
+                                 pdfPTable.addCell(pdfCell3);
+                                  pdfPTable.addCell(pdfCell4);
+                                        pdfPTable.addCell(pdfCell50);
+                                         pdfPTable.addCell(pdfCell5);
+                        pdfPTable.addCell(pdfCell555);
+                            pdfPTable.addCell(""+publication.getIdPub()+"");
+                            pdfPTable.addCell (""+publication.getDate_Pub()+"");
+                            pdfPTable.addCell(publication.getTitre_Pub());
+                            pdfPTable.addCell(publication.getDesc_Pub());
+                            pdfPTable.addCell (publication.getSource_Pub());
+                              pdfPTable.addCell (publication.getCategorie_Pub());
+                           pdfPTable.addCell (publication.getImage_Pub());
+                          document.add(pdfPTable);
+            // document.add(image);
+                        document.close();
+                        
+
+        } catch (DocumentException | FileNotFoundException Exception) {
+         System.out.println(Exception);
+ }
+              
+              
+    }
+    
 
 }

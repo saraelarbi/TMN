@@ -2,6 +2,7 @@
 
 <?import javafx.scene.control.Button?>
 <?import javafx.scene.control.ButtonBar?>
+<?import javafx.scene.control.ComboBox?>
 <?import javafx.scene.control.Label?>
 <?import javafx.scene.control.ProgressBar?>
 <?import javafx.scene.control.TableColumn?>
@@ -40,8 +41,6 @@
             </RadialGradient>
          </textFill>
       </Label>
-      <TextField fx:id="TextField_id_Pod" layoutX="434.0" layoutY="432.0" prefHeight="25.0" prefWidth="174.0" />
-      <TextField fx:id="TextField_id_Blog" layoutX="433.0" layoutY="500.0" prefHeight="25.0" prefWidth="174.0" />
       <Button fx:id="AjouterReclamation" layoutX="408.0" layoutY="622.0" mnemonicParsing="false" onAction="#AjouterReclamation" text="Ajouter" />
       <Label graphicTextGap="6.0" layoutX="363.0" layoutY="310.0" prefHeight="17.0" prefWidth="68.0" text="Description:">
          <textFill>
@@ -79,7 +78,7 @@
             </RadialGradient>
          </textFill>
       </Label>
-      <Label graphicTextGap="6.0" layoutX="390.0" layoutY="502.0" prefHeight="17.0" prefWidth="68.0" text="idBlog:">
+      <Label graphicTextGap="6.0" layoutX="390.0" layoutY="495.0" prefHeight="17.0" prefWidth="68.0" text="idBlog:">
          <textFill>
             <RadialGradient centerX="0.5" centerY="0.5" radius="0.5">
                <stops>
@@ -190,7 +189,6 @@
             </ImageView>
          </children>
       </Pane>
-      <TextField fx:id="TextField_id_Pub" layoutX="434.0" layoutY="372.0" prefHeight="25.0" prefWidth="174.0" />
       <Label graphicTextGap="6.0" layoutX="388.0" layoutY="376.0" prefHeight="17.0" prefWidth="42.0" text="idPub:">
          <textFill>
             <RadialGradient centerX="0.5" centerY="0.5" radius="0.5">
@@ -229,5 +227,9 @@
       </Label>
       <TextField fx:id="TextField_Recherche_Reclamation" layoutX="762.0" layoutY="108.0" promptText="Tapez ici" />
       <ProgressBar fx:id="ProgressBarRec" layoutX="421.0" layoutY="676.0" prefWidth="200.0" progress="0.0" />
+      <ComboBox fx:id="ComboBox_idPub" layoutX="441.0" layoutY="372.0" onShowing="#getComboBox_idPub" prefWidth="150.0" promptText="NULL" />
+      <ComboBox fx:id="ComboBox_idPod" layoutX="441.0" layoutY="429.0" onShowing="#getComboBox_idPod" prefWidth="150.0" promptText="NULL" />
+      <ComboBox fx:id="ComboBox_idBlog" layoutX="441.0" layoutY="491.0" onShowing="#getComboBox_idBlog" prefWidth="150.0" promptText="NULL" />
+      <Button fx:id="Button_RecToExcel" layoutX="830.0" layoutY="671.0" mnemonicParsing="false" onAction="#RecToExcel" prefHeight="25.0" prefWidth="55.0" text="Excel" />
    </children>
 </AnchorPane>
