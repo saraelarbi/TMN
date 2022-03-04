@@ -26,13 +26,16 @@ import java.text.SimpleDateFormat;
 import java.sql.Date;
 import java.util.Optional;
 import java.util.ResourceBundle;
+import java.util.logging.Level;
 import javafx.collections.FXCollections;
 import javafx.collections.ObservableList;
 import javafx.collections.transformation.FilteredList;
 import javafx.collections.transformation.SortedList;
 import javafx.event.ActionEvent;
+import javafx.event.EventHandler;
 import javafx.fxml.FXML;
 import javafx.fxml.Initializable;
+import javafx.geometry.Pos;
 import javafx.scene.control.Alert;
 import javafx.scene.control.Button;
 import javafx.scene.control.ButtonType;
@@ -48,10 +51,15 @@ import javafx.scene.image.ImageView;
 import javafx.scene.layout.AnchorPane;
 import javafx.stage.FileChooser;
 import javafx.stage.Stage;
+import javafx.util.Duration;
+import javax.mail.Message;
+import javax.mail.MessagingException;
+import javax.mail.Transport;
+import org.controlsfx.control.Notifications;
 import services.ServicePublication;
+import services.mail;
+import static services.mail.prepareMessage;
 import utils.MyDB;
-
-
 
 /**
  * FXML Controller class
@@ -112,9 +120,8 @@ public class GestionPublicationFXMLController implements Initializable {
     private ProgressBar ProgressBar;
     @FXML
     private Button Button_PubToPDF;
-    
-    //ProgressBar proBar = new ProgressBar();
 
+    //ProgressBar proBar = new ProgressBar();
     /**
      * Initializes the controller class.
      */
@@ -151,13 +158,16 @@ public class GestionPublicationFXMLController implements Initializable {
             StartProgrssBar();
             sPub.ajouterPB(pb);
             
+            
+            Notificationmanager(0);
             Alert alert = new Alert(Alert.AlertType.INFORMATION);
             alert.setTitle("Alert");
             alert.setHeaderText(null);
             alert.setContentText("Success Publication Ajouté!");
             alert.showAndWait();
-            
+
             ProgressBar.setProgress(0);
+
             AffichagePublication();
             clear();
         }
@@ -181,25 +191,31 @@ public class GestionPublicationFXMLController implements Initializable {
             alert.showAndWait();
 
         } else {
+            Alert alert = new Alert(Alert.AlertType.CONFIRMATION);
+        alert.setTitle("Confirmation Message");
+        alert.setHeaderText(null);
+        alert.setContentText("Voulez vous Modifier cette publication ?");
 
+        Optional<ButtonType> buttonType = alert.showAndWait();
+
+        if (buttonType.get() == ButtonType.OK) {
+            ServicePublication sPub = new ServicePublication();
             String str2 = DatePicker_Date_PUB.getValue().toString();
             String str3 = TextField_ID_PUB.getText();
             int idpb = parseInt(str3);
             Date datepub1 = Date.valueOf(str2);
-            ServicePublication sPub = new ServicePublication();
+            
+            
             Publication pb = new Publication(idpb, datepub1, TextField_TITRE_PUB.getText(), TextField_DESC_PUB.getText(), TextField_SOURCE_PUB.getText(), TextField_CATEGORIE_PUB.getText(), file_path.getText());
             StartProgrssBar();
             sPub.modifierPB(pb);
+            Notificationmanager(1);
+           
 
-            Alert alert = new Alert(Alert.AlertType.INFORMATION);
-            alert.setTitle("Alert");
-            alert.setHeaderText(null);
-            alert.setContentText("Success Publication Modifié!");
-            alert.showAndWait();
-
-            ProgressBar.setProgress(0);
+           
             AffichagePublication();
-            clear();
+            clear();}
+         ProgressBar.setProgress(0); 
 
         }
 
@@ -221,14 +237,14 @@ public class GestionPublicationFXMLController implements Initializable {
             String idpb = TextField_ID_PUB.getText();
             StartProgrssBar();
             sPub.supprimerPB(parseInt(idpb));
+             Notificationmanager(2);
 
         } else {
 
             return;
 
         }
-        
-        
+
         AffichagePublication();
         clear();
         ProgressBar.setProgress(0);
@@ -283,8 +299,8 @@ public class GestionPublicationFXMLController implements Initializable {
 
         // 2. Set the filter Predicate whenever the filter changes.
         TextField_Recherche_Pub.textProperty().addListener((observable, oldValue, newValue) -> {
-            filteredData.setPredicate(publication -> {     
-              if (newValue == null || newValue.isEmpty()) {
+            filteredData.setPredicate(publication -> {
+                if (newValue == null || newValue.isEmpty()) {
                     return true;
                 }
 
@@ -292,11 +308,11 @@ public class GestionPublicationFXMLController implements Initializable {
                 String lowerCaseFilter = newValue.toLowerCase();
 
                 if (publication.getTitre_Pub().toLowerCase().contains(lowerCaseFilter)) {
-                    return true; 
+                    return true;
                 } else if (publication.getDesc_Pub().toLowerCase().contains(lowerCaseFilter)) {
-                    return true; 
+                    return true;
                 } else if (publication.getSource_Pub().toLowerCase().contains(lowerCaseFilter)) {
-                    return true;     
+                    return true;
                 } else if (publication.getCategorie_Pub().toLowerCase().contains(lowerCaseFilter)) {
                     return true;
                 } else {
@@ -373,7 +389,7 @@ public class GestionPublicationFXMLController implements Initializable {
     public void clear() {
 
         TextField_ID_PUB.setText("");
-        DatePicker_Date_PUB.getEditor().getText();
+        DatePicker_Date_PUB.getEditor().setText("");
         TextField_TITRE_PUB.setText("");
         TextField_DESC_PUB.setText("");
         TextField_SOURCE_PUB.setText("");
@@ -382,78 +398,130 @@ public class GestionPublicationFXMLController implements Initializable {
         file_path.setText("");
 
     }
-    
+
     public void StartProgrssBar() {
-        double ii=0;
-        
-        do{
-        
-         ii+=0.001;
-         ProgressBar.setProgress(1);
-        }while(1>(ii));
-      
+        double ii = 0;
+
+        do {
+
+            ii += 0.001;
+            ProgressBar.setProgress(1);
+        } while (1 > (ii));
+
     }
 
     @FXML
     private void ConvertToPDF(ActionEvent event) {
         try {
-              Publication publication = AffichagePublication.getSelectionModel().getSelectedItem();    
-          Document document=new Document () ;
-  
-                 PdfWriter.getInstance(document, new FileOutputStream("C:/Users/ffsga/Documents/NetBeansProjects/TMN/images/TMNreclamation.pdf")); 
+            Publication publication = AffichagePublication.getSelectionModel().getSelectedItem();
+            Document document = new Document();
+
+            PdfWriter.getInstance(document, new FileOutputStream("C:/Users/ffsga/Documents/NetBeansProjects/TMN/images/TMNpublication.pdf"));
             document.open();
-             
-         
-     document.open () ;
 
-        Paragraph para=new Paragraph ("Reclamations :");  
-        document.add (para);
-           
+            document.open();
 
-        
-        //simple paragraph
- 
-                            //add table
-                             PdfPTable pdfPTable =new PdfPTable(7);
-                              
+            Paragraph para = new Paragraph("Publications :\n\t");
+            document.add(para);
 
-                              PdfPCell pdfCell1 = new PdfPCell(new Phrase("idPub")); 
-                     
-                     
-                            PdfPCell pdfCell2 = new PdfPCell(new Phrase("date_Pub"));
-                             PdfPCell pdfCell3 = new PdfPCell(new Phrase("titre_Pub"));
-                              PdfPCell pdfCell4 = new PdfPCell(new Phrase("desc_Pub"));
-                            PdfPCell pdfCell50 = new PdfPCell(new Phrase("source_Pub"));
-                                    PdfPCell pdfCell5 = new PdfPCell(new Phrase("categorie_Pub:"));
-                                       PdfPCell pdfCell555 = new PdfPCell(new Phrase("image_Pub:")); 
-                                       
-                  
-                                     
-                                       pdfPTable.addCell(pdfCell1);
-                                pdfPTable.addCell(pdfCell2);
-                                 pdfPTable.addCell(pdfCell3);
-                                  pdfPTable.addCell(pdfCell4);
-                                        pdfPTable.addCell(pdfCell50);
-                                         pdfPTable.addCell(pdfCell5);
-                        pdfPTable.addCell(pdfCell555);
-                            pdfPTable.addCell(""+publication.getIdPub()+"");
-                            pdfPTable.addCell (""+publication.getDate_Pub()+"");
-                            pdfPTable.addCell(publication.getTitre_Pub());
-                            pdfPTable.addCell(publication.getDesc_Pub());
-                            pdfPTable.addCell (publication.getSource_Pub());
-                              pdfPTable.addCell (publication.getCategorie_Pub());
-                           pdfPTable.addCell (publication.getImage_Pub());
-                          document.add(pdfPTable);
+            //simple paragraph
+            //add table
+            PdfPTable pdfPTable = new PdfPTable(7);
+
+            PdfPCell pdfCell1 = new PdfPCell(new Phrase("idPub"));
+
+            PdfPCell pdfCell2 = new PdfPCell(new Phrase("date_Pub"));
+            PdfPCell pdfCell3 = new PdfPCell(new Phrase("titre_Pub"));
+            PdfPCell pdfCell4 = new PdfPCell(new Phrase("desc_Pub"));
+            PdfPCell pdfCell50 = new PdfPCell(new Phrase("source_Pub"));
+            PdfPCell pdfCell5 = new PdfPCell(new Phrase("categorie_Pub:"));
+            PdfPCell pdfCell555 = new PdfPCell(new Phrase("image_Pub:"));
+
+            pdfPTable.addCell(pdfCell1);
+            pdfPTable.addCell(pdfCell2);
+            pdfPTable.addCell(pdfCell3);
+            pdfPTable.addCell(pdfCell4);
+            pdfPTable.addCell(pdfCell50);
+            pdfPTable.addCell(pdfCell5);
+            pdfPTable.addCell(pdfCell555);
+            pdfPTable.addCell("" + publication.getIdPub() + "");
+            pdfPTable.addCell("" + publication.getDate_Pub() + "");
+            pdfPTable.addCell(publication.getTitre_Pub());
+            pdfPTable.addCell(publication.getDesc_Pub());
+            pdfPTable.addCell(publication.getSource_Pub());
+            pdfPTable.addCell(publication.getCategorie_Pub());
+            pdfPTable.addCell(publication.getImage_Pub());
+            document.add(pdfPTable);
             // document.add(image);
-                        document.close();
-                        
+            document.close();
 
         } catch (DocumentException | FileNotFoundException Exception) {
-         System.out.println(Exception);
- }
-              
-              
+            System.out.println(Exception);
+        }
+
     }
-    
+
+    public void Notificationmanager(int mode) {
+        Notifications not = Notifications.create().graphic(null).hideAfter(Duration.seconds(10)).position(Pos.BOTTOM_RIGHT).onAction(new EventHandler<ActionEvent>() {
+            @Override
+            public void handle(ActionEvent event) {
+                System.out.println("clicked on notification");
+            }
+        });
+        not.darkStyle();
+        switch (mode) {
+            case 0:
+
+                not.title("Success");
+                not.text("Publication ajouté");
+                not.showInformation();
+                break;
+            case 1:
+
+                not.title("Success ");
+                not.text("Publication Modifié");
+                not.showWarning();
+                break;
+            case 2:
+
+                not.text("Publication supprimé");
+                not.title("Success");
+                not.showConfirm();
+                break;
+            case 3:
+
+                not.text("Reclamation ajouté");
+                not.title("Success");
+                not.showInformation();
+                break;
+            case 4:
+
+                not.text("Reclamation modifié");
+                not.title("Success");
+                not.showWarning();
+                break;
+            case 5:
+
+                not.text("Reclamation supprimé");
+                not.title("Success");
+                not.showWarning();
+                break;
+            case 6:
+
+                not.text("Mail envoyé");
+                not.title("Mail");
+                not.showWarning();
+                break;
+            case 7:
+
+                not.text("Converted to PDF");
+                not.title("PDF");
+                not.showWarning();
+                break;    
+            default:
+
+        }
+
+    }
 
 }

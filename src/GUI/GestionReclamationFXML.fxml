@@ -5,6 +5,7 @@
 <?import javafx.scene.control.ComboBox?>
 <?import javafx.scene.control.Label?>
 <?import javafx.scene.control.ProgressBar?>
+<?import javafx.scene.control.RadioButton?>
 <?import javafx.scene.control.TableColumn?>
 <?import javafx.scene.control.TableView?>
 <?import javafx.scene.control.TextField?>
@@ -230,6 +231,9 @@
       <ComboBox fx:id="ComboBox_idPub" layoutX="441.0" layoutY="372.0" onShowing="#getComboBox_idPub" prefWidth="150.0" promptText="NULL" />
       <ComboBox fx:id="ComboBox_idPod" layoutX="441.0" layoutY="429.0" onShowing="#getComboBox_idPod" prefWidth="150.0" promptText="NULL" />
       <ComboBox fx:id="ComboBox_idBlog" layoutX="441.0" layoutY="491.0" onShowing="#getComboBox_idBlog" prefWidth="150.0" promptText="NULL" />
-      <Button fx:id="Button_RecToExcel" layoutX="830.0" layoutY="671.0" mnemonicParsing="false" onAction="#RecToExcel" prefHeight="25.0" prefWidth="55.0" text="Excel" />
+      <Button fx:id="Button_RecToPDF" layoutX="830.0" layoutY="671.0" mnemonicParsing="false" onAction="#RecToPDF" prefHeight="25.0" prefWidth="55.0" text="PDF" />
+      <RadioButton fx:id="RadioButton_idPub" layoutX="350.0" layoutY="375.0" mnemonicParsing="false" onMousePressed="#RadioButton_checked" />
+      <RadioButton fx:id="RadioButton_idPod" layoutX="350.0" layoutY="433.0" mnemonicParsing="false" onMousePressed="#RadioButton_checked1" />
+      <RadioButton fx:id="RadioButton_idBlog" layoutX="350.0" layoutY="489.0" mnemonicParsing="false" onMousePressed="#RadioButton_checked2" />
    </children>
 </AnchorPane>
