@@ -42,7 +42,7 @@ public class PubliciteCRUD {
 
     public void modifierPublic(Publicite pb) {
         try {
-            String req = "update Ccmmentaire set  id_typepub = ? ,Date_creation = ? ,domaine = ? ,description = ? ,image = ? ,lettre_motivation = ? where id_pub = ?";
+            String req = "update publicite set  id_typepub = ? ,Date_creation = ? ,domaine = ? ,description = ? ,image = ? ,lettre_motivation = ? where id_pub =  "+pb.getId_pub();
             PreparedStatement ps = cnx.prepareStatement(req);
             ps.setInt(1, pb.getId_typepub());
             ps.setDate(2, (Date) pb.getDate_creation());
@@ -62,7 +62,7 @@ public class PubliciteCRUD {
 
     public void supprimerPublic(int id_pub) {
         try {
-            String req = "delete from publicite where id_commentaire = ?";
+            String req = "delete from publicite where id_pub = ?";
             PreparedStatement ps = cnx.prepareStatement(req);
             ps.setInt(1, id_pub);
             ps.executeUpdate();

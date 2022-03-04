@@ -20,6 +20,8 @@ public class Publicite {
     private String lettre_motivation;
     private String image;
 
+  
+
 
     public Publicite() {
     }

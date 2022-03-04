@@ -4,9 +4,16 @@
  * and open the template in the editor.
  */
 package GUI;
-
-import java.io.IOException;
 import javafx.application.Application;
+import javafx.fxml.FXMLLoader;
+import javafx.scene.Parent;
+import javafx.scene.Scene;
+import javafx.stage.Stage;
+import java.io.IOException;
+import java.util.logging.Level;
+import java.util.logging.Logger;
+import javafx.application.Application;
+import static javafx.application.Application.launch;
 import javafx.event.ActionEvent;
 import javafx.event.EventHandler;
 import javafx.fxml.FXMLLoader;
@@ -16,21 +23,23 @@ import javafx.scene.control.Button;
 import javafx.scene.layout.StackPane;
 import javafx.stage.Stage;
 
-/**
- *
- * @author bolba
- */
+
 public class FXMain extends Application {
-    
+     
+    @Override
     public void start(Stage primaryStage) throws IOException {
        // try {
             Parent root = FXMLLoader.load(getClass().getResource("../GUI/GestionPublicite.fxml"));
-            Scene scene = new Scene(root);
+
+
+            
+            Scene scene = new Scene(root); 
             primaryStage.setScene(scene);
             primaryStage.show();
        // } catch (IOException ex) {
           //  System.out.println(ex.getMessage());
         }
+    
 
     /**
      * @param args the command line arguments

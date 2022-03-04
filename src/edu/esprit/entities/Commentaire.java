@@ -11,19 +11,22 @@ package edu.esprit.entities;
  */
 public class Commentaire {
     private int id_commentaire;
+    private int id_user;
     private int id_podcast;
     private String description;
     
      
     public Commentaire(){
     }
-    public Commentaire(int id_commentaire, int id_podcast, String description) {
+    public Commentaire(int id_commentaire, int id_user, int id_podcast, String description) {
         this.id_commentaire = id_commentaire;
+        this.id_user = id_user;
         this.id_podcast = id_podcast;
         this.description = description;
     }
 
-    public Commentaire(int id_podcast, String description) {
+    public Commentaire(int id_user, int id_podcast, String description) {
+        this.id_user = id_user;
         this.id_podcast = id_podcast;
         this.description = description;
     }
@@ -34,6 +37,13 @@ public class Commentaire {
 
     public void setId_commentaire(int id_commentaire) {
         this.id_commentaire = id_commentaire;
+    }
+    public int getId_user() {
+        return id_user;
+    }
+
+    public void setId_user(int id_user) {
+        this.id_user = id_user;
     }
     public int getId_podcast() {
         return id_podcast;

@@ -6,14 +6,21 @@
 package GUI;
 
 import edu.esprit.entities.Publicite;
+import edu.esprit.entities.Typepub;
+import edu.esprit.services.PubliciteCRUD;
+import edu.esprit.services.TypepubCRUD;
 import edu.esprit.utils.MyConnection;
 import static java.awt.PageAttributes.MediaType.C;
+import java.io.File;
 import java.net.URL;
 import java.sql.Connection;
-import java.sql.Date;
 import java.sql.ResultSet;
 import java.sql.SQLException;
 import java.sql.Statement;
+import java.time.LocalDate;
+import java.time.ZoneId;
+import static java.time.temporal.TemporalQueries.localDate;
+import java.util.Date;
 import java.util.ResourceBundle;
 import javafx.collections.FXCollections;
 import javafx.collections.ObservableList;
@@ -21,6 +28,7 @@ import javafx.event.ActionEvent;
 import javafx.fxml.FXML;
 import javafx.fxml.Initializable;
 import static javafx.print.Paper.C;
+import javafx.scene.control.Alert;
 import javafx.scene.control.Button;
 import javafx.scene.control.ComboBox;
 import javafx.scene.control.DatePicker;
@@ -30,12 +38,33 @@ import javafx.scene.control.TableColumn;
 import javafx.scene.control.TableView;
 import javafx.scene.control.TextField;
 import javafx.scene.control.cell.PropertyValueFactory;
+import javafx.scene.image.Image;
 import javafx.scene.image.ImageView;
 import static javafx.scene.input.KeyCode.C;
 import javafx.scene.input.MouseEvent;
 import javafx.scene.layout.AnchorPane;
+import javafx.scene.media.MediaPlayer;
+import javafx.stage.FileChooser;
+import javafx.stage.Stage;
 import static javax.print.attribute.standard.MediaSize.Engineering.C;
 import static javax.print.attribute.standard.MediaSizeName.C;
+import javafx.fxml.FXML;
+import javafx.scene.input.MouseEvent;
+import javafx.scene.media.Media;
+import javafx.scene.media.MediaPlayer;
+import java.io.File;
+import static java.util.Locale.filter;
+import static java.util.Locale.filter;
+import javafx.collections.transformation.FilteredList;
+import javafx.collections.transformation.SortedList;
+import static javafx.print.Paper.C;
+import static javafx.scene.input.KeyCode.C;
+import static javax.print.attribute.standard.MediaSize.Engineering.C;
+import static javax.print.attribute.standard.MediaSizeName.C;
+import static jdk.nashorn.internal.objects.NativeArray.filter;
+import static sun.util.locale.LocaleMatcher.filter;
+import static java.util.Locale.filter;
+import static java.util.Locale.filter;
 
 /**
  * FXML Controller class
@@ -43,20 +72,21 @@ import static javax.print.attribute.standard.MediaSizeName.C;
  * @author bolba
  */
 public class GestionPubliciteController implements Initializable {
-
+    
+     String path = "C:\\Users\\bolba\\Documents\\NetBeansProjects\\Pidevconnection\\music\\rakabataya.mp3";
+     Media media = new Media(new File(path).toURI().toString());
+     MediaPlayer mediaPlayer = new MediaPlayer(media);
+     FilteredList<Publicite> filters = new FilteredList<>(PubliciteList(), e -> true);
+     SortedList<Publicite> sorta = new SortedList<>(filters);
+     FilteredList<Typepub> filter = new FilteredList<>(TypepubList(), e -> true);
+     SortedList<Typepub> sort = new SortedList<>(filter);
+     
     @FXML
     private AnchorPane AnchorPane_Publication;
-    private TextField TextField_type;
+    static Publicite selectionedPublicite;
     @FXML
     private DatePicker DatePicker_Date_PUB;
-    @FXML
-    private TextField TextField_SOURCE_PUB;
-    @FXML
-    private Button AjouterPublication;
-    @FXML
-    private Button ModifierPublication;
-    @FXML
-    private Button SupprimerPublication;
+    
     @FXML
     private TableColumn<Publicite, Date> date_Pub;
     @FXML
@@ -67,8 +97,7 @@ public class GestionPubliciteController implements Initializable {
     private Button button_inserer_image;
     @FXML
     private ImageView imageview_Publication;
-    @FXML
-    private Label file_path;
+    
     @FXML
     private TableColumn<Publicite, Integer> type_pub;
     @FXML
@@ -83,28 +112,71 @@ public class GestionPubliciteController implements Initializable {
     private TableView<Publicite> AffichagePublicite;
 private Connection cnx;
     @FXML
-    private ComboBox<?> Cbx_type;
+    private ComboBox<String> Cbx_type;
+    @FXML
+    private Button ModifierPublicite;
+    @FXML
+    private TextField TextField_Lettres_PUB;
+    @FXML
+    private Button AjouterPublicite;
+    @FXML
+    private Button SupprimerPublicite;
+    @FXML
+    private TableColumn<Publicite, Integer> id_pub1;
+    @FXML
+    private Label id;
+    @FXML
+    private TableColumn<Typepub, String> type_pub1;
+    @FXML
+    private Label id1;
+    @FXML
+    private TextField TextField_type_pub;
+    @FXML
+    private Button Ajoutertypepub1;
+    @FXML
+    private Button Modifiertypepub1;
+    @FXML
+    private Button Supprimertypepub1;
+    @FXML
+    private Button play;
+    @FXML
+    private AnchorPane AnchorPane_typepub11;
+    @FXML
+    private TableView<Typepub> Affichagetypepub1;
+    @FXML
+    private TableColumn<Typepub, Integer> id_typepub1;
+    @FXML
+    private AnchorPane AnchorPane_typepub111;
+    @FXML
+    private TextField TextField_type_pub1;
+    @FXML
+    private Button Ajoutertypepub11;
+    @FXML
+    private Button Modifiertypepub11;
+    @FXML
+    private Button Supprimertypepub11;
+    @FXML
+    private TableColumn<?, ?> id_pub111;
+    @FXML
+    private Label id11;
+    @FXML
+    private Button play1;
+    @FXML
+    private TableView<?> Affichagetypepub11;
+    @FXML
+    private TextField chercher;
+    @FXML
+    private TextField chercher2;
     /**
      * Initializes the controller class.
      */
     @Override
     public void initialize(URL url, ResourceBundle rb) {
-        TextField_type.setDisable (true);
-//        AffichagePublicite();
+        AffichagePublicite();
+        AffichageTypepub();
+        
     }    
 
-    @FXML
-    private void AjouterPublication(ActionEvent event) {
-    }
-
-    @FXML                       
-    private void ModifierPublicite(ActionEvent event) {
-    }
-
-    @FXML
-    private void SupprimerPublication(ActionEvent event) {
-        
-    }
     public ObservableList<Publicite> PubliciteList(){
         
         cnx = MyConnection.getInstance().getCnx();
@@ -128,35 +200,288 @@ private Connection cnx;
                 
             }
             
-        }catch(SQLException e){}
+        }catch(SQLException e){
+             e.printStackTrace();
+        }
         
         return PubliciteList;
         
     }
-
+    public ObservableList<Typepub> TypepubList(){
+        
+        cnx = MyConnection.getInstance().getCnx();
+        
+        ObservableList<Typepub> TypepubList = FXCollections.observableArrayList();
+        
+        String req = "SELECT * FROM typepub";
+        
+        try{
+            
+            Statement st = cnx.createStatement();
+            ResultSet rs = st.executeQuery(req);
+            
+            Typepub typepub;
+           
+            while(rs.next()){
+                
+                typepub = new Typepub(rs.getInt("id"),rs.getString("cat"));   
+                
+                TypepubList.add(typepub);
+                
+            }
+            
+        }catch(SQLException e){
+             e.printStackTrace();
+        }
+        
+        return TypepubList;
+        
+    }
 
 
     @FXML
     private void insertImage(ActionEvent event) {
+        FileChooser open = new FileChooser();
+        
+        Stage stage = (Stage)AnchorPane_Publication.getScene().getWindow();
+        
+        File file = open.showOpenDialog(stage);
+        
+        if(file != null){
+            
+            String path = file.getAbsolutePath();
+            
+            path = path.replace("\\", "\\\\");
+            
+         
+
+            Image image = new Image(file.toURI().toString(), 317, 188, false, true);
+            
+            imageview_Publication.setImage(image);
+            button_inserer_image.setText(path);
+            
+        }else{
+            
+            System.out.println("NO DATA EXIST!");
+            
+        }
     }
 
     @FXML
     private void AffichagePublicite() {
          ObservableList<Publicite> PubliciteList = PubliciteList();
-        
-        type_pub.setCellValueFactory(new PropertyValueFactory<>("id_typepub"));
-        date_Pub.setCellValueFactory(new PropertyValueFactory<>("date_creation "));
+        String type[] = {"publicite1","type2moda","collosal type","founder type","attacker"}; 
+        Cbx_type.setItems(FXCollections.observableArrayList(type));
+        id_pub1.setCellValueFactory(new PropertyValueFactory<>("id_pub"));
+        date_Pub.setCellValueFactory(new PropertyValueFactory<>("date_creation"));
         domaine_Pub.setCellValueFactory(new PropertyValueFactory<>("domaine"));
         desc_Pub.setCellValueFactory(new PropertyValueFactory<>("description"));
+        lettre_Pub.setCellValueFactory(new PropertyValueFactory<>("lettre_motivation")); 
+        type_pub.setCellValueFactory(new PropertyValueFactory<>("id_typepub"));
         image_Pub.setCellValueFactory(new PropertyValueFactory<>("image"));
-        lettre_Pub.setCellValueFactory(new PropertyValueFactory<>("lettre_motivation"));
-
         
         AffichagePublicite.setItems(PubliciteList);
     }
 
     @FXML
     private void selectPublicite(MouseEvent event) {
+        Publicite publicite = AffichagePublicite.getSelectionModel().getSelectedItem();
+        
+        int num = AffichagePublicite.getSelectionModel().getSelectedIndex();
+        
+        if((num-1) < -1)
+            return;
+        
+        TypepubCRUD tp = new TypepubCRUD();
+        id.setText(String.valueOf(publicite.getId_pub()));
+        Cbx_type.setValue(tp.gettype(publicite.getId_typepub()));
+//        DatePicker_Date_PUB.setValue(publicite.getDate_creation().toInstant().atZone(ZoneId.systemDefault()).toLocalDate());
+        TextField_DOMAINE_PUB.setText(publicite.getDomaine());
+        TextField_DESC_PUB.setText(publicite.getDescription());
+        TextField_Lettres_PUB.setText(publicite.getLettre_motivation());
+        button_inserer_image.setText(publicite.getImage());
+        
+        
+        
+        String picture ="file:" +  publicite.getImage();
+        
+        Image image = new Image(picture, 317, 188, false, true);
+        
+        imageview_Publication.setImage(image);
+        
+        String path = publicite.getImage();
+        
+        
+        
     }
+
+    @FXML
+    private void AjouterPublicite(ActionEvent event) {
+        Publicite p = new Publicite();
+        TypepubCRUD tp = new TypepubCRUD();
+        PubliciteCRUD pc = new PubliciteCRUD();
+        p.setId_typepub(tp.getid(Cbx_type.getValue()));
+        p.setDate_creation(java.sql.Date.valueOf(DatePicker_Date_PUB.getValue()));
+        p.setDomaine(TextField_DOMAINE_PUB.getText());
+        p.setDescription(TextField_DESC_PUB.getText());
+        p.setLettre_motivation(TextField_Lettres_PUB.getText());
+        p.setImage(button_inserer_image.getText());
+        pc.ajouterPublic(p);
+        Alert alert = new Alert(Alert.AlertType.CONFIRMATION);
+            alert.setTitle("Confirmation Dialog");
+            alert.setHeaderText(null);
+            alert.setContentText("Publicite ajoutée");
+        AffichagePublicite();
+            
+            }
+
+    @FXML
+    private void ModifierPublicite(ActionEvent event) {
+        Publicite p = new Publicite();
+        TypepubCRUD tp = new TypepubCRUD();
+        PubliciteCRUD pc = new PubliciteCRUD();
+        p.setId_pub(Integer. parseInt(id.getText()));
+        p.setId_typepub(tp.getid(Cbx_type.getValue()));
+        p.setDate_creation(java.sql.Date.valueOf(DatePicker_Date_PUB.getValue()));
+        p.setDomaine(TextField_DOMAINE_PUB.getText());
+        p.setDescription(TextField_DESC_PUB.getText());
+        p.setLettre_motivation(TextField_Lettres_PUB.getText());
+        p.setImage(button_inserer_image.getText());
+        pc.modifierPublic(p);
+        
+        
+        AffichagePublicite();
+    }
+
+    @FXML
+    private void SupprimerPublicite(ActionEvent event) {
+         PubliciteCRUD pc = new PubliciteCRUD();
+         pc.supprimerPublic(Integer. parseInt(id.getText()));
+         AffichagePublicite();
+        
+    }
+
+    @FXML
+    private void AjouterTypepub(ActionEvent event) {
+        Typepub t = new Typepub();
+        TypepubCRUD tp = new TypepubCRUD();
+        t.setCat(TextField_type_pub.getText());
+        tp.ajouterTypepub(t);
+        Alert alert = new Alert(Alert.AlertType.CONFIRMATION);
+            alert.setTitle("Confirmation Dialog");
+            alert.setHeaderText(null);
+            alert.setContentText("Type pub ajoutée");
+        AffichageTypepub();
+        
+    }
+    @FXML
+    private void ModifierTypepub(ActionEvent event) {
+        Typepub t = new Typepub();
+        TypepubCRUD tp = new TypepubCRUD();
+        t.setId(Integer. parseInt(id.getText()));
+        t.setCat(TextField_type_pub.getText());
+        tp.modifierTypepub(t);
+        
+        
+        AffichageTypepub();
+    }
+
+    @FXML
+    private void SupprimerTypepub(ActionEvent event) {
+        TypepubCRUD tp = new TypepubCRUD();
+         tp.supprimerTypepub(Integer. parseInt(id.getText()));
+         AffichageTypepub();
+    }
+
+    @FXML
+    private void play(ActionEvent event) {
+        mediaPlayer.play();
+        
+    }
+
+    @FXML
+    private void AffichageTypepub() {
+        ObservableList<Typepub> Typepublist = TypepubList(); 
+        id_typepub1.setCellValueFactory(new PropertyValueFactory<>("id"));
+        type_pub1.setCellValueFactory(new PropertyValueFactory<>("cat"));
+        
+        Affichagetypepub1.setItems(Typepublist);
+    }
+
+    @FXML
+    private void pause(ActionEvent event) {
+                mediaPlayer.pause();
+    }
+    private void selectTypepub(MouseEvent event) {
+        Typepub typepub = Affichagetypepub1.getSelectionModel().getSelectedItem();
+        
+        int num = Affichagetypepub1.getSelectionModel().getSelectedIndex();
+        
+        if((num-1) < -1)
+            return;
+        
+        TypepubCRUD tp = new TypepubCRUD();
+        id_typepub1.setText(String.valueOf(typepub.getId()));
+        TextField_type_pub.setText(typepub.getCat());
+        
+        
+        
+      
+        
+        
+        
+    }
+    @FXML
+    private void Chercher(ActionEvent event) {
+        
+        AffichagePublicite();
+        chercher.setOnKeyReleased(e -> {
+            chercher.textProperty().addListener((observable, oldValue, newValue) -> {
+                filters.setPredicate(h -> {
+                    if (newValue == null || newValue.isEmpty()) {
+                        return true;
+                    }
+                    String lowerCaseFilter = newValue.toLowerCase();
+                    if (h.getDomaine().toLowerCase().contains(lowerCaseFilter)) {
+                        return true;
+                    } else {
+                        return false;
+                    }
+                });
+
+            });
+            sorta.comparatorProperty().bind(AffichagePublicite.comparatorProperty());
+            AffichagePublicite.setItems(sorta);
+        });
+    }
+    @FXML
+    private void Chercher2(ActionEvent event) {
+        
+        AffichageTypepub();
+        chercher.setOnKeyReleased(e -> {
+            chercher.textProperty().addListener((observable, oldValue, newValue) -> {
+                filter.setPredicate(h -> {
+                    if (newValue == null || newValue.isEmpty()) {
+                        return true;
+                    }
+                    String lowerCaseFilter = newValue.toLowerCase();
+                    if (h.getCat().toLowerCase().contains(lowerCaseFilter)) {
+                        return true;
+                    } else {
+                        return false;
+                    }
+                });
+
+            });
+            sort.comparatorProperty().bind(Affichagetypepub1.comparatorProperty());
+            Affichagetypepub1.setItems(sort);
+        });
+    }
+   
+    }
+
     
-}
+
+    
+    
+

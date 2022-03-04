@@ -31,7 +31,7 @@ public class CommentaireCRUD {
     }
     public void ajouterComm(Commentaire c) {
        try {
-            String req = "INSERT INTO commentaire ( `id_podcast` , `description`) VALUES ('"+c.getId_podcast()+"','"+c.getDescription()+"')";
+            String req = "INSERT INTO commentaire ( `id_user` ,`id_podcast` , `description`) VALUES ('"+c.getId_user()+"','"+c.getId_podcast()+"','"+c.getDescription()+"')";
             Statement st = cnx.createStatement();
             st.executeUpdate(req);
              System.out.println("Commentaire Ajouté");
@@ -42,9 +42,10 @@ public class CommentaireCRUD {
 
     public void modifierComm(Commentaire c) {
         try {
-            String req = "update Ccmmentaire set  id_podcast = ? ,description = ? where id_commentaire = ?";
+            String req = "update Ccmmentaire set  id_user = ? ,id_podcast = ? ,description = ? where id_commentaire = ?";
             PreparedStatement ps = cnx.prepareStatement(req);
-            ps.setInt(1, c.getId_podcast());
+            ps.setInt(1, c.getId_user());
+            ps.setInt(2, c.getId_podcast());
             ps.setString(2, c.getDescription());
             ps.executeUpdate();
             
@@ -77,6 +78,7 @@ public class CommentaireCRUD {
             while(rs.next()){
                 Commentaire c = new Commentaire();
                 c.setId_commentaire(rs.getInt(1));
+                c.setId_user(rs.getInt("id_user"));
                 c.setId_podcast(rs.getInt("id_podcast"));
                 c.setDescription(rs.getString("description"));
                 list.add(c);

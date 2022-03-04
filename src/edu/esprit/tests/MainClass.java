@@ -33,20 +33,20 @@ public class MainClass {
       TypepubCRUD tpc = new TypepubCRUD();
       PodcastCRUD pdc = new PodcastCRUD();
         java.util.Date utilDate2 = new java.util.Date();
+        System.out.println(tpc.getid("publicite1"));
      
-     
-       SimpleDateFormat format = new SimpleDateFormat("yyyyMMdd");
-        Date parsed;
-        Date date2; 
-      try {
-          
-           
-        
-          parsed = format.parse("20221212");
-          date2 = format.parse("20001219");
-          java.sql.Date sqlDate_Pub = new java.sql.Date(parsed.getTime());
-       //Commentaire c = new Commentaire(1,"this comment haha");
-       // Typepub tp = new Typepub(4,"founder type");
+//       SimpleDateFormat format = new SimpleDateFormat("yyyyMMdd");
+//        Date parsed;
+//        Date date2; 
+//      try {
+//          
+//           
+//        
+//          parsed = format.parse("20221212");
+//          date2 = format.parse("20001219");
+//          java.sql.Date sqlDate_Pub = new java.sql.Date(parsed.getTime());
+//       //Commentaire c = new Commentaire(1,"this comment haha");
+//       // Typepub tp = new Typepub(4,"founder type");
      //    Podcast p = new Podcast(2,"tomato","Asgagad","asf");
        // ServiceReclamation sRec = new ServiceReclamation();
         //Reclamation re = new Reclamation(4,"test11",7,0,0);
@@ -67,10 +67,10 @@ public class MainClass {
          //sRec.modifierRE(re);
         // sRec.supprimerRE(4);
         // System.out.println(sRec.afficherRE()); 
-          } catch (ParseException ex) {
-          Logger.getLogger(MainClass.class.getName()).log(Level.SEVERE, null, ex);
+         // } catch (ParseException ex) {
+         // Logger.getLogger(MainClass.class.getName()).log(Level.SEVERE, null, ex);
     }
             
     
     }
-}
+

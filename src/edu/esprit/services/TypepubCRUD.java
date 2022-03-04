@@ -84,4 +84,32 @@ public class TypepubCRUD {
         }
         return list;
     }
+    public String gettype(int id) { 
+        try {
+            String sql ="SELECT cat from typepub WHERE id="+id;
+            Statement st = cnx.createStatement();
+            ResultSet rs = st.executeQuery(sql);
+            if (rs.next()){
+                return rs.getString("cat");
+            }
+        } catch (SQLException ex) {
+            Logger.getLogger(TypepubCRUD.class.getName()).log(Level.SEVERE, null, ex);
+        }
+        return null;
+}
+    public int getid(String type) { 
+        try {
+            String sql ="SELECT id from typepub WHERE cat like '%"+type+"%'";
+            Statement st = cnx.createStatement();
+            ResultSet rs = st.executeQuery(sql);
+            if (rs.next()){
+                int i = rs.getInt("id");
+                return i;
+            }
+        } catch (SQLException ex) {
+            Logger.getLogger(TypepubCRUD.class.getName()).log(Level.SEVERE, null, ex);
+        }
+       return 0;
+        
+}
 }
