@@ -162,7 +162,7 @@
                                     <Font size="19.0" />
                                  </font>
                               </Text>
-                              <Button fx:id="pdf" layoutX="707.0" layoutY="137.0" mnemonicParsing="false" onAction="#pdf" text="Button" />
+                              <Button fx:id="pdf" layoutX="684.0" layoutY="168.0" mnemonicParsing="false" onAction="#pdf" text="PDF" />
                            </children>
                         </AnchorPane>
                      </children>

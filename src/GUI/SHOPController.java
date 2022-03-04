@@ -6,17 +6,21 @@
 package GUI;
 
 //import com.lowagie.text.Document;
-//import com.lowagie.text.DocumentException;
-//import com.lowagie.text.pdf.PdfPTable;
-//import com.lowagie.text.pdf.PdfWriter;
-import com.itextpdf.text.BaseColor;
-import com.itextpdf.text.Font;
-import com.itextpdf.text.FontFactory;
+import com.itextpdf.text.Document;
+import com.itextpdf.text.DocumentException;
 import com.itextpdf.text.Paragraph;
 import com.itextpdf.text.Phrase;
 import com.itextpdf.text.pdf.PdfPCell;
 import com.itextpdf.text.pdf.PdfPTable;
 import com.itextpdf.text.pdf.PdfWriter;
+//import com.lowagie.text.DocumentException;
+//import com.lowagie.text.pdf.PdfPTable;
+//import com.lowagie.text.pdf.PdfWriter;
+//import com.itextpdf.text.pdf.PdfWriter;
+import com.itextpdf.text.DocumentException;
+import com.itextpdf.text.pdf.AcroFields;
+import com.itextpdf.text.pdf.PdfReader;
+import com.itextpdf.text.pdf.PdfStamper;
 import entities.Commande;
 import entities.Panier;
 import entities.Produit;
@@ -28,7 +32,6 @@ import java.io.IOException;
 import static java.lang.Integer.parseInt;
 import java.net.URL;
 import java.sql.Connection;
-import java.sql.PreparedStatement;
 import java.sql.ResultSet;
 import java.sql.SQLException;
 import java.sql.Statement;
@@ -68,17 +71,7 @@ import javafx.collections.transformation.FilteredList;
 import javafx.collections.transformation.SortedList;
 import javafx.event.EventType;
 import javafx.scene.layout.Pane;
-import javax.management.Notification;
-import javax.swing.JOptionPane;
-import javax.swing.event.DocumentListener;
-import javax.swing.event.UndoableEditListener;
-import javax.swing.text.AttributeSet;
-import javax.swing.text.BadLocationException;
-import javax.swing.text.Document;
-import javax.swing.text.Element;
-import javax.swing.text.Position;
-import javax.swing.text.Segment;
-
+//import javax.swing.text.Document;
 
 //import javax.swing.JFileChooser;
 
@@ -207,6 +200,7 @@ public class SHOPController implements Initializable {
     @FXML
     private Button pdf;
     private Connection cnx2;  
+    Produit p;
 
 
     /**
@@ -426,189 +420,45 @@ public class SHOPController implements Initializable {
     @FXML
     private void pdf(ActionEvent event)
   {
-      
-   try {
-            Document doc = new Document() {
-                @Override
-                public int getLength() {
-                    throw new UnsupportedOperationException("Not supported yet."); //To change body of generated methods, choose Tools | Templates.
-                }
+      try {
+            Produit prod = AfficherProd.getSelectionModel().getSelectedItem();
+            Document document = new Document();
 
-                @Override
-                public void addDocumentListener(DocumentListener listener) {
-                    throw new UnsupportedOperationException("Not supported yet."); //To change body of generated methods, choose Tools | Templates.
-                }
+            PdfWriter.getInstance(document, new FileOutputStream("C:/Users/ASUS CELERON/Desktop/Pdf/produit.pdf"));
+            document.open();
 
-                @Override
-                public void removeDocumentListener(DocumentListener listener) {
-                    throw new UnsupportedOperationException("Not supported yet."); //To change body of generated methods, choose Tools | Templates.
-                }
+            document.open();
 
-                @Override
-                public void addUndoableEditListener(UndoableEditListener listener) {
-                    throw new UnsupportedOperationException("Not supported yet."); //To change body of generated methods, choose Tools | Templates.
-                }
+            Paragraph para = new Paragraph("Liste des produits :\n\t");
+            document.add(para);
+            PdfPTable pdfPTable = new PdfPTable(5);
 
-                @Override
-                public void removeUndoableEditListener(UndoableEditListener listener) {
-                    throw new UnsupportedOperationException("Not supported yet."); //To change body of generated methods, choose Tools | Templates.
-                }
+            PdfPCell pdfCell1 = new PdfPCell(new Phrase("idProduit"));
 
-                @Override
-                public Object getProperty(Object key) {
-                    throw new UnsupportedOperationException("Not supported yet."); //To change body of generated methods, choose Tools | Templates.
-                }
-
-                @Override
-                public void putProperty(Object key, Object value) {
-                    throw new UnsupportedOperationException("Not supported yet."); //To change body of generated methods, choose Tools | Templates.
-                }
-
-                @Override
-                public void remove(int offs, int len) throws BadLocationException {
-                    throw new UnsupportedOperationException("Not supported yet."); //To change body of generated methods, choose Tools | Templates.
-                }
-
-                @Override
-                public void insertString(int offset, String str, AttributeSet a) throws BadLocationException {
-                    throw new UnsupportedOperationException("Not supported yet."); //To change body of generated methods, choose Tools | Templates.
-                }
-
-                @Override
-                public String getText(int offset, int length) throws BadLocationException {
-                    throw new UnsupportedOperationException("Not supported yet."); //To change body of generated methods, choose Tools | Templates.
-                }
-
-                @Override
-                public void getText(int offset, int length, Segment txt) throws BadLocationException {
-                    throw new UnsupportedOperationException("Not supported yet."); //To change body of generated methods, choose Tools | Templates.
-                }
-
-                @Override
-                public Position getStartPosition() {
-                    throw new UnsupportedOperationException("Not supported yet."); //To change body of generated methods, choose Tools | Templates.
-                }
-
-                @Override
-                public Position getEndPosition() {
-                    throw new UnsupportedOperationException("Not supported yet."); //To change body of generated methods, choose Tools | Templates.
-                }
-
-                @Override
-                public Position createPosition(int offs) throws BadLocationException {
-                    throw new UnsupportedOperationException("Not supported yet."); //To change body of generated methods, choose Tools | Templates.
-                }
-
-                @Override
-                public Element[] getRootElements() {
-                    throw new UnsupportedOperationException("Not supported yet."); //To change body of generated methods, choose Tools | Templates.
-                }
-
-                @Override
-                public Element getDefaultRootElement() {
-                    throw new UnsupportedOperationException("Not supported yet."); //To change body of generated methods, choose Tools | Templates.
-                }
-
-                @Override
-                public void render(Runnable r) {
-                    throw new UnsupportedOperationException("Not supported yet."); //To change body of generated methods, choose Tools | Templates.
-                }
-            };
-            PdfWriter.getInstance((com.itextpdf.text.Document) doc, new FileOutputStream("C:/test/Users.pdf"));
-            doc.open();
-            doc.add(new Paragraph(" "));
-            Font font = new Font(Font.FontFamily.TIMES_ROMAN, 28, Font.UNDERLINE, BaseColor.BLACK);
-            Paragraph p = new Paragraph("Liste des users ", font);
-            p.setAlignment(Element.ALIGN_CENTER);
-            doc.add(p);
-            doc.add(new Paragraph(" "));
-            doc.add(new Paragraph(" "));
-
-            PdfPTable tabpdf = new PdfPTable(6);
-            tabpdf.setWidthPercentage(100);
-
-            PdfPCell cell;
-            cell = new PdfPCell(new Phrase("Name", FontFactory.getFont("Times New Roman")));
-            cell.setHorizontalAlignment(Element.ALIGN_CENTER);
-            cell.setBackgroundColor(BaseColor.WHITE);
-            tabpdf.addCell(cell);
-
-            cell = new PdfPCell(new Phrase("Family name", FontFactory.getFont("Times New Roman")));
-            cell.setHorizontalAlignment(Element.ALIGN_CENTER);
-            cell.setBackgroundColor(BaseColor.WHITE);
-            tabpdf.addCell(cell);
-
-            cell = new PdfPCell(new Phrase("Birthday", FontFactory.getFont("Times New Roman")));
-            cell.setHorizontalAlignment(Element.ALIGN_CENTER);
-            cell.setBackgroundColor(BaseColor.WHITE);
-            tabpdf.addCell(cell);
+            PdfPCell pdfCell2 = new PdfPCell(new Phrase("nom"));
+            PdfPCell pdfCell3 = new PdfPCell(new Phrase("type"));
+            PdfPCell pdfCell4 = new PdfPCell(new Phrase("prix"));
+            PdfPCell pdfCell50 = new PdfPCell(new Phrase("image"));
             
-            cell = new PdfPCell(new Phrase("Email", FontFactory.getFont("Times New Roman")));
-            cell.setHorizontalAlignment(Element.ALIGN_CENTER);
-            cell.setBackgroundColor(BaseColor.WHITE);
-            tabpdf.addCell(cell);
-            
-            cell = new PdfPCell(new Phrase("Gender", FontFactory.getFont("Times New Roman")));
-            cell.setHorizontalAlignment(Element.ALIGN_CENTER);
-            cell.setBackgroundColor(BaseColor.WHITE);
-            tabpdf.addCell(cell);
-            
-            cell = new PdfPCell(new Phrase("Phone number", FontFactory.getFont("Times New Roman")));
-            cell.setHorizontalAlignment(Element.ALIGN_CENTER);
-            cell.setBackgroundColor(BaseColor.WHITE);
-            tabpdf.addCell(cell);
+            pdfPTable.addCell(pdfCell1);
+            pdfPTable.addCell(pdfCell2);
+            pdfPTable.addCell(pdfCell3);
+            pdfPTable.addCell(pdfCell4);
+            pdfPTable.addCell(pdfCell50);
+           
+            pdfPTable.addCell("" + prod.getIdProduit()+ "");
+            pdfPTable.addCell("" + prod.getNom()+ "");
+            pdfPTable.addCell(prod.getType());
+            pdfPTable.addCell(prod.getImage());
+            pdfPTable.addCell("" + prod.getPrix()+ "");
+          
+            document.add(pdfPTable);
+            document.close();
 
-            
-
-            String req="SELECT * FROM user order by name ASC";
-            
-            PreparedStatement pst = MyConnection.getInstance().getCnx().prepareStatement(req);
-            
-            ResultSet rs = pst.executeQuery();
-            while (rs.next()) {
-                cell = new PdfPCell(new Phrase(rs.getString("name"), FontFactory.getFont("Times New Roman", 11)));
-                cell.setHorizontalAlignment(Element.ALIGN_CENTER);
-                cell.setBackgroundColor(BaseColor.WHITE);
-                tabpdf.addCell(cell);
-
-                cell = new PdfPCell(new Phrase(rs.getString("fname"), FontFactory.getFont("Times New Roman", 11)));
-                cell.setHorizontalAlignment(Element.ALIGN_CENTER);
-                cell.setBackgroundColor(BaseColor.WHITE);
-                tabpdf.addCell(cell);
-
-                cell = new PdfPCell(new Phrase(rs.getString("birthday"), FontFactory.getFont("Times New Roman", 11)));
-                cell.setHorizontalAlignment(Element.ALIGN_CENTER);
-                cell.setBackgroundColor(BaseColor.WHITE);
-                tabpdf.addCell(cell);
-                
-                cell = new PdfPCell(new Phrase(rs.getString("email"), FontFactory.getFont("Times New Roman", 11)));
-                cell.setHorizontalAlignment(Element.ALIGN_CENTER);
-                cell.setBackgroundColor(BaseColor.WHITE);
-                tabpdf.addCell(cell);
-                
-                cell = new PdfPCell(new Phrase(rs.getString("gender"), FontFactory.getFont("Times New Roman", 11)));
-                cell.setHorizontalAlignment(Element.ALIGN_CENTER);
-                cell.setBackgroundColor(BaseColor.WHITE);
-                tabpdf.addCell(cell);
-                
-                cell = new PdfPCell(new Phrase(rs.getString("num"), FontFactory.getFont("Times New Roman", 11)));
-                cell.setHorizontalAlignment(Element.ALIGN_CENTER);
-                cell.setBackgroundColor(BaseColor.WHITE);
-                tabpdf.addCell(cell);
-            }
-            doc.add(tabpdf);
-            JOptionPane.showMessageDialog(null, "PDF file created succefully!");
-            doc.close();
-            Notification notif = new Notification();
-        notif.notification("PDF","PDF téléchargé avec succée",NotificationType.SUCCESS);
-            Desktop.getDesktop().open(new File("C:/test/Users.pdf"));
-        } catch (DocumentException | HeadlessException | IOException e) {
-            System.out.println("PDF ERROR");
-            System.out.println(Arrays.toString(e.getStackTrace()));
-            System.out.println(e.getMessage());
+        } catch (DocumentException | FileNotFoundException Exception) {
+            System.out.println(Exception);
         }
-    }
-  
+      
   }
     
 ////////////////////////////////// COMMANDE //////////////////////////////////////////////////////////////
