@@ -4,7 +4,7 @@
  * and open the template in the editor.
  */
 package GUI;
-
+import org.controlsfx.control.Notifications;
 import edu.esprit.entities.Publicite;
 import edu.esprit.entities.Typepub;
 import edu.esprit.services.PubliciteCRUD;
@@ -65,6 +65,8 @@ import static jdk.nashorn.internal.objects.NativeArray.filter;
 import static sun.util.locale.LocaleMatcher.filter;
 import static java.util.Locale.filter;
 import static java.util.Locale.filter;
+import javafx.geometry.Pos;
+import javafx.util.Duration;
 
 /**
  * FXML Controller class
@@ -146,27 +148,19 @@ private Connection cnx;
     @FXML
     private TableColumn<Typepub, Integer> id_typepub1;
     @FXML
-    private AnchorPane AnchorPane_typepub111;
-    @FXML
-    private TextField TextField_type_pub1;
-    @FXML
-    private Button Ajoutertypepub11;
-    @FXML
-    private Button Modifiertypepub11;
-    @FXML
-    private Button Supprimertypepub11;
-    @FXML
-    private TableColumn<?, ?> id_pub111;
-    @FXML
     private Label id11;
     @FXML
     private Button play1;
     @FXML
-    private TableView<?> Affichagetypepub11;
-    @FXML
     private TextField chercher;
     @FXML
     private TextField chercher2;
+    @FXML
+    private Label IdTypePub1;
+    @FXML
+    private AnchorPane AnchorPane_Commentaire;
+    @FXML
+    private Button play2;
     /**
      * Initializes the controller class.
      */
@@ -270,7 +264,7 @@ private Connection cnx;
     @FXML
     private void AffichagePublicite() {
          ObservableList<Publicite> PubliciteList = PubliciteList();
-        String type[] = {"publicite1","type2moda","collosal type","founder type","attacker"}; 
+        String type[] = {"publicite1","type2moda","collosal type","founder type","type"}; 
         Cbx_type.setItems(FXCollections.observableArrayList(type));
         id_pub1.setCellValueFactory(new PropertyValueFactory<>("id_pub"));
         date_Pub.setCellValueFactory(new PropertyValueFactory<>("date_creation"));
@@ -332,6 +326,14 @@ private Connection cnx;
             alert.setHeaderText(null);
             alert.setContentText("Publicite ajoutée");
         AffichagePublicite();
+        Image img = new Image("/tmn2.jpg");
+            Notifications notificationBuilder = Notifications.create()
+                    .title("Gestion Publicite")
+                    .text("        Publicite Ajouté").graphic(new ImageView(img)).hideAfter(Duration.seconds(5))
+                    .position(Pos.BOTTOM_RIGHT);
+            notificationBuilder.darkStyle();
+            notificationBuilder.show();
+        
             
             }
 
@@ -351,6 +353,13 @@ private Connection cnx;
         
         
         AffichagePublicite();
+        Image img = new Image("/tmn2.jpg");
+            Notifications notificationBuilder = Notifications.create()
+                    .title("Gestion Publicite")
+                    .text("        Publicite Modifié").graphic(new ImageView(img)).hideAfter(Duration.seconds(5))
+                    .position(Pos.BOTTOM_RIGHT);
+            notificationBuilder.darkStyle();
+            notificationBuilder.show();
     }
 
     @FXML
@@ -358,6 +367,14 @@ private Connection cnx;
          PubliciteCRUD pc = new PubliciteCRUD();
          pc.supprimerPublic(Integer. parseInt(id.getText()));
          AffichagePublicite();
+         Image img = new Image("/tmn2.jpg");
+            Notifications notificationBuilder = Notifications.create()
+                    .title("Gestion Publicite")
+                    .text("        Publicite Supprimé").graphic(new ImageView(img)).hideAfter(Duration.seconds(5))
+                    .position(Pos.BOTTOM_RIGHT);
+            notificationBuilder.darkStyle();
+            notificationBuilder.show();
+         
         
     }
 
@@ -388,14 +405,22 @@ private Connection cnx;
 
     @FXML
     private void SupprimerTypepub(ActionEvent event) {
+        Typepub typepub = Affichagetypepub1.getSelectionModel().getSelectedItem();
         TypepubCRUD tp = new TypepubCRUD();
-         tp.supprimerTypepub(Integer. parseInt(id.getText()));
-         AffichageTypepub();
+        tp.supprimerTypepub(typepub.getId());
+        AffichageTypepub();
     }
 
     @FXML
     private void play(ActionEvent event) {
         mediaPlayer.play();
+        Image img = new Image("/tmn2.jpg");
+            Notifications notificationBuilder = Notifications.create()
+                    .title("Musique")
+                    .text("      Musique Jouée").graphic(new ImageView(img)).hideAfter(Duration.seconds(5))
+                    .position(Pos.BOTTOM_RIGHT);
+            notificationBuilder.darkStyle();
+            notificationBuilder.show();
         
     }
 
@@ -411,9 +436,16 @@ private Connection cnx;
     @FXML
     private void pause(ActionEvent event) {
                 mediaPlayer.pause();
+                Image img = new Image("/tmn2.jpg");
+            Notifications notificationBuilder = Notifications.create()
+                    .title("Musique")
+                    .text("      Musique Arrêtée").graphic(new ImageView(img)).hideAfter(Duration.seconds(5))
+                    .position(Pos.BOTTOM_RIGHT);
+            notificationBuilder.darkStyle();
+            notificationBuilder.show();
     }
     private void selectTypepub(MouseEvent event) {
-        Typepub typepub = Affichagetypepub1.getSelectionModel().getSelectedItem();
+        Typepub type = Affichagetypepub1.getSelectionModel().getSelectedItem();
         
         int num = Affichagetypepub1.getSelectionModel().getSelectedIndex();
         
@@ -421,8 +453,10 @@ private Connection cnx;
             return;
         
         TypepubCRUD tp = new TypepubCRUD();
-        id_typepub1.setText(String.valueOf(typepub.getId()));
-        TextField_type_pub.setText(typepub.getCat());
+        IdTypePub1.setText(String.valueOf(type.getId()));
+        TextField_type_pub.setText(type.getCat());
+        
+        
         
         
         
