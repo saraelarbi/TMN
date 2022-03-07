@@ -1,0 +1,33 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<project-private xmlns="http://www.netbeans.org/ns/project-private/1">
+    <editor-bookmarks xmlns="http://www.netbeans.org/ns/editor-bookmarks/2" lastBookmarkId="0"/>
+    <open-files xmlns="http://www.netbeans.org/ns/projectui-open-files/2">
+        <group>
+            <file>file:/C:/Users/PC/Desktop/TMN/TMN/src/gui/AjoutCoadmin.fxml</file>
+            <file>file:/C:/Users/PC/Desktop/TMN/TMN/src/edu/esprit/utils/MyConnection.java</file>
+            <file>file:/C:/Users/PC/Desktop/TMN/TMN/src/edu/esprit/utils/NavigationEntreInterfaces.java</file>
+            <file>file:/C:/Users/PC/Desktop/TMN/TMN/src/edu/esprit/services/FonctionCRUD.java</file>
+            <file>file:/C:/Users/PC/Desktop/TMN/TMN/src/gui/Login.fxml</file>
+            <file>file:/C:/Users/PC/Desktop/TMN/TMN/src/gui/Acceuil.fxml</file>
+            <file>file:/C:/Users/PC/Desktop/TMN/TMN/src/gui/RecupmdpController.java</file>
+            <file>file:/C:/Users/PC/Desktop/TMN/TMN/src/gui/CreercompteController.java</file>
+            <file>file:/C:/Users/PC/Desktop/TMN/TMN/src/edu/esprit/services/fonctionservice.java</file>
+            <file>file:/C:/Users/PC/Desktop/TMN/TMN/src/edu/esprit/services/CoadminCRUD.java</file>
+            <file>file:/C:/Users/PC/Desktop/TMN/TMN/src/edu/esprit/services/coadminservice.java</file>
+            <file>file:/C:/Users/PC/Desktop/TMN/TMN/src/gui/AcceuilController.java</file>
+            <file>file:/C:/Users/PC/Desktop/TMN/TMN/src/edu/esprit/utils/PatternEmail.java</file>
+            <file>file:/C:/Users/PC/Desktop/TMN/TMN/src/edu/esprit/tests/mainClass.java</file>
+            <file>file:/C:/Users/PC/Desktop/TMN/TMN/src/edu/esprit/entities/User.java</file>
+            <file>file:/C:/Users/PC/Desktop/TMN/TMN/src/gui/ListUser.fxml</file>
+            <file>file:/C:/Users/PC/Desktop/TMN/TMN/src/gui/Recupmdp.fxml</file>
+            <file>file:/C:/Users/PC/Desktop/TMN/TMN/src/gui/ListUserController.java</file>
+            <file>file:/C:/Users/PC/Desktop/TMN/TMN/src/gui/EditProfilController.java</file>
+            <file>file:/C:/Users/PC/Desktop/TMN/TMN/src/gui/AjoutCoadminController.java</file>
+            <file>file:/C:/Users/PC/Desktop/TMN/TMN/src/edu/esprit/services/mail.java</file>
+            <file>file:/C:/Users/PC/Desktop/TMN/TMN/src/edu/esprit/services/UserCRUD.java</file>
+            <file>file:/C:/Users/PC/Desktop/TMN/TMN/src/edu/esprit/tests/NewFXMain.java</file>
+            <file>file:/C:/Users/PC/Desktop/TMN/TMN/src/gui/EditProfil.fxml</file>
+            <file>file:/C:/Users/PC/Desktop/TMN/TMN/src/gui/LoginController.java</file>
+        </group>
+    </open-files>
+</project-private>
