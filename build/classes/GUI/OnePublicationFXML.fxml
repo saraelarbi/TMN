@@ -1,0 +1,47 @@
+<?xml version="1.0" encoding="UTF-8"?>
+
+<?import javafx.geometry.Insets?>
+<?import javafx.scene.control.Button?>
+<?import javafx.scene.control.Label?>
+<?import javafx.scene.image.ImageView?>
+<?import javafx.scene.layout.AnchorPane?>
+<?import javafx.scene.text.Font?>
+
+<AnchorPane id="AnchorPane" prefHeight="380.0" prefWidth="310.0" xmlns="http://javafx.com/javafx/17" xmlns:fx="http://javafx.com/fxml/1" fx:controller="GUI.OnePublicationFXMLController">
+   <children>
+      <ImageView fx:id="image_PB" fitHeight="150.0" fitWidth="262.0" layoutX="10.0" layoutY="41.0" pickOnBounds="true" preserveRatio="true" />
+      <Label fx:id="titre_PB" layoutX="21.0" layoutY="11.0" text="Titre">
+         <font>
+            <Font size="20.0" />
+         </font>
+      </Label>
+      <Label fx:id="source_PB" layoutX="24.0" layoutY="200.0" text="Source">
+         <font>
+            <Font size="20.0" />
+         </font>
+      </Label>
+      <Button fx:id="reclamer_PB" layoutX="11.0" layoutY="378.0" mnemonicParsing="false" onAction="#Faire_Reclamation" prefHeight="30.0" prefWidth="138.0" style="-fx-background-color: black;" text="Reclamer" textFill="WHITE">
+         <font>
+            <Font size="20.0" />
+         </font>
+      </Button>
+      <Label fx:id="Date_PB" layoutX="25.0" layoutY="335.0" text="Date">
+         <font>
+            <Font size="20.0" />
+         </font>
+      </Label>
+      <Label fx:id="Desc_PB" layoutX="24.0" layoutY="230.0" prefHeight="77.0" prefWidth="208.0" text="Desc">
+         <font>
+            <Font size="20.0" />
+         </font>
+         <opaqueInsets>
+            <Insets />
+         </opaqueInsets>
+      </Label>
+      <Label fx:id="categorie_PB" layoutX="24.0" layoutY="306.0" text="Categorie">
+         <font>
+            <Font size="20.0" />
+         </font>
+      </Label>
+   </children>
+</AnchorPane>

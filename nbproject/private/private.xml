@@ -13,6 +13,8 @@
             <file>file:/C:/Users/ffsga/Documents/NetBeansProjects/TMN/src/GUI/GestionPublicationFXML.fxml</file>
             <file>file:/C:/Users/ffsga/Documents/NetBeansProjects/TMN/src/GUI/GestionReclamationFXML.fxml</file>
             <file>file:/C:/Users/ffsga/Documents/NetBeansProjects/TMN/src/GUI/GestionPublicationFXMLController.java</file>
+            <file>file:/C:/Users/ffsga/Documents/NetBeansProjects/TMN/src/services/ServiceReclamation.java</file>
+            <file>file:/C:/Users/ffsga/Documents/NetBeansProjects/TMN/src/services/mail.java</file>
         </group>
     </open-files>
 </project-private>

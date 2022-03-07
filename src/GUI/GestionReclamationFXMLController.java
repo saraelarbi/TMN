@@ -121,6 +121,9 @@ public class GestionReclamationFXMLController implements Initializable {
         TextField_ID_RECLAMATION.setDisable(true);
         AffichageReclamation();
         ProgressBarRec.setProgress(0);
+        ComboBox_idPub.setDisable(true);
+        ComboBox_idPod.setDisable(true);
+        ComboBox_idBlog.setDisable(true);
 
     }
     private PreparedStatement prepare;
@@ -190,19 +193,21 @@ public class GestionReclamationFXMLController implements Initializable {
                 prepare.setInt(4, idBl);
                 prepare.executeUpdate();
             }
-
-            Notificationmanager(3);
-            
-
             StartProgrssBar();
+            Notificationmanager(3);
+            ProgressBarRec.setProgress(0);
+            AffichageReclamation();
+            clear();
+
+            
             Alert alert = new Alert(Alert.AlertType.INFORMATION);
             alert.setTitle("Alert");
             alert.setHeaderText(null);
             alert.setContentText("Success Publication Ajouté!");
             alert.showAndWait();
             
-            String txt = "Bonjour  Vous avez ajouter une Publication ";
-            String sub = "Invitation a une collaboration";
+            String txt = "Bonjour  Vous avez une Reclamation ";
+            String sub = "Nouvelle Reclamation ajouté";
             String destinataire = "mohamedaziz.snoussi@esprit.tn";
             mail m = new mail(txt, sub, destinataire);
             Message msg = prepareMessage(m.getSession(), m.getMail(), destinataire, txt, sub);
@@ -215,9 +220,7 @@ public class GestionReclamationFXMLController implements Initializable {
             System.out.println("MAIL ENVOYEE");
             Notificationmanager(6);
 
-            ProgressBarRec.setProgress(0);
-            AffichageReclamation();
-            clear();
+           
 
         }
     }
@@ -246,9 +249,7 @@ public class GestionReclamationFXMLController implements Initializable {
             alert.showAndWait();
 
         } else {
-            String str1 = (String) ComboBox_idPub.getValue();
-            String str2 = (String) ComboBox_idPod.getValue();
-            String str3 = (String) ComboBox_idBlog.getValue();
+            
             String str4 = (String) TextField_ID_RECLAMATION.getText();
             int idRec = parseInt(str4);
 
@@ -256,8 +257,10 @@ public class GestionReclamationFXMLController implements Initializable {
             // Reclamation re = new Reclamation(1, TextField_DESCRIPTION.getText(), idPb, idPd, idBl);
             //StartProgrssBar();
             // sRec.ajouterRE(re);
-            if (i1 == 1) {
+             if (i1 == 1) {
+                String str1 = (String) ComboBox_idPub.getValue();
                 int idPb = parseInt(str1);
+
                 prepare = cnx.prepareStatement(sql);
                 prepare.setString(1, TextField_DESCRIPTION.getText());
                 prepare.setInt(2, idPb);
@@ -265,8 +268,11 @@ public class GestionReclamationFXMLController implements Initializable {
                 prepare.setNull(4, Types.INTEGER);
                 prepare.setInt(5, idRec);
                 prepare.executeUpdate();
+
             }
+
             if (i2 == 1) {
+                String str2 = (String) ComboBox_idPod.getValue();
                 int idPd = parseInt(str2);
                 prepare = cnx.prepareStatement(sql);
                 prepare.setString(1, TextField_DESCRIPTION.getText());
@@ -277,6 +283,7 @@ public class GestionReclamationFXMLController implements Initializable {
                 prepare.executeUpdate();
             }
             if (i3 == 1) {
+                String str3 = (String) ComboBox_idBlog.getValue();
                 int idBl = parseInt(str3);
                 prepare = cnx.prepareStatement(sql);
                 prepare.setString(1, TextField_DESCRIPTION.getText());
@@ -344,7 +351,8 @@ public class GestionReclamationFXMLController implements Initializable {
         ComboBox_idPod.setValue(String.valueOf(reclamation.getIdPod()));
         ComboBox_idBlog.setValue(String.valueOf(reclamation.getIdBlog()));
 
-        /* if((ComboBox_idPod.getValue()=="0")&&(ComboBox_idBlog.getValue()=="0")) {
+         if((ComboBox_idPod.getValue()=="0")&&(ComboBox_idBlog.getValue()=="0")) {
+             
         ComboBox_idPub.setValue(String.valueOf(reclamation.getIdPub()));
          ComboBox_idPod.setValue("NULL");
           ComboBox_idBlog.setValue("NULL");
@@ -358,7 +366,7 @@ public class GestionReclamationFXMLController implements Initializable {
         ComboBox_idPub.setValue("NULL");
         ComboBox_idPod.setValue("NULL");
          ComboBox_idBlog.setValue(String.valueOf(reclamation.getIdBlog()));
-        } */
+        } 
         //ComboBox_idPub.setPromptText(""+reclamation.getIdPub());
         //ComboBox_idPod.setValue(String.valueOf(reclamation.getIdPod()));
         //ComboBox_idBlog.setValue(String.valueOf(reclamation.getIdBlog()));
@@ -405,15 +413,18 @@ public class GestionReclamationFXMLController implements Initializable {
         ComboBox_idPod.setValue("NULL");
         ComboBox_idBlog.setValue("NULL");
 
-        ComboBox_idPub.setDisable(false);
-        ComboBox_idPod.setDisable(false);
-        ComboBox_idBlog.setDisable(false);
+        ComboBox_idPub.setDisable(true);
+        ComboBox_idPod.setDisable(true);
+        ComboBox_idBlog.setDisable(true);
         RadioButton_idPod.setSelected(false);
         RadioButton_idPub.setSelected(false);
         RadioButton_idPod.setSelected(false);
         // TextField_id_Pub.setText("");
         //TextField_id_Pod.setText("");
         // TextField_id_Blog.setText("");
+        i1=0;
+        i2=0;
+        i3=0;
     }
 
     @FXML

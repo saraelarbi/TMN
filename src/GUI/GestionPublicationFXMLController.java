@@ -16,6 +16,7 @@ import entities.Publication;
 import java.io.File;
 import java.io.FileNotFoundException;
 import java.io.FileOutputStream;
+import java.io.IOException;
 import static java.lang.Integer.parseInt;
 import java.net.URL;
 import java.sql.Connection;
@@ -34,8 +35,12 @@ import javafx.collections.transformation.SortedList;
 import javafx.event.ActionEvent;
 import javafx.event.EventHandler;
 import javafx.fxml.FXML;
+import javafx.fxml.FXMLLoader;
 import javafx.fxml.Initializable;
 import javafx.geometry.Pos;
+import javafx.scene.Node;
+import javafx.scene.Parent;
+import javafx.scene.Scene;
 import javafx.scene.control.Alert;
 import javafx.scene.control.Button;
 import javafx.scene.control.ButtonType;
@@ -52,13 +57,9 @@ import javafx.scene.layout.AnchorPane;
 import javafx.stage.FileChooser;
 import javafx.stage.Stage;
 import javafx.util.Duration;
-import javax.mail.Message;
-import javax.mail.MessagingException;
-import javax.mail.Transport;
 import org.controlsfx.control.Notifications;
 import services.ServicePublication;
-import services.mail;
-import static services.mail.prepareMessage;
+
 import utils.MyDB;
 
 /**
@@ -120,6 +121,8 @@ public class GestionPublicationFXMLController implements Initializable {
     private ProgressBar ProgressBar;
     @FXML
     private Button Button_PubToPDF;
+    @FXML
+    private Button button_podc;
 
     //ProgressBar proBar = new ProgressBar();
     /**
@@ -521,6 +524,29 @@ public class GestionPublicationFXMLController implements Initializable {
             default:
 
         }
+
+    }
+ private Stage stage;
+ private Scene scene;
+ private Parent root;
+    @FXML
+    private void link1(ActionEvent event) throws Exception {               
+ 
+       try {
+      /* FXMLLoader fxmlLoader = new FXMLLoader(getClass().getResource("../GUI/GestionReclamationFXML.fxml"));
+            Parent root = (Parent) fxmlLoader.load();
+            Stage stage = new Stage();
+            stage.setScene(new Scene(root));  
+            stage.show();
+          // NewFXMain..close();  */
+          
+           root = FXMLLoader.load(getClass().getResource("../GUI/GestionReclamationFXML.fxml"));
+  stage = (Stage)((Node)event.getSource()).getScene().getWindow();
+  scene = new Scene(root);
+  stage.setScene(scene);
+  stage.show();
+    } catch(IOException e) {
+    }
 
     }
 
