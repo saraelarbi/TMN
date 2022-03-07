@@ -6,6 +6,11 @@
 package entities;
 //stat
 //notif
+
+import java.sql.SQLException;
+import java.util.logging.Level;
+import java.util.logging.Logger;
+
 /**
  *
  * @author ASUS CELERON
@@ -16,23 +21,27 @@ public class Produit {
     private String type ; 
     private float prix;
     private String image; 
+    private int stock ; 
+
 
     public Produit(){}
-    public Produit(int idProduit, String nom, String type, float prix, String image) {
-        this.idProduit = idProduit;
+     public Produit(String nom, float prix,String type, String image, int stock) {
         this.nom = nom;
-        this.type = type;
         this.prix = prix;
+        this.type = type;
         this.image = image;
+        this.stock = stock;
+    }
+ public Produit(int IdProduit, String nom, float prix,String type, String image, int stock) {
+        this.idProduit = IdProduit;
+        this.nom = nom;
+        this.prix = prix;
+        this.type = type;
+        this.image = image;
+        this.stock = stock;
     }
 
-    public Produit(String nom, String type, float prix, String image) {
-        this.nom = nom;
-        this.type = type;
-        this.prix = prix;
-        this.image = image;
-    }
-
+   
     public int getIdProduit() {
         return idProduit;
     }
@@ -72,6 +81,13 @@ public class Produit {
     public void setImage(String image) {
         this.image = image;
     }
+ public int getStock() {
+        return stock;
+    }
+
+    public void setStock(int stock) {
+        this.stock = stock;
+    }
 
     @Override
     public String toString() {
@@ -80,6 +96,5 @@ public class Produit {
     
     
     
-    
-    
+   
 }

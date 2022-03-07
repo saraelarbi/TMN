@@ -45,14 +45,14 @@ public class main {
         
        // ccd.Supprimer("57");
        
-   /* CommandeCRUD pccd= new CommandeCRUD();
-      Commande p22 = new Commande(4, "kk", 782, 9);
+    /*CommandeCRUD pccd= new CommandeCRUD();
+      Commande p22 = new Commande(4, "kk", 2, 1);
         pccd.Ajouter(p22);
-        System.out.println(pccd.Afficher());*/
+        System.out.println(pccd.Afficher());
        
-        testmail test = new testmail();
+       /* testmail test = new testmail();
         test.sendEmail("sara.elarbi@esprit.tn", "hi", "hi try");
-    
+    */
        
     }
 

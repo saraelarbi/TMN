@@ -3,18 +3,29 @@
     <editor-bookmarks xmlns="http://www.netbeans.org/ns/editor-bookmarks/2" lastBookmarkId="0"/>
     <open-files xmlns="http://www.netbeans.org/ns/projectui-open-files/2">
         <group>
-            <file>file:/C:/Users/ASUS%20CELERON/Desktop/TMN/TMN_Pidev/src/entities/testmail.java</file>
-            <file>file:/C:/Users/ASUS%20CELERON/Desktop/TMN/TMN_Pidev/src/test/main.java</file>
             <file>file:/C:/Users/ASUS%20CELERON/Desktop/TMN/TMN_Pidev/src/utils/PatternEmail.java</file>
             <file>file:/C:/Users/ASUS%20CELERON/Desktop/TMN/TMN_Pidev/src/services/CommandeCRUD.java</file>
-            <file>file:/C:/Users/ASUS%20CELERON/Desktop/TMN/TMN_Pidev/src/services/PanierCRUD.java</file>
+            <file>file:/C:/Users/ASUS%20CELERON/Desktop/TMN/TMN_Pidev/src/GUI/OneProductController.java</file>
             <file>file:/C:/Users/ASUS%20CELERON/Desktop/TMN/TMN_Pidev/src/entities/Produit.java</file>
-            <file>file:/C:/Users/ASUS%20CELERON/Desktop/TMN/TMN_Pidev/src/entities/Commande.java</file>
-            <file>file:/C:/Users/ASUS%20CELERON/Desktop/TMN/TMN_Pidev/src/GUI/SHOP.fxml</file>
+            <file>file:/C:/Users/ASUS%20CELERON/Desktop/TMN/TMN_Pidev/src/GUI/FRONTShopController.java</file>
+            <file>file:/C:/Users/ASUS%20CELERON/Desktop/TMN/TMN_Pidev/src/entities/User.java</file>
+            <file>file:/C:/Users/ASUS%20CELERON/Desktop/TMN/TMN_Pidev/src/GUI/PaiementEnLigne.fxml</file>
             <file>file:/C:/Users/ASUS%20CELERON/Desktop/TMN/TMN_Pidev/src/test/NewFXMain.java</file>
             <file>file:/C:/Users/ASUS%20CELERON/Desktop/TMN/TMN_Pidev/src/entities/Panier.java</file>
+            <file>file:/C:/Users/ASUS%20CELERON/Desktop/TMN/TMN_Pidev/src/GUI/CommandeF.fxml</file>
+            <file>file:/C:/Users/ASUS%20CELERON/Desktop/TMN/TMN_Pidev/src/services/CommandeProduit_S.java</file>
             <file>file:/C:/Users/ASUS%20CELERON/Desktop/TMN/TMN_Pidev/src/GUI/SHOPController.java</file>
             <file>file:/C:/Users/ASUS%20CELERON/Desktop/TMN/TMN_Pidev/src/services/ProduitCRUD.java</file>
+            <file>file:/C:/Users/ASUS%20CELERON/Desktop/TMN/TMN_Pidev/src/entities/testmail.java</file>
+            <file>file:/C:/Users/ASUS%20CELERON/Desktop/TMN/TMN_Pidev/src/test/main.java</file>
+            <file>file:/C:/Users/ASUS%20CELERON/Desktop/TMN/TMN_Pidev/src/GUI/CommandeFController.java</file>
+            <file>file:/C:/Users/ASUS%20CELERON/Desktop/TMN/TMN_Pidev/src/services/PanierCRUD.java</file>
+            <file>file:/C:/Users/ASUS%20CELERON/Desktop/TMN/TMN_Pidev/src/utils/Style.css</file>
+            <file>file:/C:/Users/ASUS%20CELERON/Desktop/TMN/TMN_Pidev/src/GUI/FRONTShop.fxml</file>
+            <file>file:/C:/Users/ASUS%20CELERON/Desktop/TMN/TMN_Pidev/src/GUI/PaiementEnLigneController.java</file>
+            <file>file:/C:/Users/ASUS%20CELERON/Desktop/TMN/TMN_Pidev/src/entities/Commande.java</file>
+            <file>file:/C:/Users/ASUS%20CELERON/Desktop/TMN/TMN_Pidev/src/GUI/OneProduct.fxml</file>
+            <file>file:/C:/Users/ASUS%20CELERON/Desktop/TMN/TMN_Pidev/src/entities/CommandeProduit_E.java</file>
         </group>
     </open-files>
 </project-private>

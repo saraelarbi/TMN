@@ -24,6 +24,8 @@ import java.util.logging.Logger;
 public class ProduitCRUD implements Interface_Services<Produit> {
     Connection cnx2;
     Statement st;
+    private ResultSet Rs;
+
     
     public ProduitCRUD (){
     
@@ -33,14 +35,15 @@ public class ProduitCRUD implements Interface_Services<Produit> {
     @Override
     public void Ajouter(Produit p) {
   try {
-            String requete2 = "INSERT INTO produit (idProduit,nom,type,prix,image)"
-                    + "VALUES(?,?,?,?,?)";
+            String requete2 = "INSERT INTO produit (idProduit,nom,type,prix,image,stock)"
+                    + "VALUES(?,?,?,?,?,?)";
             PreparedStatement pst = cnx2.prepareStatement(requete2);
             pst.setInt(1, p.getIdProduit());
             pst.setString(2, p.getNom());
             pst.setString(3, p.getType());
             pst.setFloat(4, p.getPrix());
             pst.setString(5, p.getImage());
+             pst.setInt(6, p.getStock());
             pst.executeUpdate();
             System.out.println("produit ajoutée");
         } catch (SQLException ex) {
@@ -83,6 +86,8 @@ public class ProduitCRUD implements Interface_Services<Produit> {
                p.setType(rs.getString("type"));
                p.setPrix(rs.getFloat("prix"));
                p.setImage(rs.getString("image"));
+                p.setStock(rs.getInt("stock"));
+               
                myList.add(p);
            
            
@@ -97,14 +102,15 @@ public class ProduitCRUD implements Interface_Services<Produit> {
      @Override
     public void Modifier(Produit p) {
  try {
-            String req = "update produit set nom = ? , type = ? , prix = ? , image = ? "
+            String req = "update produit set nom = ? , type = ? , prix = ? , image = ? , stock = ? "
                     + "where idProduit = ?";
             PreparedStatement ps = cnx2.prepareStatement(req);
             ps.setString(1, p.getNom());
             ps.setString(2, p.getType());
             ps.setFloat(3, p.getPrix());
             ps.setString(4, p.getImage());
-            ps.setInt(5, p.getIdProduit());
+            ps.setInt(5,p.getStock());
+            ps.setInt(6, p.getIdProduit());
             ps.executeUpdate();
             System.out.println("Produit modifié");
             
@@ -192,5 +198,19 @@ try {
     
     }
     */
-   
+    public Produit TrouverById(int idProduit) {
+        Produit P = null;
+        String Req = "select * from produit where idProduit=" + idProduit + "";
+        try {
+            st = cnx2.createStatement();
+            Rs = st.executeQuery(Req);
+            while (Rs.next()) {
+                P = new Produit(Rs.getInt("idProduit"), Rs.getString("nom"),Rs.getFloat("prix"), Rs.getString("type"), Rs.getString("image"),Rs.getInt("stock"));
+            }
+        } catch (SQLException ex) {
+            Logger.getLogger(ProduitCRUD.class.getName()).log(Level.SEVERE, null, ex);
+        }
+        return P;
+    }
+    
 }

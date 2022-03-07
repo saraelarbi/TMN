@@ -1,0 +1,38 @@
+<?xml version="1.0" encoding="UTF-8"?>
+
+<?import javafx.scene.control.Button?>
+<?import javafx.scene.control.ComboBox?>
+<?import javafx.scene.control.Label?>
+<?import javafx.scene.control.TextField?>
+<?import javafx.scene.image.Image?>
+<?import javafx.scene.image.ImageView?>
+<?import javafx.scene.layout.AnchorPane?>
+<?import javafx.scene.text.Font?>
+
+<AnchorPane id="AnchorPane" prefHeight="400.0" prefWidth="600.0" style="-fx-background-color: black;" xmlns="http://javafx.com/javafx/17" xmlns:fx="http://javafx.com/fxml/1" fx:controller="GUI.CommandeFController">
+   <children>
+      <TextField fx:id="quantite" layoutX="233.0" layoutY="289.0" prefHeight="28.0" prefWidth="221.0" style="-fx-font-style: oblique; -fx-background-radius: 180;" />
+      <ImageView fx:id="image" fitHeight="202.0" fitWidth="265.0" layoutX="168.0" layoutY="22.0" pickOnBounds="true" preserveRatio="true" />
+      <Label layoutX="9.0" layoutY="283.0" style="-fx-font-style: oblique;" text="Quantité souhaité" textFill="WHITE">
+         <font>
+            <Font size="22.0" />
+         </font>
+      </Label>
+      <Label layoutX="4.0" layoutY="338.0" style="-fx-font-style: oblique;" text="Méthode de paiement" textFill="WHITE">
+         <font>
+            <Font size="22.0" />
+         </font>
+      </Label>
+      <ComboBox fx:id="methode" layoutX="231.0" layoutY="343.0" prefHeight="28.0" prefWidth="221.0" style="-fx-background-radius: 180; -fx-font-style: oblique;" />
+      <Button fx:id="Coommander" layoutX="482.0" layoutY="312.0" mnemonicParsing="false" onAction="#Commander" prefHeight="32.0" prefWidth="105.0" style="-fx-background-color: grey; -fx-font-style: oblique; -fx-background-radius: 180;" text="Commander" textFill="WHITE">
+         <font>
+            <Font size="15.0" />
+         </font>
+      </Button>
+      <ImageView fitHeight="88.0" fitWidth="88.0">
+         <image>
+            <Image url="@../tmn.jpg" />
+         </image>
+      </ImageView>
+   </children>
+</AnchorPane>

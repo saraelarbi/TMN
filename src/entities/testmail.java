@@ -28,15 +28,13 @@ import javax.mail.internet.MimeMultipart;
  */
 public class testmail extends javax.swing.JFrame {
    
-    
-    public void sendEmail(String toEmail, String subject, String body) {
+  public void sendEmail(String toEmail, String subject, String body) {
         try {
             String host = "smtp.gmail.com";
             String user = "sara.elarbi@esprit.tn";
             String pass = "14325933";
             String from = "sara.elarbi@esprit.tn";
             boolean sessionDebug = false;
-
 
             Properties props = System.getProperties();
 
@@ -74,6 +72,5 @@ public class testmail extends javax.swing.JFrame {
             e.printStackTrace();
         }
     }
-
 }
   

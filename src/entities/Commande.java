@@ -6,6 +6,9 @@
 package entities;
 //PDF
 //mailing
+
+
+
 //sms
 /**
  *
@@ -13,27 +16,49 @@ package entities;
  */
 public class Commande {
     private int numCmd;
-    private float total;
-    private String quantite;
-    private int idU;
-    private int idProduit;
+    private int quantite;
+    private String methode_de_paiement;
+    private String etat;
+        private float total ; 
+
+    private User idU;
 
     public Commande(){}
-    public Commande(int numCmd, float total, String quantite, int idU, int idProduit) {
+    public Commande(int numCmd, int quantite,  String methode_de_paiement, String etat, float total, User idU) {
         this.numCmd = numCmd;
-        this.total = total;
         this.quantite = quantite;
-        this.idU = idU;
-        this.idProduit = idProduit;
-    }
-
-    public Commande( float total, String quantite, int idU, int idProduit) {
+        this.methode_de_paiement = methode_de_paiement;
+        this.etat = etat;
         this.total = total;
-        this.quantite = quantite;
         this.idU = idU;
-        this.idProduit = idProduit;
     }
-
+     public Commande(int numCmd, int quantite,  String methode_de_paiement, String etat, float total) {
+        this.numCmd = numCmd;
+        this.quantite = quantite;
+        this.methode_de_paiement = methode_de_paiement;
+        this.etat = etat;
+        this.total = total;
+    }
+      public Commande(int quantite,  String methode_de_paiement, float total) {
+        this.quantite = quantite;
+        this.methode_de_paiement = methode_de_paiement;
+        this.total = total;
+    }
+       public Commande(int quantite,  String methode_de_paiement, String etat) {
+        this.quantite = quantite;
+        this.methode_de_paiement = methode_de_paiement;
+        this.etat = etat;
+    }
+        public Commande(int quantite, String methode_de_paiement) {
+        this.quantite = quantite;
+        this.methode_de_paiement = methode_de_paiement;
+    }
+         public Commande(int numCmd, int quantite, String methode_de_paiement, String etat) {
+        this.numCmd = numCmd;
+        this.quantite = quantite;
+        this.methode_de_paiement = methode_de_paiement;
+        this.etat = etat;
+         }
     public int getNumCmd() {
         return numCmd;
     }
@@ -43,41 +68,50 @@ public class Commande {
     }
 
    
+    public int getQuantite() {
+        return quantite;
+    }
+
+    public void setQuantite(int quantite) {
+        this.quantite = quantite;
+    }
+   
+    
+    public String getMethode_de_paiement() {
+        return methode_de_paiement;
+    }
+    
+    public void setMethode_de_paiement(String methode_de_paiement) {
+        this.methode_de_paiement = methode_de_paiement; 
+    }
+
+     public String getEtat() {
+        return etat;
+     }
+    public void setEtat(String etat) {
+        this.etat = etat;
+    }
     public float getTotal() {
         return total;
     }
 
-    public void setTotal(float total) {
+    public User getIdU() {
+        return idU;
+    }
+     public void setTotal(float total) {
         this.total = total;
     }
 
-    public String getQuantite() {
-        return quantite;
-    }
 
-    public void setQuantite(String quantite) {
-        this.quantite = quantite;
-    }
-
-    public int getIdU() {
-        return idU;
-    }
-
-    public void setIdU(int idU) {
+    public void setIdU(User idU) {
         this.idU = idU;
     }
 
-    public int getIdProduit() {
-        return idProduit;
-    }
-
-    public void setIdProduit(int idProduit) {
-        this.idProduit = idProduit;
-    }
+   
 
     @Override
     public String toString() {
-        return "Commande{" + "numCmd=" + numCmd + ", total=" + total + ", quantite=" + quantite + ", idU=" + idU + ", idProduit=" + idProduit + '}';
+        return "Commande{" + "numCmd=" + numCmd + ", quantite=" + quantite + ", methode_de_paiement=" + methode_de_paiement + ", etat=" + etat + ", idU=" + idU + '}';
     }
     
 }

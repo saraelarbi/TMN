@@ -70,7 +70,10 @@ import static sun.awt.image.ImagingLib.filter;
 import javafx.collections.transformation.FilteredList;
 import javafx.collections.transformation.SortedList;
 import javafx.event.EventType;
+import javafx.scene.control.ComboBox;
+import javafx.scene.control.cell.TextFieldTableCell;
 import javafx.scene.layout.Pane;
+import javax.swing.JOptionPane;
 //import javax.swing.text.Document;
 
 //import javax.swing.JFileChooser;
@@ -96,6 +99,8 @@ public class SHOPController implements Initializable {
     @FXML
     private Label file_path;
     @FXML
+    private TextField stock;
+    @FXML
     private Button AjouterProd;
     @FXML
     private Button SupprimerProd;
@@ -116,27 +121,19 @@ public class SHOPController implements Initializable {
     @FXML
     private TableColumn<Produit, String> image2;
     @FXML
+    private TableColumn<Produit, Integer> stockk;
+    @FXML
     private ImageView ImageViewer_Prod;
     ///////////////////////////////////////////////////////////////////////////////////////////////////
     //////////////////////////////////////////////////////////////////////////////////////////////////
-    FilteredList<Commande> filter_cmd = new FilteredList<>(CommandeList(), e -> true);
-    SortedList<Commande> sortcmd = new SortedList<>(filter_cmd);
+   /* FilteredList<Commande> filter_cmd = new FilteredList<>(CommandeList(), e -> true);
+    SortedList<Commande> sortcmd = new SortedList<>(filter_cmd);*/
     @FXML
     private TextField chercher_cmd;
     @FXML
     private AnchorPane AnchorPane_Commande;
-    @FXML
-    private TextField TextField_idproduit;
-    @FXML
-    private TextField numCmdMod;
-    @FXML
-    private TextField TextField_totalCMD;
-    @FXML
-    private TextField TextField_QtiteCMD;
-    @FXML
-    private TextField TextField_idUcmd;
-    @FXML
-    private Button AjouterCommande;
+   
+   
     @FXML
     private Button ModifierCommande;
     @FXML
@@ -146,13 +143,17 @@ public class SHOPController implements Initializable {
     @FXML
     private TableColumn<Commande, Integer> numCMD;
     @FXML
-    private TableColumn<Commande, Float> total;
+    private TableColumn<Commande, Integer> Quantite;
     @FXML
-    private TableColumn<Commande, String> quantite;
+    private TableColumn<Commande, String> methode;
     @FXML
-    private TableColumn<Commande, Integer> idU;
+    private TableColumn<Commande, String> etat;
     @FXML
-    private TableColumn<Commande, Integer> idP;
+    private TableColumn<?, ?> total;
+    //@FXML
+    //private TableColumn<Commande, Integer> idU;
+    @FXML
+    private ComboBox<String> EtatComande;
     /////////////////////////////////////////////////////////////////////////////////////////////////////
     ////////////////////////////////////////////////////////////////////////////////////////////////////
     
@@ -208,9 +209,17 @@ public class SHOPController implements Initializable {
      */
     @Override
     public void initialize(URL url, ResourceBundle rb) {
-      AffichageCommande();
+       EtatComande.getItems().addAll("Acceptée", "Refusée" , "Livrée") ;   
+      
+        try {
+            AffichageCommande();
+        } catch (SQLException ex) {
+            Logger.getLogger(SHOPController.class.getName()).log(Level.SEVERE, null, ex);
+        }
+        etat.setCellFactory(TextFieldTableCell.forTableColumn());
       AfficherProd();
       AffichagePanier();
+      
 
     }    
     
@@ -230,7 +239,7 @@ public class SHOPController implements Initializable {
             ResultSet rs = st.executeQuery(req);
             Produit produit;
             while(rs.next()){
-                produit = new Produit(rs.getInt("idProduit"), rs.getString("nom"),rs.getString("type"), rs.getFloat("prix"),rs.getString("image"));   
+                produit = new Produit(rs.getInt("idProduit"), rs.getString("nom"),rs.getFloat("prix"),rs.getString("type") ,rs.getString("image"),rs.getInt("stock"));   
                 ProduitList.add(produit);
             }
         }catch(SQLException e){}
@@ -243,7 +252,9 @@ public class SHOPController implements Initializable {
                   nom.getText().isEmpty()
                 | type.getText().isEmpty()
                 | prix.getText().isEmpty()
-                | ImageViewer_Prod.getImage()== null)
+                | ImageViewer_Prod.getImage()== null
+                | stock.getText().isEmpty())
+
                 {
 
             Alert alert = new Alert(Alert.AlertType.ERROR);
@@ -257,8 +268,9 @@ public class SHOPController implements Initializable {
 
             ProduitCRUD prod = new ProduitCRUD();
             Float prixx = Float.parseFloat(prix.getText());
+            int stockk = Integer.parseInt(stock.getText());
             
-            Produit pd = new Produit(nom.getText(),type.getText(),prixx, file_path.getText());
+            Produit pd = new Produit(nom.getText(),prixx,type.getText(), file_path.getText(),stockk);
             prod.Ajouter(pd);
             AfficherProd();
             //Refresh_produit();
@@ -317,6 +329,7 @@ public class SHOPController implements Initializable {
         ImageViewer_Prod.setImage(image);
         String path = produit.getImage();
         file_path.setText(path);
+        stock.setText(String.valueOf(produit.getStock()));
         
     }
 
@@ -328,6 +341,7 @@ public class SHOPController implements Initializable {
         type2.setCellValueFactory(new PropertyValueFactory<>("type"));
         prix2.setCellValueFactory(new PropertyValueFactory<>("prix"));
         image2.setCellValueFactory(new PropertyValueFactory<>("image"));
+        stockk.setCellValueFactory(new PropertyValueFactory<>("stock"));
         AfficherProd.setItems(ProduitList);
     }
 
@@ -353,7 +367,8 @@ public class SHOPController implements Initializable {
                   nom.getText().isEmpty()
                 | type.getText().isEmpty()
                 | prix.getText().isEmpty()
-                | ImageViewer_Prod.getImage()== null)
+                | ImageViewer_Prod.getImage()== null
+                |stock.getText().isEmpty())
                 {
 
             Alert alert = new Alert(Alert.AlertType.ERROR);
@@ -369,7 +384,7 @@ public class SHOPController implements Initializable {
         int idpd =parseInt(str1);
         
          ProduitCRUD prod = new ProduitCRUD();
-            Produit pd = new Produit(idpd,nom.getText(), type.getText(), Float.parseFloat(prix.getText()), file_path.getText());
+            Produit pd = new Produit(idpd,nom.getText(), Float.parseFloat(prix.getText()), type.getText(), file_path.getText(),Integer.parseInt(stock.getText()));
             prod.Modifier(pd);
             AfficherProd();
             //Refresh_produit();
@@ -463,67 +478,28 @@ public class SHOPController implements Initializable {
     
 ////////////////////////////////// COMMANDE //////////////////////////////////////////////////////////////
     
-    
-    
-    public ObservableList<Commande> CommandeList(){
-        cnx2 = MyConnection.getInstance().getCnx();
-        ObservableList<Commande> CommandeList = FXCollections.observableArrayList();
-        String req = "SELECT * FROM commande";
-        try{
-            Statement st = cnx2.createStatement();
-            ResultSet rs = st.executeQuery(req);
-            Commande commande;
-            while(rs.next()){
-                commande = new Commande(rs.getInt("numCmd"), rs.getFloat("total"),rs.getString("quantite"), rs.getInt("idU"),rs.getInt("idProduit"));   
-                CommandeList.add(commande);
-            }
-        }catch(SQLException e){}
-        return CommandeList;
-        
+    public ObservableList<Commande> getlist() throws SQLException {
+        CommandeCRUD Ps = new CommandeCRUD();
+        ObservableList<Commande> listproduit = FXCollections.observableArrayList(Ps.Afficher());
+        return listproduit;
     }
     
+   
 
     @FXML
-    private void ModifierCommande(ActionEvent event) {
-        if (
-                  TextField_totalCMD.getText().isEmpty()
-                | TextField_QtiteCMD.getText().isEmpty()
-                | TextField_idUcmd.getText().isEmpty()
-                | TextField_idproduit.getText().isEmpty())
-                {
-
-            Alert alert = new Alert(Alert.AlertType.ERROR);
-
-            alert.setTitle("Error Message");
-            alert.setHeaderText(null);
-            alert.setContentText("Remplissez tous les champs");
-            alert.showAndWait();
-
-        } else {
-         String str1= numCmdMod.getText();
-        int idcmd =parseInt(str1);
-        
-         CommandeCRUD cmd = new CommandeCRUD();
-            Commande cd = new Commande(idcmd,Float.parseFloat(TextField_totalCMD.getText()), TextField_QtiteCMD.getText(),Integer.parseInt(TextField_idUcmd.getText()), Integer.parseInt(TextField_idproduit.getText()));
-            cmd.Modifier(cd);
-            AffichageCommande();
-            //Refresh_commande();
-            Image img = new Image("/tmn2.jpg");
-            Notifications notificationBuilder = Notifications.create()
-                    .title("Modification Commande")
-                    .text("Commande Modifiée").graphic(new ImageView(img)).hideAfter(Duration.seconds(5))
-                    .position(Pos.BOTTOM_RIGHT);
-            notificationBuilder.darkStyle();
-            notificationBuilder.show();
-    }
+    private void ModifierCommande(ActionEvent event) throws SQLException {
+        CommandeCRUD Ps = new CommandeCRUD();
+          Commande C = Ps.TrouverById(AffichageCommande.getSelectionModel().getSelectedItem().getNumCmd()) ; 
+          C.setEtat(EtatComande.getValue());
+          Ps.Modifier(C);     
+          AffichageCommande();
     }
     @FXML
-    private void SupprimerCommande(ActionEvent event) {
-         CommandeCRUD cmd = new CommandeCRUD();
-                String idcmd = numCmdMod.getText();
-                cmd.Supprimer(parseInt(idcmd));
-                AffichageCommande();
-               // Refresh_commande();
+    private void SupprimerCommande(ActionEvent event) throws SQLException {
+         CommandeCRUD Ps = new CommandeCRUD();
+          Ps.Supprimer(AffichageCommande.getSelectionModel().getSelectedItem().getNumCmd());
+          JOptionPane.showMessageDialog(null, "Are you sure ? :(");
+          AffichageCommande();
                Image img = new Image("/tmn2.jpg");
             Notifications notificationBuilder = Notifications.create()
                     .title("Suppression Commande")
@@ -534,74 +510,19 @@ public class SHOPController implements Initializable {
               
     }
 
+    
     @FXML
-    private void select_Commande(MouseEvent event) {
-         Commande commande = AffichageCommande.getSelectionModel().getSelectedItem();
-        
-        int num = AffichageCommande.getSelectionModel().getSelectedIndex();
-        
-        if((num-1) < -1)
-            return;
-        
-        
-        numCmdMod.setText(String.valueOf(commande.getNumCmd()));
-        TextField_totalCMD.setText(String.valueOf(commande.getTotal()));
-        TextField_QtiteCMD.setText(commande.getQuantite());
-        TextField_idUcmd.setText(String.valueOf(commande.getIdU()));
-        TextField_idproduit.setText(String.valueOf(commande.getIdProduit()));
-    }
-
-    @FXML
-    private void AffichageCommande() {
-         ObservableList<Commande> CommandeList = CommandeList();
-        
+    private void AffichageCommande()throws SQLException {
+         ObservableList<Commande> list = getlist();
+        AffichageCommande.setItems(list);
         numCMD.setCellValueFactory(new PropertyValueFactory<>("numCmd"));
+        Quantite.setCellValueFactory(new PropertyValueFactory<>("quantite"));
+        methode.setCellValueFactory(new PropertyValueFactory<>("methode_de_paiement"));
+        etat.setCellValueFactory(new PropertyValueFactory<>("etat"));
         total.setCellValueFactory(new PropertyValueFactory<>("total"));
-        quantite.setCellValueFactory(new PropertyValueFactory<>("quantite"));
-        idU.setCellValueFactory(new PropertyValueFactory<>("idU"));
-        idP.setCellValueFactory(new PropertyValueFactory<>("idProduit"));
-        
-        
-        AffichageCommande.setItems(CommandeList);
+       // idU.setCellValueFactory(new PropertyValueFactory<>("idU"));
     }
-    @FXML
-    private void AjouterCommande(ActionEvent event) {
-        
-        if (
-                  TextField_totalCMD.getText().isEmpty()
-                | TextField_QtiteCMD.getText().isEmpty()
-                | TextField_idUcmd.getText().isEmpty()
-                | TextField_idproduit.getText().isEmpty())
-                {
-
-            Alert alert = new Alert(Alert.AlertType.ERROR);
-
-            alert.setTitle("Error Message");
-            alert.setHeaderText(null);
-            alert.setContentText("Remplissez tous les champs");
-            alert.showAndWait();
-
-        } else {
-
-            CommandeCRUD cmd = new CommandeCRUD();
-            Float total = Float.parseFloat(TextField_totalCMD.getText());
-        int idU = Integer.parseInt(TextField_idUcmd.getText());
-        int idProduit = Integer.parseInt(TextField_idproduit.getText());
-            Commande cm = new Commande(total, TextField_QtiteCMD.getText(),idU , idProduit);
-            cmd.Ajouter(cm);
-           // Refresh_commande();
-            
-          
-            AffichageCommande();
-            Image img = new Image("/tmn2.jpg");
-            Notifications notificationBuilder = Notifications.create()
-                    .title("Ajout Commande")
-                    .text("Commande Ajoutée").graphic(new ImageView(img)).hideAfter(Duration.seconds(5))
-                    .position(Pos.BOTTOM_RIGHT);
-            notificationBuilder.darkStyle();
-            notificationBuilder.show();
-    }
-    }
+   
      /*public void Refresh_commande() {
 
         TextField_totalCMD.setText("");
@@ -613,7 +534,7 @@ public class SHOPController implements Initializable {
 } */
     @FXML
     private void Chercher_cmd(ActionEvent event) {
-        chercher_cmd.setOnKeyReleased(e -> {
+        /*chercher_cmd.setOnKeyReleased(e -> {
             chercher_cmd.textProperty().addListener((observable, oldValue, newValue) -> {
                 filter_cmd.setPredicate(h -> {
                     if (newValue == null || newValue.isEmpty()) {
@@ -630,7 +551,7 @@ public class SHOPController implements Initializable {
             });
             sortcmd.comparatorProperty().bind(AffichageCommande.comparatorProperty());
             AffichageCommande.setItems(sortcmd);
-        });
+        });*/
     }
     
     

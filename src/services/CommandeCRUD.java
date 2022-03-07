@@ -25,6 +25,7 @@ import java.util.logging.Logger;
 public class CommandeCRUD implements Interface_Services<Commande> {
     Connection cnx2;
     Statement st;
+    private ResultSet Rs;
     
     public CommandeCRUD (){
     
@@ -34,14 +35,14 @@ public class CommandeCRUD implements Interface_Services<Commande> {
     @Override
     public void Ajouter(Commande c) {
   try {
-            String requete2 = "INSERT INTO commande (numCmd,total,quantite,idU,idProduit)"
-                    + "VALUES(?,?,?,?,?)";
+            String requete2 = "INSERT INTO commande (numCmd,quantite,methode_de_paiement,etat,idU)"
+                    + "VALUES(?,?,?,'en cours',?)";
             PreparedStatement pst = cnx2.prepareStatement(requete2);
             pst.setInt(1, c.getNumCmd());
-            pst.setFloat(2, c.getTotal());
-            pst.setString(3, c.getQuantite());
-            pst.setInt(4, c.getIdU());
-            pst.setInt(5, c.getIdProduit());
+            pst.setInt(2, c.getQuantite());
+            pst.setString(3, c.getMethode_de_paiement());
+            pst.setString(4, c.getEtat());
+            pst.setInt(5, c.getIdU().getIdU());
             pst.executeUpdate();
             System.out.println("commande ajoutée");
         } catch (SQLException ex) {
@@ -50,8 +51,51 @@ public class CommandeCRUD implements Interface_Services<Commande> {
     
         }
     
+public void Ajouter2(Commande T, int idProduit) {
+        int max = 0 ; 
+        String Req = "insert into commande (numCmd,quantite,methode_de_paiement,etat,total) values (?,?,?,'en cours',?)";
+        try {
+            PreparedStatement pst = cnx2.prepareStatement(Req);
+            pst.setInt(1, T.getNumCmd());
+            pst.setInt(2, T.getQuantite());
+            pst.setString(3, T.getMethode_de_paiement());
+            pst.setFloat(4, T.getTotal());
+            
+                        
+            pst.executeUpdate();
+        } catch (SQLException ex) {
+            Logger.getLogger(ProduitCRUD.class.getName()).log(Level.SEVERE, null, ex);
+        }
+        
+        max = BigId() ; 
+      
+        String Reqq = "insert into commande_produit (numCMD,idProduit) values (?,?)";
+        try {
+            PreparedStatement pst = cnx2.prepareStatement(Reqq);
+            pst.setInt(1,max);
+            pst.setInt(2,idProduit);            
+            pst.executeUpdate();
+        } catch (SQLException ex) {
+            Logger.getLogger(ProduitCRUD.class.getName()).log(Level.SEVERE, null, ex);
+        }
+    }
 
-    
+    public int BigId()
+    {    
+        int max = 0 ; 
+      String Select = "SELECT MAX(numCmd) FROM commande" ;
+       try {
+            st = cnx2.createStatement();
+            Rs = st.executeQuery(Select);
+            while (Rs.next()) {
+               max = Rs.getInt("MAX(numCmd)");
+            }
+        } catch (SQLException ex) {
+            Logger.getLogger(CommandeCRUD.class.getName()).log(Level.SEVERE, null, ex);
+        }
+      //  System.out.println(max);
+        return max ; 
+    }
     
    /* public void ajouterProduit2(Produit p){
         try {
@@ -80,10 +124,11 @@ public class CommandeCRUD implements Interface_Services<Commande> {
            while(rs.next()){
                Commande c =new Commande();
                c.setNumCmd(rs.getInt("numCmd"));
-               c.setTotal(rs.getFloat("total"));
-               c.setQuantite(rs.getString("quantite"));
-               c.setIdU(rs.getInt("idU"));
-               c.setIdProduit(rs.getInt("idProduit"));
+               c.setQuantite(rs.getInt("Quantite"));
+               c.setMethode_de_paiement(rs.getString("Methode_de_paiement"));
+               c.setEtat(rs.getString("Etat"));
+               c.setTotal(rs.getFloat("Quantite"));
+              // c.setIdU(rs.getUser("idU"));
                myList.add(c);
            
            
@@ -96,23 +141,18 @@ public class CommandeCRUD implements Interface_Services<Commande> {
         }
   
      @Override
-    public void Modifier(Commande p) {
- try {
-            String req = "update commande set total = ? , quantite = ? , idU = ? , idProduit = ? "
-                    + "where numCmd = ?";
-            PreparedStatement ps = cnx2.prepareStatement(req);
-            ps.setFloat(1, p.getTotal());
-            ps.setString(2, p.getQuantite());
-            ps.setInt(3, p.getIdU());
-            ps.setInt(4, p.getIdProduit());
-            ps.setInt(5, p.getNumCmd());
-            ps.executeUpdate();
-            System.out.println("commande modifié");
-            
+    public void Modifier(Commande T) {
+         String requeteUpdate = "UPDATE  `commande` set `quantite`='" + T.getQuantite()+ "',`methode_de_paiement`='" + T.getMethode_de_paiement()+ "',`etat`='" + T.getEtat() + "' where `commande`.`numCmd`='" + T.getNumCmd()+ "' ";
+
+        try {
+            st = cnx2.createStatement();
+             st.executeUpdate(requeteUpdate);
         } catch (SQLException ex) {
-            System.err.println(ex.getMessage());        }
-            }
-  
+            Logger.getLogger(CommandeCRUD.class.getName()).log(Level.SEVERE, null, ex);
+        }
+       
+      
+    }
 
     @Override
     public void Supprimer(int numCmd) {
@@ -202,6 +242,20 @@ try {
 
     
     }*/
-    
+    public Commande TrouverById(int numCmd) {
+        Commande C = null;
+        String Req = "select * from commande where numCmd=" + numCmd + "";
+        try {
+            st = cnx2.createStatement();
+            Rs = st.executeQuery(Req);
+            while (Rs.next()) {
+                C = new Commande(Rs.getInt("numCmd"), Rs.getInt("quantite"), Rs.getString("methode_de_paiement"), Rs.getString("etat"),Rs.getInt("total"));
+            }
+        } catch (SQLException ex) {
+            Logger.getLogger(CommandeCRUD.class.getName()).log(Level.SEVERE, null, ex);
+        }
+        return C;
+    }
+
    
 }
