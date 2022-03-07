@@ -4,6 +4,7 @@
  * and open the template in the editor.
  */
 package GUI;
+import edu.esprit.entities.Podcast;
 import org.controlsfx.control.Notifications;
 import edu.esprit.entities.Publicite;
 import edu.esprit.entities.Typepub;
@@ -148,8 +149,6 @@ private Connection cnx;
     @FXML
     private TableColumn<Typepub, Integer> id_typepub1;
     @FXML
-    private Label id11;
-    @FXML
     private Button play1;
     @FXML
     private TextField chercher;
@@ -158,9 +157,39 @@ private Connection cnx;
     @FXML
     private Label IdTypePub1;
     @FXML
-    private AnchorPane AnchorPane_Commentaire;
-    @FXML
     private Button play2;
+    @FXML
+    private AnchorPane AnchorPane_Podcast;
+    @FXML
+    private ComboBox<?> Cbx_coadmin;
+    @FXML
+    private TextField TextField_TITLE;
+    @FXML
+    private Button AjouterPodcast;
+    @FXML
+    private Button ModifierPodcast;
+    @FXML
+    private Button SupprimerPodcast;
+    @FXML
+    private TableView<Podcast> AffichagePodcast;
+    @FXML
+    private TableColumn<Podcast, Integer> coadmin_podcast;
+    @FXML
+    private TableColumn<Podcast,String> podcast_title;
+    @FXML
+    private TableColumn<Podcast, String> desc_podcast;
+    @FXML
+    private TableColumn<Podcast, String> video_podcast;
+    @FXML
+    private TextField TextField_DESC_POD;
+    @FXML
+    private Button button_inserer_video;
+    @FXML
+    private Label id2;
+    @FXML
+    private ImageView imageview_Publication1;
+    @FXML
+    private TextField chercher3;
     /**
      * Initializes the controller class.
      */
@@ -168,6 +197,8 @@ private Connection cnx;
     public void initialize(URL url, ResourceBundle rb) {
         AffichagePublicite();
         AffichageTypepub();
+        AffichagePodcast();
+        
         
     }    
 
@@ -510,6 +541,68 @@ private Connection cnx;
             sort.comparatorProperty().bind(Affichagetypepub1.comparatorProperty());
             Affichagetypepub1.setItems(sort);
         });
+    }
+    public ObservableList<Podcast> PodcastList(){
+        
+        cnx = MyConnection.getInstance().getCnx();
+        
+        ObservableList<Podcast> PodcastList = FXCollections.observableArrayList();
+        
+        String req = "SELECT * FROM podcast";
+        
+        try{
+            
+            Statement st = cnx.createStatement();
+            ResultSet rs = st.executeQuery(req);
+            
+            Podcast podcast;
+           
+            while(rs.next()){
+                
+                podcast = new Podcast(rs.getInt("id_coadmin"), rs.getString("title"), rs.getString("description"),rs.getString("video"));   
+                
+                PodcastList.add(podcast);
+                
+            }
+            
+        }catch(SQLException e){
+             e.printStackTrace();
+        }
+        
+        return PodcastList;
+        
+    }
+    @FXML
+    private void AjouterPodcast(ActionEvent event) {
+    }
+
+    @FXML
+    private void ModifierPodcast(ActionEvent event) {
+    }
+
+    @FXML
+    private void SupprimerPodcast(ActionEvent event) {
+    }
+
+    @FXML
+    private void AffichagePodcast() {
+        ObservableList<Podcast> PodcastList = PodcastList();
+//        String coadmin[] = {"coadminnume1", "asfasfasf"}; 
+//        Cbx_coadmin.setItems(FXCollections.observableArrayList(coadmin));
+        coadmin_podcast.setCellValueFactory(new PropertyValueFactory<>("id_coadmin"));
+        podcast_title.setCellValueFactory(new PropertyValueFactory<>("title"));
+        desc_podcast.setCellValueFactory(new PropertyValueFactory<>("description"));
+        video_podcast.setCellValueFactory(new PropertyValueFactory<>("video")); 
+        
+        AffichagePodcast.setItems(PodcastList);
+    }
+
+    @FXML
+    private void insertVideo(ActionEvent event) {
+    }
+
+    @FXML
+    private void Chercher3(ActionEvent event) {
     }
    
     }
