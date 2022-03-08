@@ -1,0 +1,194 @@
+<?xml version="1.0" encoding="UTF-8"?>
+
+<?import javafx.scene.control.Button?>
+<?import javafx.scene.control.Label?>
+<?import javafx.scene.control.TextArea?>
+<?import javafx.scene.control.TextField?>
+<?import javafx.scene.effect.Light.Distant?>
+<?import javafx.scene.effect.Lighting?>
+<?import javafx.scene.effect.Shadow?>
+<?import javafx.scene.image.Image?>
+<?import javafx.scene.image.ImageView?>
+<?import javafx.scene.layout.AnchorPane?>
+<?import javafx.scene.layout.Pane?>
+<?import javafx.scene.paint.Color?>
+<?import javafx.scene.paint.RadialGradient?>
+<?import javafx.scene.paint.Stop?>
+<?import javafx.scene.text.Font?>
+
+<AnchorPane id="AnchorPane" prefHeight="651.0" prefWidth="845.0" xmlns="http://javafx.com/javafx/17" xmlns:fx="http://javafx.com/fxml/1" fx:controller="Views.AjoutEvenetFrontController">
+   <children>
+      <AnchorPane id="AnchorPane" layoutX="-1.0" layoutY="3.0" prefHeight="720.0" prefWidth="1280.0" style="-fx-background-color: black;">
+         <children>
+            <AnchorPane layoutX="-6.0" layoutY="-2.0" prefHeight="90.0" prefWidth="1293.0" style="-fx-background-color: white;">
+               <children>
+                  <Label layoutX="453.0" layoutY="19.0" style="-fx-font-style: oblique;" text="Evenement">
+                     <font>
+                        <Font size="36.0" />
+                     </font>
+                  </Label>
+               </children>
+            </AnchorPane>
+            <TextField fx:id="Titre" layoutX="393.0" layoutY="178.0" prefHeight="25.0" prefWidth="288.0" style="-fx-background-radius: 180;" />
+            <TextField fx:id="Prix" layoutX="397.0" layoutY="497.0" prefHeight="25.0" prefWidth="288.0" style="-fx-background-radius: 180;" />
+            <Label graphicTextGap="6.0" layoutX="355.0" layoutY="181.0" prefHeight="17.0" prefWidth="41.0" style="-fx-font-style: oblique;" text="Titre:">
+               <textFill>
+                  <RadialGradient centerX="0.5" centerY="0.5" radius="0.5">
+                     <stops>
+                        <Stop>
+                           <color>
+                              <Color red="1.0" green="1.0" blue="1.0" />
+                           </color>
+                        </Stop>
+                        <Stop offset="1.0">
+                           <color>
+                              <Color red="1.0" green="1.0" blue="1.0" />
+                           </color>
+                        </Stop>
+                     </stops>
+                  </RadialGradient>
+               </textFill>
+            </Label>
+            <Label graphicTextGap="6.0" layoutX="328.0" layoutY="267.0" prefHeight="17.0" prefWidth="68.0" style="-fx-font-style: oblique;" text="Description:">
+               <textFill>
+                  <RadialGradient centerX="0.5" centerY="0.5" radius="0.5">
+                     <stops>
+                        <Stop>
+                           <color>
+                              <Color red="1.0" green="1.0" blue="1.0" />
+                           </color>
+                        </Stop>
+                        <Stop offset="1.0">
+                           <color>
+                              <Color red="1.0" green="1.0" blue="1.0" />
+                           </color>
+                        </Stop>
+                     </stops>
+                  </RadialGradient>
+               </textFill>
+            </Label>
+            <Label graphicTextGap="6.0" layoutX="341.0" layoutY="501.0" prefHeight="17.0" prefWidth="28.0" style="-fx-font-style: oblique;" text="Prix:">
+               <textFill>
+                  <RadialGradient centerX="0.5" centerY="0.5" radius="0.5">
+                     <stops>
+                        <Stop>
+                           <color>
+                              <Color red="1.0" green="1.0" blue="1.0" />
+                           </color>
+                        </Stop>
+                        <Stop offset="1.0">
+                           <color>
+                              <Color red="1.0" green="1.0" blue="1.0" />
+                           </color>
+                        </Stop>
+                     </stops>
+                  </RadialGradient>
+               </textFill>
+            </Label>
+            <Button fx:id="button_inserer_image" layoutX="396.0" layoutY="393.0" mnemonicParsing="false" onAction="#insertImage" prefHeight="31.0" prefWidth="288.0" style="-fx-background-radius: 180;" text="Inserer une image" />
+            <Label graphicTextGap="6.0" layoutX="342.0" layoutY="400.0" prefHeight="17.0" prefWidth="68.0" style="-fx-font-style: oblique;" text="Image:">
+               <textFill>
+                  <RadialGradient centerX="0.5" centerY="0.5" radius="0.5">
+                     <stops>
+                        <Stop>
+                           <color>
+                              <Color red="1.0" green="1.0" blue="1.0" />
+                           </color>
+                        </Stop>
+                        <Stop offset="1.0">
+                           <color>
+                              <Color red="1.0" green="1.0" blue="1.0" />
+                           </color>
+                        </Stop>
+                     </stops>
+                  </RadialGradient>
+               </textFill>
+            </Label>
+            <TextField fx:id="Categorie" layoutX="393.0" layoutY="223.0" prefHeight="25.0" prefWidth="288.0" style="-fx-background-radius: 180;" />
+            <Label graphicTextGap="6.0" layoutX="321.0" layoutY="227.0" prefHeight="17.0" prefWidth="55.0" style="-fx-font-style: oblique;" text="Categorie:">
+               <textFill>
+                  <RadialGradient centerX="0.5" centerY="0.5" radius="0.5">
+                     <stops>
+                        <Stop>
+                           <color>
+                              <Color red="1.0" green="1.0" blue="1.0" />
+                           </color>
+                        </Stop>
+                        <Stop offset="1.0">
+                           <color>
+                              <Color red="1.0" green="1.0" blue="1.0" />
+                           </color>
+                        </Stop>
+                     </stops>
+                  </RadialGradient>
+               </textFill>
+            </Label>
+            <Label layoutX="297.0" layoutY="557.0" style="-fx-font-style: oblique;" text="Nombre de place:" textFill="WHITE" />
+            <TextField fx:id="Nbr_Place" layoutX="400.0" layoutY="555.0" prefHeight="25.0" prefWidth="288.0" style="-fx-background-radius: 180;" />
+            <TextField fx:id="Image" layoutX="393.0" layoutY="442.0" prefHeight="31.0" prefWidth="288.0" style="-fx-background-radius: 180;" />
+            <Button fx:id="ajouterBB" layoutX="471.0" layoutY="621.0" mnemonicParsing="false" onAction="#AjouterButton" prefHeight="44.0" prefWidth="147.0" style="-fx-background-radius: 180;" text="Ajouter">
+               <font>
+                  <Font size="20.0" />
+               </font>
+            </Button>
+            <TextArea fx:id="Description" layoutX="394.0" layoutY="267.0" prefHeight="114.0" prefWidth="288.0" style="-fx-background-radius: 180;" />
+         </children>
+      </AnchorPane>
+      <Pane layoutX="-1.0" layoutY="-6.0" prefHeight="728.0" prefWidth="247.0" style="-fx-background-color: white;">
+         <children>
+            <Button layoutY="240.0" mnemonicParsing="false" prefHeight="66.0" prefWidth="247.0" style="-fx-background-radius: 10; -fx-font-style: oblique;" text=" Evenements">
+               <font>
+                  <Font name="System Bold" size="20.0" />
+               </font>
+            </Button>
+            <Button layoutY="305.0" mnemonicParsing="false" prefHeight="66.0" prefWidth="247.0" style="-fx-background-radius: 10; -fx-font-style: oblique;" text=" News">
+               <font>
+                  <Font name="System Bold" size="20.0" />
+               </font>
+            </Button>
+            <Button layoutY="371.0" mnemonicParsing="false" prefHeight="66.0" prefWidth="247.0" style="-fx-background-radius: 10; -fx-font-style: oblique;" text="Shop">
+               <font>
+                  <Font name="System Bold" size="20.0" />
+               </font>
+            </Button>
+            <Button layoutY="437.0" mnemonicParsing="false" prefHeight="66.0" prefWidth="247.0" style="-fx-background-radius: 10; -fx-font-style: oblique;" text="Forum">
+               <font>
+                  <Font name="System Bold" size="20.0" />
+               </font>
+            </Button>
+            <Button layoutY="502.0" mnemonicParsing="false" prefHeight="66.0" prefWidth="247.0" style="-fx-background-radius: 10; -fx-font-style: oblique;" text="PodCast">
+               <font>
+                  <Font name="System Bold" size="20.0" />
+               </font>
+            </Button>
+            <Label layoutX="79.0" layoutY="691.0" prefHeight="17.0" prefWidth="104.0" style="-fx-font-style: oblique;" text="TMN COPYRIGHT">
+               <effect>
+                  <Lighting>
+                     <bumpInput>
+                        <Shadow />
+                     </bumpInput>
+                     <light>
+                        <Light.Distant />
+                     </light>
+                  </Lighting>
+               </effect>
+            </Label>
+            <ImageView fitHeight="17.0" fitWidth="28.0" layoutX="54.0" layoutY="691.0">
+               <image>
+                  <Image url="@../../../../../Videos/TMN-Gestion_Shop/images/copyright_PNG52.png" />
+               </image>
+            </ImageView>
+            <ImageView fitHeight="236.0" fitWidth="247.0">
+               <image>
+                  <Image url="@../../../../../Videos/TMN-Gestion_Shop/src/tmn.jpg" />
+               </image>
+            </ImageView>
+            <Button layoutY="568.0" mnemonicParsing="false" prefHeight="66.0" prefWidth="247.0" style="-fx-background-radius: 10; -fx-font-style: oblique;" text="Blog">
+               <font>
+                  <Font name="System Bold" size="20.0" />
+               </font>
+            </Button>
+         </children>
+      </Pane>
+   </children>
+</AnchorPane>

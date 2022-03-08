@@ -1,0 +1,18 @@
+<?xml version="1.0" encoding="UTF-8"?>
+
+<?import javafx.scene.control.Button?>
+<?import javafx.scene.control.TableColumn?>
+<?import javafx.scene.control.TableView?>
+<?import javafx.scene.layout.AnchorPane?>
+
+<AnchorPane id="AnchorPane" prefHeight="266.0" prefWidth="557.0" xmlns="http://javafx.com/javafx/17" xmlns:fx="http://javafx.com/fxml/1" fx:controller="Views.AffichageRateController">
+   <children>
+      <TableView fx:id="EventTable" prefHeight="200.0" prefWidth="557.0" style="-fx-background-radius: 10;">
+        <columns>
+          <TableColumn fx:id="Idevent" prefWidth="266.0" style="-fx-font-style: oblique;" text="Id Evenement" />
+          <TableColumn fx:id="Rate" prefWidth="283.0" style="-fx-font-style: oblique;" text="Rate" />
+        </columns>
+      </TableView>
+      <Button fx:id="Bavkk" layoutX="160.0" layoutY="218.0" mnemonicParsing="false" onAction="#backkk" prefHeight="25.0" prefWidth="238.0" style="-fx-font-style: oblique; -fx-background-radius: 180;" text="Back" />
+   </children>
+</AnchorPane>
