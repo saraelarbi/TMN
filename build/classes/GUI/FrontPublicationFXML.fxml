@@ -59,12 +59,12 @@
             </Label>
             <ImageView fitHeight="17.0" fitWidth="28.0" layoutX="54.0" layoutY="691.0">
                <image>
-                  <Image url="@../../../../../Downloads/TMN_Pidev/TMN_Pidev/images/copyright_PNG52.png" />
+                  <Image url="@../../../../../Downloads/copyright_PNG52.png" />
                </image>
             </ImageView>
             <ImageView fitHeight="236.0" fitWidth="247.0" layoutX="1.0">
                <image>
-                  <Image url="@../../../../../Downloads/TMN_Pidev/TMN_Pidev/src/tmn.jpg" />
+                  <Image url="@../../../../../Downloads/272058072_1154385918701731_2340808200172127650_n.jpg" />
                </image>
             </ImageView>
          </children>

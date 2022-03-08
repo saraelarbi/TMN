@@ -62,7 +62,7 @@ public class OnePublicationFXMLController implements Initializable {
         source_PB.setText(Pub.getSource_Pub());
         categorie_PB.setText(Pub.getCategorie_Pub());
         String picture ="file:" +  Pub.getImage_Pub();
-        Image image1 = new Image(picture, 110, 110, false, true);
+        Image image1 = new Image(picture, 250, 180, false, true);
         image_PB.setImage(image1);
         
        

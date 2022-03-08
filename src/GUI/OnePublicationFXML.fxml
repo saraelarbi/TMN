@@ -7,30 +7,30 @@
 <?import javafx.scene.layout.AnchorPane?>
 <?import javafx.scene.text.Font?>
 
-<AnchorPane id="AnchorPane" prefHeight="380.0" prefWidth="310.0" xmlns="http://javafx.com/javafx/17" xmlns:fx="http://javafx.com/fxml/1" fx:controller="GUI.OnePublicationFXMLController">
+<AnchorPane id="AnchorPane" prefHeight="557.0" prefWidth="516.0" xmlns="http://javafx.com/javafx/17" xmlns:fx="http://javafx.com/fxml/1" fx:controller="GUI.OnePublicationFXMLController">
    <children>
-      <ImageView fx:id="image_PB" fitHeight="150.0" fitWidth="262.0" layoutX="10.0" layoutY="41.0" pickOnBounds="true" preserveRatio="true" />
-      <Label fx:id="titre_PB" layoutX="21.0" layoutY="11.0" text="Titre">
+      <ImageView fx:id="image_PB" fitHeight="244.0" fitWidth="496.0" layoutX="10.0" layoutY="41.0" pickOnBounds="true" preserveRatio="true" />
+      <Label fx:id="titre_PB" layoutX="52.0" layoutY="11.0" text="Titre">
          <font>
             <Font size="20.0" />
          </font>
       </Label>
-      <Label fx:id="source_PB" layoutX="24.0" layoutY="200.0" text="Source">
+      <Label fx:id="source_PB" layoutX="67.0" layoutY="294.0" text="Source">
          <font>
             <Font size="20.0" />
          </font>
       </Label>
-      <Button fx:id="reclamer_PB" layoutX="11.0" layoutY="378.0" mnemonicParsing="false" onAction="#Faire_Reclamation" prefHeight="30.0" prefWidth="138.0" style="-fx-background-color: black;" text="Reclamer" textFill="WHITE">
+      <Button fx:id="reclamer_PB" layoutX="370.0" layoutY="498.0" mnemonicParsing="false" onAction="#Faire_Reclamation" prefHeight="30.0" prefWidth="138.0" style="-fx-background-color: black;" text="Reclamer" textFill="WHITE">
          <font>
             <Font size="20.0" />
          </font>
       </Button>
-      <Label fx:id="Date_PB" layoutX="25.0" layoutY="335.0" text="Date">
+      <Label fx:id="Date_PB" layoutX="70.0" layoutY="443.0" text="Date">
          <font>
             <Font size="20.0" />
          </font>
       </Label>
-      <Label fx:id="Desc_PB" layoutX="24.0" layoutY="230.0" prefHeight="77.0" prefWidth="208.0" text="Desc">
+      <Label fx:id="Desc_PB" alignment="TOP_LEFT" layoutX="69.0" layoutY="336.0" prefHeight="62.0" prefWidth="230.0" text="Desc" wrapText="true">
          <font>
             <Font size="20.0" />
          </font>
@@ -38,10 +38,15 @@
             <Insets />
          </opaqueInsets>
       </Label>
-      <Label fx:id="categorie_PB" layoutX="24.0" layoutY="306.0" text="Categorie">
+      <Label fx:id="categorie_PB" layoutX="68.0" layoutY="401.0" text="Categorie">
          <font>
             <Font size="20.0" />
          </font>
       </Label>
+      <Label layoutX="13.0" layoutY="450.0" text="Date:" />
+      <Label layoutX="7.0" layoutY="19.0" text="Titre:" />
+      <Label layoutX="7.0" layoutY="301.0" text="Source:" />
+      <Label layoutX="3.0" layoutY="343.0" text="Description:" />
+      <Label layoutX="7.0" layoutY="408.0" text="Categorie:" />
    </children>
 </AnchorPane>

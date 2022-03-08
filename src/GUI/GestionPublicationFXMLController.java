@@ -123,6 +123,8 @@ public class GestionPublicationFXMLController implements Initializable {
     private Button Button_PubToPDF;
     @FXML
     private Button button_podc;
+    @FXML
+    private Button Button_ShowStatPub;
 
     //ProgressBar proBar = new ProgressBar();
     /**
@@ -160,8 +162,7 @@ public class GestionPublicationFXMLController implements Initializable {
             Publication pb = new Publication(1, datepub1, TextField_TITRE_PUB.getText(), TextField_DESC_PUB.getText(), TextField_SOURCE_PUB.getText(), TextField_CATEGORIE_PUB.getText(), file_path.getText());
             StartProgrssBar();
             sPub.ajouterPB(pb);
-            
-            
+
             Notificationmanager(0);
             Alert alert = new Alert(Alert.AlertType.INFORMATION);
             alert.setTitle("Alert");
@@ -195,30 +196,28 @@ public class GestionPublicationFXMLController implements Initializable {
 
         } else {
             Alert alert = new Alert(Alert.AlertType.CONFIRMATION);
-        alert.setTitle("Confirmation Message");
-        alert.setHeaderText(null);
-        alert.setContentText("Voulez vous Modifier cette publication ?");
+            alert.setTitle("Confirmation Message");
+            alert.setHeaderText(null);
+            alert.setContentText("Voulez vous Modifier cette publication ?");
 
-        Optional<ButtonType> buttonType = alert.showAndWait();
+            Optional<ButtonType> buttonType = alert.showAndWait();
 
-        if (buttonType.get() == ButtonType.OK) {
-            ServicePublication sPub = new ServicePublication();
-            String str2 = DatePicker_Date_PUB.getValue().toString();
-            String str3 = TextField_ID_PUB.getText();
-            int idpb = parseInt(str3);
-            Date datepub1 = Date.valueOf(str2);
-            
-            
-            Publication pb = new Publication(idpb, datepub1, TextField_TITRE_PUB.getText(), TextField_DESC_PUB.getText(), TextField_SOURCE_PUB.getText(), TextField_CATEGORIE_PUB.getText(), file_path.getText());
-            StartProgrssBar();
-            sPub.modifierPB(pb);
-            Notificationmanager(1);
-           
+            if (buttonType.get() == ButtonType.OK) {
+                ServicePublication sPub = new ServicePublication();
+                String str2 = DatePicker_Date_PUB.getValue().toString();
+                String str3 = TextField_ID_PUB.getText();
+                int idpb = parseInt(str3);
+                Date datepub1 = Date.valueOf(str2);
 
-           
-            AffichagePublication();
-            clear();}
-         ProgressBar.setProgress(0); 
+                Publication pb = new Publication(idpb, datepub1, TextField_TITRE_PUB.getText(), TextField_DESC_PUB.getText(), TextField_SOURCE_PUB.getText(), TextField_CATEGORIE_PUB.getText(), file_path.getText());
+                StartProgrssBar();
+                sPub.modifierPB(pb);
+                Notificationmanager(1);
+
+                AffichagePublication();
+                clear();
+            }
+            ProgressBar.setProgress(0);
 
         }
 
@@ -240,7 +239,7 @@ public class GestionPublicationFXMLController implements Initializable {
             String idpb = TextField_ID_PUB.getText();
             StartProgrssBar();
             sPub.supprimerPB(parseInt(idpb));
-             Notificationmanager(2);
+            Notificationmanager(2);
 
         } else {
 
@@ -520,33 +519,49 @@ public class GestionPublicationFXMLController implements Initializable {
                 not.text("Converted to PDF");
                 not.title("PDF");
                 not.showWarning();
-                break;    
+                break;
             default:
 
         }
 
     }
- private Stage stage;
- private Scene scene;
- private Parent root;
+    private Stage stage;
+    private Scene scene;
+    private Parent root;
+
     @FXML
-    private void link1(ActionEvent event) throws Exception {               
- 
-       try {
-      /* FXMLLoader fxmlLoader = new FXMLLoader(getClass().getResource("../GUI/GestionReclamationFXML.fxml"));
+    private void link1(ActionEvent event) throws Exception {
+
+        try {
+            /* FXMLLoader fxmlLoader = new FXMLLoader(getClass().getResource("../GUI/GestionReclamationFXML.fxml"));
             Parent root = (Parent) fxmlLoader.load();
             Stage stage = new Stage();
             stage.setScene(new Scene(root));  
             stage.show();
           // NewFXMain..close();  */
-          
-           root = FXMLLoader.load(getClass().getResource("../GUI/GestionReclamationFXML.fxml"));
-  stage = (Stage)((Node)event.getSource()).getScene().getWindow();
-  scene = new Scene(root);
-  stage.setScene(scene);
-  stage.show();
-    } catch(IOException e) {
+
+            root = FXMLLoader.load(getClass().getResource("../GUI/GestionReclamationFXML.fxml"));
+            stage = (Stage) ((Node) event.getSource()).getScene().getWindow();
+            scene = new Scene(root);
+            stage.setScene(scene);
+            stage.show();
+        } catch (IOException e) {
+        }
+
     }
+
+    @FXML
+    private void ShowStatPub(ActionEvent event) throws IOException {
+        try {
+            FXMLLoader fxmlLoader = new FXMLLoader(getClass().getResource("../GUI/PieCharPublicationFXML.fxml"));
+            Parent root = (Parent) fxmlLoader.load();
+            Stage stage = new Stage();
+            stage.setScene(new Scene(root));
+            stage.show();
+            // NewFXMain..close();  
+
+        } catch (IOException e) {
+        }
 
     }
 

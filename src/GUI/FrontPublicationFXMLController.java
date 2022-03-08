@@ -50,7 +50,7 @@ public class FrontPublicationFXMLController implements Initializable {
                 OnePublicationFXMLController AA = fxmlloader.getController();
                //  AA.setData(produit.get(0));
                 AA.setData(publication.get(i));
-                if (column == 4) {
+                if (column == 2) {
                     column = 0;
                     row++;
                 }
