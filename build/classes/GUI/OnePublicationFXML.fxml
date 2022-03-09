@@ -9,10 +9,11 @@
 
 <AnchorPane id="AnchorPane" prefHeight="557.0" prefWidth="516.0" xmlns="http://javafx.com/javafx/17" xmlns:fx="http://javafx.com/fxml/1" fx:controller="GUI.OnePublicationFXMLController">
    <children>
-      <ImageView fx:id="image_PB" fitHeight="244.0" fitWidth="496.0" layoutX="10.0" layoutY="41.0" pickOnBounds="true" preserveRatio="true" />
-      <Label fx:id="titre_PB" layoutX="52.0" layoutY="11.0" text="Titre">
+      <ImageView fitHeight="557.0" fitWidth="516.0" layoutX="-1.0" layoutY="-2.0" pickOnBounds="true" preserveRatio="true" />
+      <ImageView fx:id="image_PB" fitHeight="244.0" fitWidth="496.0" layoutX="10.0" layoutY="44.0" pickOnBounds="true" preserveRatio="true" />
+      <Label fx:id="titre_PB" layoutX="52.0" layoutY="11.0" style="-fx-background-color: #a8a7a7;" text="Titre" textFill="WHITE">
          <font>
-            <Font size="20.0" />
+            <Font name="System Bold" size="20.0" />
          </font>
       </Label>
       <Label fx:id="source_PB" layoutX="67.0" layoutY="294.0" text="Source">

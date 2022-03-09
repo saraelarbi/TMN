@@ -9,6 +9,8 @@
 <?import javafx.scene.control.TableColumn?>
 <?import javafx.scene.control.TableView?>
 <?import javafx.scene.control.TextField?>
+<?import javafx.scene.effect.Bloom?>
+<?import javafx.scene.effect.BoxBlur?>
 <?import javafx.scene.effect.Light.Distant?>
 <?import javafx.scene.effect.Lighting?>
 <?import javafx.scene.effect.Shadow?>
@@ -47,7 +49,25 @@
             </RadialGradient>
          </textFill>
       </Label>
-      <Button fx:id="AjouterReclamation" layoutX="408.0" layoutY="528.0" mnemonicParsing="false" onAction="#AjouterReclamation" style="-fx-background-color: #a8a7a7; -fx-background-radius: 100;" text="Ajouter" />
+      <Button fx:id="AjouterReclamation" layoutX="408.0" layoutY="528.0" mnemonicParsing="false" onAction="#AjouterReclamation" style="-fx-background-color: #a8a7a7; -fx-background-radius: 100;" text="Ajouter">
+         <effect>
+            <Lighting>
+               <bumpInput>
+                  <Bloom>
+                     <input>
+                        <BoxBlur />
+                     </input>
+                  </Bloom>
+               </bumpInput>
+               <light>
+                  <Light.Distant>
+                     <color>
+                        <Color red="1.0" green="0.9398148059844971" blue="0.9398148059844971" />
+                     </color>
+                  </Light.Distant>
+               </light>
+            </Lighting>
+         </effect></Button>
       <Label graphicTextGap="6.0" layoutX="363.0" layoutY="216.0" prefHeight="17.0" prefWidth="68.0" text="Description:">
          <textFill>
             <RadialGradient centerX="0.5" centerY="0.5" radius="0.5">

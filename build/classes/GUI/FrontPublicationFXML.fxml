@@ -3,7 +3,6 @@
 <?import javafx.scene.control.Button?>
 <?import javafx.scene.control.Label?>
 <?import javafx.scene.control.ScrollPane?>
-<?import javafx.scene.control.TextField?>
 <?import javafx.scene.effect.Light.Distant?>
 <?import javafx.scene.effect.Lighting?>
 <?import javafx.scene.effect.Shadow?>
@@ -64,7 +63,7 @@
             </ImageView>
             <ImageView fitHeight="236.0" fitWidth="247.0" layoutX="1.0">
                <image>
-                  <Image url="@../../../../../Downloads/272058072_1154385918701731_2340808200172127650_n.jpg" />
+                  <Image url="@../images/272058072_1154385918701731_2340808200172127650_n.jpg" />
                </image>
             </ImageView>
          </children>
@@ -78,9 +77,8 @@
             </Label>
          </children>
       </AnchorPane>
-      <AnchorPane layoutX="256.0" layoutY="101.0" prefHeight="66.0" prefWidth="1035.0" style="-fx-background-color: black;">
+      <AnchorPane layoutX="256.0" layoutY="101.0" prefHeight="66.0" prefWidth="1041.0" style="-fx-background-color: black;">
          <children>
-            <TextField layoutX="21.0" layoutY="9.0" prefHeight="50.0" prefWidth="232.0" promptText="Recherche" style="-fx-background-color: white;" />
             <Label layoutX="806.0" layoutY="31.0" textFill="RED">
                <font>
                   <Font size="18.0" />
@@ -88,7 +86,7 @@
             </Label>
          </children>
       </AnchorPane>
-      <AnchorPane fx:id="AnchorPane_publications" layoutX="256.0" layoutY="167.0" prefHeight="565.0" prefWidth="1035.0">
+      <AnchorPane fx:id="AnchorPane_publications" layoutX="256.0" layoutY="167.0" prefHeight="565.0" prefWidth="1035.0" style="-fx-background-color: black;">
          <children>
             <HBox layoutX="6.0" layoutY="4.0" prefHeight="567.0" prefWidth="1035.0">
                <children>
