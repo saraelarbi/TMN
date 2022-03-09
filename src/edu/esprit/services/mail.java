@@ -8,10 +8,14 @@ package edu.esprit.services;
 import java.util.Properties;
 import javax.mail.Authenticator;
 import javax.mail.Message;
+import javax.mail.Multipart;
 import javax.mail.PasswordAuthentication;
 import javax.mail.Session;
+import javax.mail.Transport;
 import javax.mail.internet.InternetAddress;
+import javax.mail.internet.MimeBodyPart;
 import javax.mail.internet.MimeMessage;
+import javax.mail.internet.MimeMultipart;
 
 /**
  *
@@ -19,96 +23,49 @@ import javax.mail.internet.MimeMessage;
  */
 public class mail {
 
-    String txt;
-    String sub;
-    String destinataire;
-    String mail;
-    String pwd;
-    Session session;
-
-    public String getTxt() {
-        return txt;
-    }
-
-    public void setTxt(String txt) {
-        this.txt = txt;
-    }
-
-    public String getSub() {
-        return sub;
-    }
-
-    public void setSub(String sub) {
-        this.sub = sub;
-    }
-
-    public String getDestinataire() {
-        return destinataire;
-    }
-
-    public void setDestinataire(String destinataire) {
-        this.destinataire = destinataire;
-    }
-
-    public String getMail() {
-        return mail;
-    }
-
-    public void setMail(String mail) {
-        this.mail = mail;
-    }
-
-    public String getPwd() {
-        return pwd;
-    }
-
-    public void setPwd(String pwd) {
-        this.pwd = pwd;
-    }
-
-    public Session getSession() {
-        return session;
-    }
-
-    public void setSession(Session session) {
-        this.session = session;
-    }
-
-    public mail(String txt, String sub, String destinataire) {
-        this.txt = txt;
-        this.sub = sub;
-        this.destinataire = destinataire;
-        Properties prop = new Properties();
-        prop.put("mail.smtp.auth", "true");
-        prop.put("mail.smtp.starttls.enable", "true");
-        prop.put("mail.smtp.host", "smtp.gmail.com");
-        prop.put("mail.smtp.port", "587");
-        this.mail = "tmntmn433@gmail.com";
-        this.pwd = "ghazighazi123";
-        this.session = Session.getInstance(prop, new Authenticator() {
-            @Override
-            protected PasswordAuthentication getPasswordAuthentication() {
-                return new PasswordAuthentication(mail, pwd);
-            }
-        });
-    }
-
-    public mail() {
-    }
-
-    public static Message prepareMessage(Session session, String mail, String destinataire, String txt, String sub) {
-        Message msg = new MimeMessage(session);
+    
+    public void sendEmail(String toEmail, String subject, String body) {
         try {
+            String host = "smtp.gmail.com";
+            String user = "sara.elarbi@esprit.tn";
+            String pass = "14325933";
+            String from = "sara.elarbi@esprit.tn";
+            boolean sessionDebug = false;
 
-            msg.setFrom(new InternetAddress(mail));
-            msg.setRecipient(Message.RecipientType.TO, new InternetAddress(destinataire));
-            msg.setSubject(sub);
-            msg.setText(txt);
+            Properties props = System.getProperties();
 
-        } catch (Exception ex) {
-            //Logger.getLogger(EventController.class.getName()).log(Level.SEVERE, null, ex);
+            props.put("mail.smtp.starttls.enable", "true");
+            props.put("mail.smtp.host", host);
+            props.put("mail.smtp.port", "465");
+            props.put("mail.smtp.auth", "true");
+            props.put("mail.smtp.starttls.required", "true");
+            props.put("mail.smtp.ssl.trust", "smtp.gmail.com");
+
+            java.security.Security.addProvider(new com.sun.net.ssl.internal.ssl.Provider());
+            Session mailSession = Session.getDefaultInstance(props, null);
+            mailSession.setDebug(sessionDebug);
+            Message msg = new MimeMessage(mailSession);
+            msg.setFrom(new InternetAddress(from));
+            InternetAddress[] address = {new InternetAddress(toEmail)};
+
+            msg.setRecipients(Message.RecipientType.TO, address);
+            //msg.setSentDate(new Date());
+            msg.setSubject(subject);
+            MimeBodyPart messageBodyPart = new MimeBodyPart();
+            Multipart multipart = new MimeMultipart();
+            messageBodyPart = new MimeBodyPart();
+            messageBodyPart.setText(body);
+            multipart.addBodyPart(messageBodyPart);
+            msg.setContent(multipart);
+
+            Transport transport = mailSession.getTransport("smtp");
+            transport.connect(host, user, pass);
+            transport.sendMessage(msg, msg.getAllRecipients());
+            transport.close();
+            System.out.println("Email envoyé");
+  
+        } catch (Exception e) {
+            e.printStackTrace();
         }
-        return msg;
     }
-
 }

@@ -24,7 +24,7 @@ public class NewFXMain extends Application {
     @Override
     public void start(Stage primaryStage) throws IOException {
     // try {
-    Parent root = FXMLLoader.load(getClass().getResource("/gui/EditProfil.fxml"));
+    Parent root = FXMLLoader.load(getClass().getResource("/gui/preAcceuil.fxml"));
     Scene scene = new Scene(root);
     primaryStage.setScene(scene);
     primaryStage.show();

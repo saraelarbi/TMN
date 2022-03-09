@@ -165,7 +165,7 @@ public class CoadminCRUD {
         return c;
     }
         public void loggedIn(Coadmin c) {
-//        String hachedMdp = BCrypt.hashpw(u.getPassword(), BCrypt.gensalt());
+      String hachedMdp = mdpCrypt.hashpw(c.getPassword(), mdpCrypt.gensalt());
         try {
             String req = "INSERT INTO logged (idC,nom,prenom,email,adresse,datenaissance,fonction,password)"
                     + "VALUES (?,?,?,?,?,?,?,?)";

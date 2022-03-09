@@ -8,9 +8,11 @@ package gui;
 import com.sun.nio.sctp.Notification;
 import edu.esprit.entities.User;
 import edu.esprit.services.UserCRUD;
+import gui.LoginController;
 import edu.esprit.utils.MyConnection;
 import edu.esprit.utils.NavigationEntreInterfaces;
 import java.io.IOException;
+import static java.lang.Integer.parseInt;
 import java.net.URL;
 import java.sql.Connection;
 import java.sql.Date;
@@ -36,6 +38,7 @@ import javafx.scene.image.Image;
 import javafx.scene.image.ImageView;
 import javafx.scene.layout.AnchorPane;
 import javafx.util.Duration;
+import javax.swing.JFrame;
 import org.controlsfx.control.Notifications;
 
 /**
@@ -61,13 +64,28 @@ public class EditProfilController implements Initializable {
     private TextField adresse;
     @FXML
     private TextField num;
-      @FXML
     private Connection cnx;
     @FXML
     private PasswordField password;
     @FXML
     private Button enregistrer;
         UserCRUD us = new UserCRUD();
+    public int id_user;
+    @FXML
+    private Button editprofil;
+    @FXML
+    private Button shop;
+    @FXML
+    private Button evenement;
+    @FXML
+    private Button forum;
+    @FXML
+    private Button news;
+    @FXML
+    private Button podcast;
+    @FXML
+    private Button deconnceter;
+    
 
 
     /**
@@ -80,6 +98,7 @@ public class EditProfilController implements Initializable {
             
             UserCRUD us= new UserCRUD();
             User u=us.getUserlogged();
+            this.id_user = u.getIdU();
             nom.setText(u.getNom());
             prenom.setText(u.getPrenom());
             email.setText(u.getEmail());
@@ -141,16 +160,19 @@ public class EditProfilController implements Initializable {
 
     @FXML
     private void Enregistrer(ActionEvent event) {
+        
         User u = new User();
-        UserCRUD us = new UserCRUD();
+        UserCRUD us = new UserCRUD();  
         u.setNom(nom.getText());
         u.setPrenom(prenom.getText());
         u.setEmail(email.getText());
         u.setAdresse(adresse.getText());
         u.setNumtel(Integer.parseInt(num.getText()));
         u.setDatenaissance(java.sql.Date.valueOf(date.getEditor().getText()));
+        //date.getEditor().setText(String.valueOf(u.getDatenaissance()));
         u.setPassword(password.getText());
-        us.modifier2(u);
+        u.setIdU(this.id_user);
+        us.modifier(u);
          Alert alert2 = new Alert(Alert.AlertType.WARNING);
             alert2.setTitle("Success");
             alert2.setContentText("Vous avez modifié votre profil");
@@ -164,6 +186,37 @@ public class EditProfilController implements Initializable {
         notificationBuilder.darkStyle();
         notificationBuilder.show();
     }
-    
-    
+
+    @FXML
+    private void Editprofil(ActionEvent event) {
+    }
+
+    @FXML
+    private void Shop(ActionEvent event) {
+    }
+
+    @FXML
+    private void Evenement(ActionEvent event) {
+    }
+
+    @FXML
+    private void Forum(ActionEvent event) {
+    }
+
+    @FXML
+    private void News(ActionEvent event) {
+    }
+
+    @FXML
+    private void Podcast(ActionEvent event) {
+    }
+
+    @FXML
+    private void Decoonecter(ActionEvent event) throws IOException {
+         NavigationEntreInterfaces nav = new NavigationEntreInterfaces();
+                    nav.navigate(event, "TMN", "/gui/Login.fxml");
+    }
+      
+
+   
 }

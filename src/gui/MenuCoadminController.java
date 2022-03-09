@@ -13,21 +13,26 @@ import javafx.event.ActionEvent;
 import javafx.fxml.FXML;
 import javafx.fxml.Initializable;
 import javafx.scene.control.Button;
-import javafx.scene.layout.AnchorPane;
 
 /**
  * FXML Controller class
  *
  * @author PC
  */
-public class AcceuilController implements Initializable {
+public class MenuCoadminController implements Initializable {
 
     @FXML
-    private AnchorPane AnchorPane_Coadmin;
+    private Button shop;
     @FXML
-    private Button creer;
+    private Button evenement;
     @FXML
-    private Button connecter;
+    private Button forum;
+    @FXML
+    private Button news;
+    @FXML
+    private Button podcast;
+    @FXML
+    private Button deconnceter;
 
     /**
      * Initializes the controller class.
@@ -38,14 +43,28 @@ public class AcceuilController implements Initializable {
     }    
 
     @FXML
-    private void Creer(ActionEvent event) throws IOException {
-        NavigationEntreInterfaces nav = new NavigationEntreInterfaces();
-                    nav.navigate(event, "TMN", "/gui/Creercompte.fxml");
+    private void Shop(ActionEvent event) {
     }
 
     @FXML
-    private void Connecter(ActionEvent event) throws IOException {
-         NavigationEntreInterfaces nav = new NavigationEntreInterfaces();
+    private void Evenement(ActionEvent event) {
+    }
+
+    @FXML
+    private void Forum(ActionEvent event) {
+    }
+
+    @FXML
+    private void News(ActionEvent event) {
+    }
+
+    @FXML
+    private void Podcast(ActionEvent event) {
+    }
+
+    @FXML
+    private void Decoonecter(ActionEvent event) throws IOException {
+                NavigationEntreInterfaces nav = new NavigationEntreInterfaces();
                     nav.navigate(event, "TMN", "/gui/Login.fxml");
     }
     

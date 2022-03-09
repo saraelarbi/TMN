@@ -38,7 +38,9 @@ import javafx.scene.layout.AnchorPane;
 import javafx.stage.FileChooser;
 import javafx.stage.Stage;
 import edu.esprit.utils.MyConnection;
+import edu.esprit.utils.NavigationEntreInterfaces;
 import static edu.esprit.utils.PatternEmail.validate;
+import java.io.IOException;
 //import java.awt.HeadlessException;
 //import java.io.FileOutputStream;
 //import java.io.IOException;
@@ -87,10 +89,7 @@ public class AjoutCoadminController implements Initializable {
     @FXML
     private TextField chercher;
     @FXML
-    private TextField chercher2;
-    @FXML
     private TextField TextField_password;
-    @FXML
     private Connection cnx;
     @FXML
     private DatePicker DatePicker_Datenaissance;
@@ -129,6 +128,44 @@ public class AjoutCoadminController implements Initializable {
     String path = "C:\\Users\\PC\\Desktop\\TMN\\TMN\\Musique\\tmn.mp3";
      Media media = new Media(new File(path).toURI().toString());
      MediaPlayer mediaPlayer = new MediaPlayer(media);
+    @FXML
+    private AnchorPane AnchorPane_Coadmin;
+    @FXML
+    private Button AjouterCoadmin;
+    @FXML
+    private Button ModifierCoadmin;
+    @FXML
+    private Button SupprimerCoadmin;
+    @FXML
+    private Button Coadmin;
+    @FXML
+    private Button shop;
+    @FXML
+    private Button evenement;
+    @FXML
+    private Button forum;
+    @FXML
+    private Button news;
+    @FXML
+    private Button podcast;
+    @FXML
+    private Button Listusers;
+    @FXML
+    private Button deconnceter;
+    @FXML
+    private Button musique;
+    @FXML
+    private Button pause;
+    @FXML
+    private Button Retour;
+    @FXML
+    private AnchorPane AnchorPane_Fonction;
+    @FXML
+    private Button AjouterFonction;
+    @FXML
+    private Button ModifierFonction;
+    @FXML
+    private Button SupprimerFonction;
 
 
     /**
@@ -345,7 +382,8 @@ public class AjoutCoadminController implements Initializable {
     @FXML
     public void AffichageCoadmin() {
         ObservableList<Coadmin> CoadminList = CoadminList();
-        AffichageCoadmin.setItems(CoadminList);
+               AffichageCoadmin.setItems(CoadminList);
+
 
         afficheidC.setCellValueFactory(new PropertyValueFactory<>("idC"));
         affichenom.setCellValueFactory(new PropertyValueFactory<>("nom"));
@@ -361,6 +399,7 @@ public class AjoutCoadminController implements Initializable {
             noms.add(fcts.get(i).getFonction());
         }
        combo.setItems(noms);
+       AffichageCoadmin.setItems(CoadminList);
     }
     @FXML
     public void Chercher(ActionEvent event) {
@@ -456,5 +495,52 @@ public class AjoutCoadminController implements Initializable {
      @FXML
     private void Pause(ActionEvent event) {
                 mediaPlayer.pause();
+    }
+    @FXML
+    private void Retour(ActionEvent event) throws IOException {
+                NavigationEntreInterfaces nav = new NavigationEntreInterfaces();
+                    nav.navigate(event, "TMN", "/gui/Menu.fxml");
+    }
+    @FXML
+    private void Retour1(ActionEvent event) throws IOException {
+                NavigationEntreInterfaces nav = new NavigationEntreInterfaces();
+                    nav.navigate(event, "TMN", "/gui/Menu.fxml");
+    }
+
+    @FXML
+    private void Coadmin(ActionEvent event) {
+        
+    }
+
+    @FXML
+    private void Shop(ActionEvent event) {
+    }
+
+    @FXML
+    private void Evenement(ActionEvent event) {
+    }
+
+    @FXML
+    private void Forum(ActionEvent event) {
+    }
+
+    @FXML
+    private void News(ActionEvent event) {
+    }
+
+    @FXML
+    private void Podcast(ActionEvent event) {
+    }
+
+    @FXML
+    private void Listusers(ActionEvent event) throws IOException {
+        NavigationEntreInterfaces nav = new NavigationEntreInterfaces();
+                    nav.navigate(event, "TMN", "/gui/ListUser.fxml");
+    }
+
+    @FXML
+    private void Decoonecter(ActionEvent event) throws IOException {
+        NavigationEntreInterfaces nav = new NavigationEntreInterfaces();
+                    nav.navigate(event, "TMN", "/gui/Login.fxml");
     }
 }

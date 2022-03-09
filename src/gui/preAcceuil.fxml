@@ -1,0 +1,111 @@
+<?xml version="1.0" encoding="UTF-8"?>
+
+<?import javafx.scene.control.Button?>
+<?import javafx.scene.control.Label?>
+<?import javafx.scene.effect.Light.Distant?>
+<?import javafx.scene.effect.Lighting?>
+<?import javafx.scene.effect.Shadow?>
+<?import javafx.scene.image.Image?>
+<?import javafx.scene.image.ImageView?>
+<?import javafx.scene.layout.AnchorPane?>
+<?import javafx.scene.layout.Pane?>
+<?import javafx.scene.paint.Color?>
+<?import javafx.scene.paint.RadialGradient?>
+<?import javafx.scene.paint.Stop?>
+<?import javafx.scene.text.Font?>
+
+<AnchorPane id="AnchorPane" prefHeight="720.0" prefWidth="1280.0" xmlns="http://javafx.com/javafx/8.0.171" xmlns:fx="http://javafx.com/fxml/1" fx:controller="gui.PreAcceuilController">
+   <children>
+      <AnchorPane id="AnchorPane" fx:id="AnchorPane_Coadmin" layoutX="8.0" layoutY="6.0" prefHeight="745.0" prefWidth="1522.0" style="-fx-background-color: black;">
+         <children>
+            <ImageView fitHeight="772.0" fitWidth="1397.0" layoutX="240.0" layoutY="-19.0" pickOnBounds="true" preserveRatio="true">
+               <image>
+                  <Image url="@../background%20(1).jpg" />
+               </image>
+            </ImageView>
+            <Label graphicTextGap="6.0" layoutX="747.0" layoutY="-24.0" prefHeight="236.0" prefWidth="866.0" style="-fx-font-style: oblique;" text=" TUNISIAN ">
+               <textFill>
+                  <RadialGradient centerX="0.5" centerY="0.5" radius="0.5">
+                     <stops>
+                        <Stop>
+                           <color>
+                              <Color blue="1.0" green="1.0" red="1.0" />
+                           </color>
+                        </Stop>
+                        <Stop offset="1.0">
+                           <color>
+                              <Color blue="1.0" green="1.0" red="1.0" />
+                           </color>
+                        </Stop>
+                     </stops>
+                  </RadialGradient>
+               </textFill>
+               <font>
+                  <Font name="System Bold" size="59.0" />
+               </font>
+            </Label>
+            <Pane layoutX="-14.0" layoutY="-11.0" prefHeight="765.0" prefWidth="254.0" style="-fx-background-color: white;">
+               <children>
+                  <Label layoutX="79.0" layoutY="691.0" prefHeight="17.0" prefWidth="104.0" text="TMN COPYRIGHT">
+                     <effect>
+                        <Lighting>
+                           <bumpInput>
+                              <Shadow />
+                           </bumpInput>
+                           <light>
+                              <Light.Distant />
+                           </light>
+                        </Lighting>
+                     </effect>
+                  </Label>
+                  <ImageView fitHeight="243.0" fitWidth="254.0" layoutX="-8.0">
+                     <image>
+                        <Image url="@../logo.jpg" />
+                     </image>
+                  </ImageView>
+               </children>
+            </Pane>
+            <Label layoutX="585.0" layoutY="126.0" style="-fx-font-style: oblique;" text="MODERN NEWSPAPER" textFill="WHITE">
+               <font>
+                  <Font name="System Bold" size="59.0" />
+               </font>
+            </Label>
+            <Button fx:id="login" layoutX="517.0" layoutY="595.0" mnemonicParsing="false" onAction="#Login" prefHeight="86.0" prefWidth="202.0" style="-fx-background-radius: 180;" text="Login">
+               <font>
+                  <Font name="System Bold" size="15.0" />
+               </font>
+            </Button>
+            <Label layoutX="470.0" layoutY="279.0" style="-fx-font-style: oblique;" text="Nous publions ce que nous pensons qu'un jeune TUNISIEN" textFill="WHITE">
+               <font>
+                  <Font name="System Bold" size="32.0" />
+               </font>
+            </Label>
+            <Label layoutX="548.0" layoutY="333.0" prefHeight="47.0" prefWidth="776.0" style="-fx-font-style: oblique;" text="a besoin pour devenir une meilleure version👇" textFill="WHITE">
+               <font>
+                  <Font name="System Bold" size="32.0" />
+               </font>
+            </Label>
+            <Label layoutX="470.0" layoutY="389.0" prefHeight="47.0" prefWidth="967.0" style="-fx-font-style: oblique;" text="Recommandations, actualités, opportunités, événements .." textFill="WHITE">
+               <font>
+                  <Font name="System Bold" size="32.0" />
+               </font>
+            </Label>
+            <Label layoutX="506.0" layoutY="468.0" prefHeight="47.0" prefWidth="967.0" style="-fx-font-style: oblique;" text="Suivez nous :" textFill="WHITE">
+               <font>
+                  <Font name="System Bold" size="32.0" />
+               </font>
+            </Label>
+            <ImageView fitHeight="133.0" fitWidth="129.0" layoutX="836.0" layoutY="440.0" pickOnBounds="true" preserveRatio="true" style="-fx-background-radius: 180;">
+               <image>
+                  <Image url="@../QR%20CODE%20Linkrdt.png" />
+               </image>
+            </ImageView>
+            <Button fx:id="CreerCompte" layoutX="1003.0" layoutY="595.0" mnemonicParsing="false" onAction="#CreerCompte" prefHeight="86.0" prefWidth="202.0" style="-fx-background-radius: 180;" text="Creer compte">
+               <font>
+                  <Font name="System Bold" size="15.0" />
+               </font>
+            </Button>
+         </children>
+      </AnchorPane>
+   </children>
+</AnchorPane>

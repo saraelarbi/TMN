@@ -28,6 +28,7 @@ public class NavigationEntreInterfaces {
      
      ((Node)event.getSource()).getScene().getWindow().hide();
      Parent root = FXMLLoader.load(getClass().getResource(url));
+     
      Scene scene = new Scene(root);
      Stage stage = new Stage();
      stage.setScene(scene);

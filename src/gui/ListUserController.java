@@ -45,6 +45,8 @@ import javafx.scene.layout.AnchorPane;
 import javafx.util.Duration;
 import com.itextpdf.text.Document;
 import com.itextpdf.text.DocumentException;
+import edu.esprit.utils.NavigationEntreInterfaces;
+import java.io.IOException;
 import org.controlsfx.control.Notifications;
 
 /**
@@ -247,7 +249,13 @@ public class ListUserController implements Initializable {
         } catch (DocumentException | FileNotFoundException Exception) {
             System.out.println(Exception);
         }
+      
         
+    }
+    @FXML
+    private void Retour(ActionEvent event) throws IOException {
+                NavigationEntreInterfaces nav = new NavigationEntreInterfaces();
+                    nav.navigate(event, "TMN", "/gui/Menu.fxml");
     }
 
 

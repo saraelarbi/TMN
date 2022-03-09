@@ -10,10 +10,10 @@ import edu.esprit.entities.User;
 import edu.esprit.services.CoadminCRUD;
 import edu.esprit.services.UserCRUD;
 import edu.esprit.services.mail;
-import static edu.esprit.services.mail.prepareMessage;
 import edu.esprit.utils.MyConnection;
 import edu.esprit.utils.NavigationEntreInterfaces;
 import static edu.esprit.utils.PatternEmail.validate;
+import edu.esprit.utils.mdpCrypt;
 
 import java.io.IOException;
 import java.net.URL;
@@ -23,6 +23,7 @@ import java.sql.PreparedStatement;
 import java.sql.ResultSet;
 import java.sql.SQLException;
 import java.sql.Statement;
+import java.util.Random;
 import java.util.ResourceBundle;
 import java.util.logging.Level;
 import java.util.logging.Logger;
@@ -81,7 +82,7 @@ public class LoginController implements Initializable {
         
     
     @FXML
-    private void Connecter(ActionEvent event) throws SQLException {
+    private void Connecter(ActionEvent event) throws SQLException ,  IOException {
         
         String mail = email.getText(); 
         String pass = password.getText();
@@ -92,10 +93,10 @@ public class LoginController implements Initializable {
        
        
         else if (validateInputs()) 
+          //  if (mdpCrypt.checkpw(pass, pass+))
         {  
                 try {
                     Class.forName("com.mysql.jdbc.Driver");
-            
                     pst = cnx.prepareStatement("select * from user where email=? and password=?");
                     pst.setString(1, mail);
                     pst.setString(2, pass);
@@ -111,6 +112,8 @@ public class LoginController implements Initializable {
                     .position(Pos.BOTTOM_RIGHT);
                     notificationBuilder.darkStyle();
                       notificationBuilder.show();
+                          NavigationEntreInterfaces nav = new NavigationEntreInterfaces();
+                    nav.navigate(event, "TMN", "/gui/Menu.fxml");
                     }
                     else 
                     {
@@ -127,6 +130,8 @@ public class LoginController implements Initializable {
                     .position(Pos.BOTTOM_RIGHT);
                      notificationBuilder.darkStyle();
                      notificationBuilder.show();
+                     NavigationEntreInterfaces nav = new NavigationEntreInterfaces();
+                    nav.navigate(event, "TMN", "/gui/MenuAdmin.fxml");
                         }
                     
                     else 
@@ -144,6 +149,8 @@ public class LoginController implements Initializable {
                     .position(Pos.BOTTOM_RIGHT);
                      notificationBuilder.darkStyle();
                      notificationBuilder.show();
+                     NavigationEntreInterfaces nav = new NavigationEntreInterfaces();
+                    nav.navigate(event, "TMN", "/gui/MenuCoadmin.fxml");
                         }
                         else{                  
                             JOptionPane.showMessageDialog(null, "Connexion echoué");
@@ -197,11 +204,11 @@ public class LoginController implements Initializable {
     @FXML
     private void Retour(ActionEvent event) throws IOException {
     NavigationEntreInterfaces nav = new NavigationEntreInterfaces();
-                    nav.navigate(event, "TMN", "/gui/Acceuil.fxml");
+                    nav.navigate(event, "TMN", "/gui/preAcceuil.fxml");
       
 }
     @FXML
-    private void recupmdp(ActionEvent event) {
+    private void recupmdp(ActionEvent event) throws SQLException {
         if (email.getText().isEmpty()) {
             Alert alert1 = new Alert(Alert.AlertType.WARNING);
             alert1.setTitle("Erreur");
@@ -209,27 +216,49 @@ public class LoginController implements Initializable {
             alert1.setHeaderText(null);
             alert1.show();
         }
-        else if (!(validate(email.getText())))
-        {Alert alert2 = new Alert(Alert.AlertType.WARNING);
-            alert2.setTitle("Erreur");
-            alert2.setContentText("Veuillez vérifier votre email");
-            alert2.setHeaderText(null);
-            alert2.show();
+        else if (validate(email.getText()))
+        {UserCRUD usr = new UserCRUD();
+
+            User user = new User();
+            user = usr.TrouverUserParEmail(email.getText());
+            if (user != null) {
+                String plainpassword = getSaltString();
+                System.out.println("Le nouveau mot de passe de " + user.getEmail() + " est " + plainpassword);
+
+                usr.changePassword(plainpassword, email.getText());
+                mail m = new mail();
+                String body="Bonjour Mme/mr "+ user.getNom()+"\n"
+                        + "Votre nouveau mot de passe est "+plainpassword;
+                m.sendEmail(email.getText(), "Récupérer mot de passe", body);
+                email.setVisible(false);
+                System.out.println("Mot de passe envoyé par email");
+                 Alert alert1 = new Alert(Alert.AlertType.WARNING);
+            alert1.setTitle("Erreur");
+            alert1.setContentText("Mot de passe envoyé par email");
+            alert1.setHeaderText(null);
+            alert1.show();
+                
+            } else {
+                System.out.println("Utilisateur introuvable");
+                Alert alert1 = new Alert(Alert.AlertType.WARNING);
+            alert1.setTitle("Erreur");
+            alert1.setContentText("Utilisateur introuvable");
+            alert1.setHeaderText(null);
+            alert1.show();
             }
-        
-        else {
-        String txt = "Bonjour voici votre mdp  ";
-            String sub = "Recup mdp";
-            String destinataire = "ghazi.benjamaa@esprit.tn";
-            mail m = new mail(txt, sub, destinataire);
-            Message msg = prepareMessage(m.getSession(), m.getMail(), destinataire, txt, sub);
-            System.out.println(msg);
-            try {
-                Transport.send(msg);
-            } catch (MessagingException ex) {
-                // Logger.getLogger(ServicePublication.class.getName()).log(Level.SEVERE, null, ex);
-            }
-            System.out.println("MAIL ENVOYE");
+
 }}
+    protected String getSaltString() {
+        String SALTCHARS = "ABCDEFGHIJKLMNOPQRSTUVWXYZ1234567890";
+        StringBuilder salt = new StringBuilder();
+        Random rnd = new Random();
+        while (salt.length() < 8 && salt.length() > 6) { // length of the random string.
+            int index = (int) (rnd.nextFloat() * SALTCHARS.length());
+            salt.append(SALTCHARS.charAt(index));
+        }
+        String saltStr = salt.toString();
+        return saltStr;
+
+    }
    
 }

@@ -48,7 +48,7 @@ public class UserCRUD {
     
     
     public void ajouterUser2(User U){
-              String hachedMdp = mdpCrypt.hashpw(U.getPassword(), mdpCrypt.gensalt());
+       //       String hachedMdp = mdpCrypt.hashpw(U.getPassword(), mdpCrypt.gensalt());
         try {
             String requete2 = "INSERT INTO user (idU,nom,prenom,numtel,email,adresse,datenaissance,password)"
                     + "VALUES(?,?,?,?,?,?,?,?)";
@@ -60,7 +60,7 @@ public class UserCRUD {
             pst.setString(5, U.getEmail());
             pst.setString(6, U.getAdresse());
             pst.setDate(7, U.getDatenaissance());
-            pst.setString(8, U.getPassword());
+            pst.setString(8,U.getPassword());
             pst.executeUpdate();
             System.out.println("User ajouté");
         } catch (SQLException ex) {
@@ -102,14 +102,15 @@ public class UserCRUD {
         try {
             String req = "update user set nom = ? , prenom = ? ,numtel = ? , email = ? , adresse = ?, datenaissance = ?, password= ?  where idU = ?";
             PreparedStatement ps = cnx2.prepareStatement(req);
-            ps.setInt(1, U.getIdU());
-            ps.setString(2, U.getNom());
-            ps.setString(3, U.getPrenom());
-            ps.setInt(4, U.getNumtel());
-            ps.setString(5, U.getEmail());
-            ps.setString(6, U.getAdresse());
-            ps.setDate(7, U.getDatenaissance());
-            ps.setString(8, U.getPassword());
+            
+            ps.setString(1, U.getNom());
+            ps.setString(2, U.getPrenom()); 
+            ps.setInt(3, U.getNumtel());
+            ps.setString(4, U.getEmail());
+            ps.setString(5, U.getAdresse());
+            ps.setDate(6, U.getDatenaissance());
+            ps.setString(7, U.getPassword());
+            ps.setInt(8, U.getIdU());
             ps.executeUpdate();
             
         } catch (SQLException ex) {
@@ -227,7 +228,6 @@ public class UserCRUD {
          public User getUserlogged() throws SQLException {
 
         User u = null;
-
         String req = "SELECT * FROM logged ";
         Statement st = cnx2.createStatement();
         ResultSet rs = st.executeQuery(req);
@@ -262,15 +262,16 @@ public class UserCRUD {
     }
      public void modifier2(User U) {
         try {
-            String req = "update user set  nom = ? , prenom = ? ,numtel = ? , email = ? , adresse = ?, datenaissance = ?, password= ?";
+            String req = "update user set  nom = ? , prenom = ? ,numtel = ? , email = ? , adresse = ?, datenaissance = ?, password= ? where idU = ? ";
             PreparedStatement ps = cnx2.prepareStatement(req);
-            ps.setString(1, U.getNom());
-            ps.setString(2, U.getPrenom());
-            ps.setInt(3, U.getNumtel());
-            ps.setString(4, U.getEmail());
-            ps.setString(5, U.getAdresse());
-            ps.setDate(6, U.getDatenaissance());
-            ps.setString(7, U.getPassword());
+            ps.setInt(1, U.getNumtel());
+            ps.setString(2, U.getNom());
+            ps.setString(3, U.getPrenom());
+            ps.setInt(4, U.getNumtel());
+            ps.setString(5, U.getEmail());
+            ps.setString(6, U.getAdresse());
+            ps.setDate(7, U.getDatenaissance());
+            ps.setString(8, U.getPassword());
             ps.executeUpdate();
             
         } catch (SQLException ex) {
