@@ -3,29 +3,34 @@
     <editor-bookmarks xmlns="http://www.netbeans.org/ns/editor-bookmarks/2" lastBookmarkId="0"/>
     <open-files xmlns="http://www.netbeans.org/ns/projectui-open-files/2">
         <group>
-            <file>file:/C:/Users/ffsga/Documents/NetBeansProjects/TMN/src/entities/Reclamation.java</file>
-            <file>file:/C:/Users/ffsga/Documents/NetBeansProjects/TMN/src/test/NewFXMain.java</file>
-            <file>file:/C:/Users/ffsga/Documents/NetBeansProjects/TMN/src/GUI/FrontReclamationFXMLController.java</file>
-            <file>file:/C:/Users/ffsga/Documents/NetBeansProjects/TMN/src/GUI/FrontPublicationFXML.fxml</file>
-            <file>file:/C:/Users/ffsga/Documents/NetBeansProjects/TMN/src/test/main.java</file>
-            <file>file:/C:/Users/ffsga/Documents/NetBeansProjects/TMN/src/GUI/FrontPublicationFXMLController.java</file>
-            <file>file:/C:/Users/ffsga/Documents/NetBeansProjects/TMN/src/GUI/FrontReclamationFXML.fxml</file>
-            <file>file:/C:/Users/ffsga/Documents/NetBeansProjects/TMN/src/services/ServicePublication.java</file>
-            <file>file:/C:/Users/ffsga/Documents/NetBeansProjects/TMN/src/GUI/GestionPublicationFXML.fxml</file>
-            <file>file:/C:/Users/ffsga/Documents/NetBeansProjects/TMN/src/GUI/MenuNewsFXMLController.java</file>
-            <file>file:/C:/Users/ffsga/Documents/NetBeansProjects/TMN/src/test/stylee.css</file>
-            <file>file:/C:/Users/ffsga/Documents/NetBeansProjects/TMN/src/utils/MyDB.java</file>
-            <file>file:/C:/Users/ffsga/Documents/NetBeansProjects/TMN/src/entities/Publication.java</file>
-            <file>file:/C:/Users/ffsga/Documents/NetBeansProjects/TMN/src/GUI/PieCharPublicationFXML.fxml</file>
-            <file>file:/C:/Users/ffsga/Documents/NetBeansProjects/TMN/src/GUI/OnePublicationFXMLController.java</file>
-            <file>file:/C:/Users/ffsga/Documents/NetBeansProjects/TMN/src/GUI/GestionReclamationFXMLController.java</file>
-            <file>file:/C:/Users/ffsga/Documents/NetBeansProjects/TMN/src/GUI/PieCharPublicationFXMLController.java</file>
-            <file>file:/C:/Users/ffsga/Documents/NetBeansProjects/TMN/src/GUI/MenuNewsFXML.fxml</file>
-            <file>file:/C:/Users/ffsga/Documents/NetBeansProjects/TMN/src/GUI/GestionReclamationFXML.fxml</file>
-            <file>file:/C:/Users/ffsga/Documents/NetBeansProjects/TMN/src/GUI/GestionPublicationFXMLController.java</file>
-            <file>file:/C:/Users/ffsga/Documents/NetBeansProjects/TMN/src/services/ServiceReclamation.java</file>
-            <file>file:/C:/Users/ffsga/Documents/NetBeansProjects/TMN/src/GUI/OnePublicationFXML.fxml</file>
-            <file>file:/C:/Users/ffsga/Documents/NetBeansProjects/TMN/src/services/mail.java</file>
+            <file>file:/C:/Users/PC/Desktop/TMN/TMN/src/gui/AjoutCoadmin.fxml</file>
+            <file>file:/C:/Users/PC/Desktop/TMN/TMN/src/edu/esprit/utils/MyConnection.java</file>
+            <file>file:/C:/Users/PC/Desktop/TMN/TMN/src/edu/esprit/utils/NavigationEntreInterfaces.java</file>
+            <file>file:/C:/Users/PC/Desktop/TMN/TMN/src/edu/esprit/services/FonctionCRUD.java</file>
+            <file>file:/C:/Users/PC/Desktop/TMN/TMN/src/gui/MenuCoadminController.java</file>
+            <file>file:/C:/Users/PC/Desktop/TMN/TMN/src/gui/Login.fxml</file>
+            <file>file:/C:/Users/PC/Desktop/TMN/TMN/src/gui/MenuCoadmin.fxml</file>
+            <file>file:/C:/Users/PC/Desktop/TMN/TMN/src/gui/MenuAdminController.java</file>
+            <file>file:/C:/Users/PC/Desktop/TMN/TMN/src/gui/CreercompteController.java</file>
+            <file>file:/C:/Users/PC/Desktop/TMN/TMN/src/edu/esprit/services/fonctionservice.java</file>
+            <file>file:/C:/Users/PC/Desktop/TMN/TMN/src/edu/esprit/services/CoadminCRUD.java</file>
+            <file>file:/C:/Users/PC/Desktop/TMN/TMN/src/gui/preAcceuil.fxml</file>
+            <file>file:/C:/Users/PC/Desktop/TMN/TMN/src/gui/PreAcceuilController.java</file>
+            <file>file:/C:/Users/PC/Desktop/TMN/TMN/src/edu/esprit/services/coadminservice.java</file>
+            <file>file:/C:/Users/PC/Desktop/TMN/TMN/src/edu/esprit/utils/PatternEmail.java</file>
+            <file>file:/C:/Users/PC/Desktop/TMN/TMN/src/gui/MenuAdmin.fxml</file>
+            <file>file:/C:/Users/PC/Desktop/TMN/TMN/src/edu/esprit/tests/mainClass.java</file>
+            <file>file:/C:/Users/PC/Desktop/TMN/TMN/src/edu/esprit/entities/User.java</file>
+            <file>file:/C:/Users/PC/Desktop/TMN/TMN/src/gui/ListUser.fxml</file>
+            <file>file:/C:/Users/PC/Desktop/TMN/TMN/src/gui/Menu.fxml</file>
+            <file>file:/C:/Users/PC/Desktop/TMN/TMN/src/gui/ListUserController.java</file>
+            <file>file:/C:/Users/PC/Desktop/TMN/TMN/src/gui/EditProfilController.java</file>
+            <file>file:/C:/Users/PC/Desktop/TMN/TMN/src/gui/AjoutCoadminController.java</file>
+            <file>file:/C:/Users/PC/Desktop/TMN/TMN/src/edu/esprit/services/mail.java</file>
+            <file>file:/C:/Users/PC/Desktop/TMN/TMN/src/gui/MenuController.java</file>
+            <file>file:/C:/Users/PC/Desktop/TMN/TMN/src/edu/esprit/services/UserCRUD.java</file>
+            <file>file:/C:/Users/PC/Desktop/TMN/TMN/src/edu/esprit/tests/NewFXMain.java</file>
+            <file>file:/C:/Users/PC/Desktop/TMN/TMN/src/gui/LoginController.java</file>
         </group>
     </open-files>
 </project-private>

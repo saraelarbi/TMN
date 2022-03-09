@@ -1,0 +1,194 @@
+<?xml version="1.0" encoding="UTF-8"?>
+
+<?import javafx.scene.control.Button?>
+<?import javafx.scene.control.DatePicker?>
+<?import javafx.scene.control.Label?>
+<?import javafx.scene.control.PasswordField?>
+<?import javafx.scene.control.TextField?>
+<?import javafx.scene.effect.Light.Distant?>
+<?import javafx.scene.effect.Lighting?>
+<?import javafx.scene.effect.Shadow?>
+<?import javafx.scene.image.Image?>
+<?import javafx.scene.image.ImageView?>
+<?import javafx.scene.layout.AnchorPane?>
+<?import javafx.scene.layout.Pane?>
+<?import javafx.scene.paint.Color?>
+<?import javafx.scene.paint.RadialGradient?>
+<?import javafx.scene.paint.Stop?>
+<?import javafx.scene.text.Font?>
+
+<AnchorPane id="AnchorPane" prefHeight="720.0" prefWidth="1280.0" xmlns="http://javafx.com/javafx/8.0.171" xmlns:fx="http://javafx.com/fxml/1" fx:controller="gui.CreercompteController">
+   <children>
+      <AnchorPane id="AnchorPane" fx:id="AnchorPane_User" prefHeight="730.0" prefWidth="1290.0" style="-fx-background-color: black;">
+         <children>
+            <ImageView fitHeight="730.0" fitWidth="1507.0" pickOnBounds="true" preserveRatio="true">
+               <image>
+                  <Image url="@../background%20(1).jpg" />
+               </image>
+            </ImageView>
+            <TextField fx:id="TextField_nom" layoutX="640.0" layoutY="137.0" prefHeight="40.0" prefWidth="186.0" promptText="Entrez votre nom" style="-fx-background-radius: 180; -fx-font-style: oblique;" />
+            <Label graphicTextGap="6.0" layoutX="572.0" layoutY="147.0" prefHeight="17.0" prefWidth="41.0" style="-fx-background-radius: 180; -fx-font-style: oblique;" text="Nom:">
+               <textFill>
+                  <RadialGradient centerX="0.5" centerY="0.5" radius="0.5">
+                     <stops>
+                        <Stop>
+                           <color>
+                              <Color blue="1.0" green="1.0" red="1.0" />
+                           </color>
+                        </Stop>
+                        <Stop offset="1.0">
+                           <color>
+                              <Color blue="1.0" green="1.0" red="1.0" />
+                           </color>
+                        </Stop>
+                     </stops>
+                  </RadialGradient>
+               </textFill>
+            </Label>
+            <DatePicker fx:id="DatePicker_Datenaissance" layoutX="641.0" layoutY="253.0" prefHeight="40.0" prefWidth="215.0" promptText="Entrez votre date de naissance" style="-fx-background-radius: 180; -fx-font-style: oblique;" />
+            <Label graphicTextGap="6.0" layoutX="495.0" layoutY="263.0" prefHeight="21.0" prefWidth="129.0" style="-fx-background-radius: 180; -fx-font-style: oblique;" text="Date de naissance:">
+               <textFill>
+                  <RadialGradient centerX="0.5" centerY="0.5" radius="0.5">
+                     <stops>
+                        <Stop>
+                           <color>
+                              <Color blue="1.0" green="1.0" red="1.0" />
+                           </color>
+                        </Stop>
+                        <Stop offset="1.0">
+                           <color>
+                              <Color blue="1.0" green="1.0" red="1.0" />
+                           </color>
+                        </Stop>
+                     </stops>
+                  </RadialGradient>
+               </textFill>
+            </Label>
+            <TextField fx:id="TextField_prenom" layoutX="640.0" layoutY="195.0" prefHeight="40.0" prefWidth="186.0" promptText="Entrez votre prenom" style="-fx-background-radius: 180; -fx-font-style: oblique;" />
+            <Button fx:id="AjouterUser" layoutX="775.0" layoutY="563.0" mnemonicParsing="false" onAction="#AjouterUser" style="-fx-background-radius: 180; -fx-font-style: oblique;" text="Créer" />
+            <Label graphicTextGap="6.0" layoutX="562.0" layoutY="209.0" prefHeight="21.0" prefWidth="61.0" style="-fx-background-radius: 180; -fx-font-style: oblique;" text="Prenom:">
+               <textFill>
+                  <RadialGradient centerX="0.5" centerY="0.5" radius="0.5">
+                     <stops>
+                        <Stop>
+                           <color>
+                              <Color blue="1.0" green="1.0" red="1.0" />
+                           </color>
+                        </Stop>
+                        <Stop offset="1.0">
+                           <color>
+                              <Color blue="1.0" green="1.0" red="1.0" />
+                           </color>
+                        </Stop>
+                     </stops>
+                  </RadialGradient>
+               </textFill>
+            </Label>
+            <Label graphicTextGap="6.0" layoutX="559.0" layoutY="433.0" prefHeight="17.0" prefWidth="68.0" style="-fx-background-radius: 180; -fx-font-style: oblique;" text="Adresse:">
+               <textFill>
+                  <RadialGradient centerX="0.5" centerY="0.5" radius="0.5">
+                     <stops>
+                        <Stop>
+                           <color>
+                              <Color blue="1.0" green="1.0" red="1.0" />
+                           </color>
+                        </Stop>
+                        <Stop offset="1.0">
+                           <color>
+                              <Color blue="1.0" green="1.0" red="1.0" />
+                           </color>
+                        </Stop>
+                     </stops>
+                  </RadialGradient>
+               </textFill>
+            </Label>
+            <Label graphicTextGap="6.0" layoutX="634.0" layoutY="13.0" prefHeight="95.0" prefWidth="398.0" style="-fx-background-radius: 180; -fx-font-style: oblique;" text="Créer un compte :">
+               <textFill>
+                  <RadialGradient centerX="0.5" centerY="0.5" radius="0.5">
+                     <stops>
+                        <Stop>
+                           <color>
+                              <Color blue="1.0" green="1.0" red="1.0" />
+                           </color>
+                        </Stop>
+                        <Stop offset="1.0">
+                           <color>
+                              <Color blue="1.0" green="1.0" red="1.0" />
+                           </color>
+                        </Stop>
+                     </stops>
+                  </RadialGradient>
+               </textFill>
+               <font>
+                  <Font name="System Bold" size="23.0" />
+               </font>
+            </Label>
+            <TextField fx:id="TextField_adresse" layoutX="641.0" layoutY="423.0" prefHeight="40.0" prefWidth="186.0" promptText="Entrez votre adresse" style="-fx-background-radius: 180; -fx-font-style: oblique;" />
+            <Pane prefHeight="730.0" prefWidth="247.0" style="-fx-background-color: white;">
+               <children>
+                  <Label layoutX="79.0" layoutY="691.0" prefHeight="17.0" prefWidth="104.0" text="TMN COPYRIGHT">
+                     <effect>
+                        <Lighting>
+                           <bumpInput>
+                              <Shadow />
+                           </bumpInput>
+                           <light>
+                              <Light.Distant />
+                           </light>
+                        </Lighting>
+                     </effect>
+                  </Label>
+                  <ImageView fitHeight="243.0" fitWidth="247.0" layoutX="-8.0">
+                     <image>
+                        <Image url="@../logo.jpg" />
+                     </image>
+                  </ImageView>
+               </children>
+            </Pane>
+            <Label graphicTextGap="6.0" layoutX="531.0" layoutY="492.0" prefHeight="21.0" prefWidth="96.0" style="-fx-background-radius: 180; -fx-font-style: oblique;" text="Mot de passe:">
+               <textFill>
+                  <RadialGradient centerX="0.5" centerY="0.5" radius="0.5">
+                     <stops>
+                        <Stop>
+                           <color>
+                              <Color blue="1.0" green="1.0" red="1.0" />
+                           </color>
+                        </Stop>
+                        <Stop offset="1.0">
+                           <color>
+                              <Color blue="1.0" green="1.0" red="1.0" />
+                           </color>
+                        </Stop>
+                     </stops>
+                  </RadialGradient>
+               </textFill>
+            </Label>
+            <PasswordField fx:id="TextField_password" layoutX="641.0" layoutY="482.0" prefHeight="40.0" prefWidth="186.0" promptText="Entrez votre mot de passe" style="-fx-background-radius: 180; -fx-font-style: oblique;" />
+            <TextField fx:id="TextField_email" layoutX="644.0" layoutY="308.0" prefHeight="40.0" prefWidth="186.0" promptText="Entrez votre email" style="-fx-background-radius: 180; -fx-font-style: oblique;" />
+            <Label graphicTextGap="6.0" layoutX="572.0" layoutY="318.0" prefHeight="17.0" prefWidth="41.0" style="-fx-background-radius: 180; -fx-font-style: oblique;" text="Email:">
+               <textFill>
+                  <RadialGradient centerX="0.5" centerY="0.5" radius="0.5">
+                     <stops>
+                        <Stop>
+                           <color>
+                              <Color blue="1.0" green="1.0" red="1.0" />
+                           </color>
+                        </Stop>
+                        <Stop offset="1.0">
+                           <color>
+                              <Color blue="1.0" green="1.0" red="1.0" />
+                           </color>
+                        </Stop>
+                     </stops>
+                  </RadialGradient>
+               </textFill>
+            </Label>
+            <Label layoutX="544.0" layoutY="374.0" style="-fx-background-radius: 180; -fx-font-style: oblique;" text="Telephone:" textFill="WHITE" />
+            <TextField fx:id="TextField_tel" layoutX="640.0" layoutY="364.0" prefHeight="40.0" prefWidth="186.0" promptText="Entrez vote numero de telephone" style="-fx-background-radius: 180; -fx-font-style: oblique;" />
+            <Button fx:id="retour" layoutX="685.0" layoutY="563.0" mnemonicParsing="false" onAction="#Retour" style="-fx-background-radius: 180; -fx-font-style: oblique;" text="Retour" />
+            <Button fx:id="musique" layoutX="1154.0" layoutY="171.0" mnemonicParsing="false" onAction="#Musique" style="-fx-background-radius: 180; -fx-font-style: oblique;" text="Musique ?" />
+            <Button fx:id="pause" layoutX="1166.0" layoutY="219.0" mnemonicParsing="false" onAction="#Pause" style="-fx-background-radius: 180; -fx-font-style: oblique;" text="Pause" />
+         </children>
+      </AnchorPane>
+   </children>
+</AnchorPane>
