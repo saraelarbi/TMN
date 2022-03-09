@@ -50,7 +50,7 @@ public class PieCharPublicationFXMLController implements Initializable {
 
         try {
 
-            String query = "SELECT COUNT(*),categorie_Pub FROM publication GROUP BY idPub";
+            String query = "SELECT COUNT(*),categorie_Pub FROM publication GROUP BY categorie_Pub";
 
             PreparedStatement PreparedStatement = cnx.prepareStatement(query);
             rs = PreparedStatement.executeQuery();
@@ -62,7 +62,7 @@ public class PieCharPublicationFXMLController implements Initializable {
             Logger.getLogger(GestionPublicationFXMLController.class.getName()).log(Level.SEVERE, null, ex);
         }
 
-        piechart1.setTitle("**Statistiques nombres des catégories**");
+        piechart1.setTitle("**Statistiques des différents des catégories**");
         piechart1.setLegendSide(Side.LEFT);
         piechart1.setData(data);
 

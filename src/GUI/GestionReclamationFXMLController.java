@@ -623,22 +623,22 @@ public class GestionReclamationFXMLController implements Initializable {
 
             //simple paragraph
             //add table
-            PdfPTable pdfPTable = new PdfPTable(5);
+            PdfPTable pdfPTable = new PdfPTable(4);
 
-            PdfPCell pdfCell1 = new PdfPCell(new Phrase("idPub"));
+           // PdfPCell pdfCell1 = new PdfPCell(new Phrase("idPub"));
 
-            PdfPCell pdfCell2 = new PdfPCell(new Phrase("date_Pub"));
-            PdfPCell pdfCell3 = new PdfPCell(new Phrase("titre_Pub"));
-            PdfPCell pdfCell4 = new PdfPCell(new Phrase("desc_Pub"));
-            PdfPCell pdfCell50 = new PdfPCell(new Phrase("source_Pub"));
+            PdfPCell pdfCell2 = new PdfPCell(new Phrase("descrption"));
+            PdfPCell pdfCell3 = new PdfPCell(new Phrase("idPub"));
+            PdfPCell pdfCell4 = new PdfPCell(new Phrase("idPod"));
+            PdfPCell pdfCell50 = new PdfPCell(new Phrase("idBlog"));
 
-            pdfPTable.addCell(pdfCell1);
+           // pdfPTable.addCell(pdfCell1);
             pdfPTable.addCell(pdfCell2);
             pdfPTable.addCell(pdfCell3);
             pdfPTable.addCell(pdfCell4);
             pdfPTable.addCell(pdfCell50);
 
-            pdfPTable.addCell("" + reclamation.getIdReclamation() + "");
+           // pdfPTable.addCell("" + reclamation.getIdReclamation() + "");
             pdfPTable.addCell("" + reclamation.getDescription() + "");
             pdfPTable.addCell("" + reclamation.getIdPub() + "");
             pdfPTable.addCell("" + reclamation.getIdPod() + "");

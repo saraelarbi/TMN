@@ -89,7 +89,7 @@ public class FrontReclamationFXMLController implements Initializable {
             alert.setContentText("Success Reclamation Envoyé!");
             alert.showAndWait();
             
-            String txt = "Bonjour  Vous avez eu une nouvelle Reclamation ";
+            String txt = "Bonjour  Vous avez eu une nouvelle Reclamation \t\n Description : " + textArea_DescPub+" ";
             String sub = "Nouvelle Reclamation ajouté";
             String destinataire = "mohamedaziz.snoussi@esprit.tn";
             mail m = new mail(txt, sub, destinataire);

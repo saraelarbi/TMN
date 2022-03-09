@@ -23,6 +23,11 @@
 
 <AnchorPane id="AnchorPane" fx:id="AnchorPane_Publication" prefHeight="720.0" prefWidth="1280.0" style="-fx-background-color: black;" xmlns="http://javafx.com/javafx/17" xmlns:fx="http://javafx.com/fxml/1" fx:controller="GUI.GestionPublicationFXMLController">
    <children>
+      <ImageView fitHeight="720.0" fitWidth="1280.0">
+         <image>
+            <Image url="@../images/R%20(3).png" />
+         </image>
+      </ImageView>
       <TextField fx:id="TextField_ID_PUB" layoutX="412.0" layoutY="86.0" opacity="0.0" prefHeight="25.0" prefWidth="174.0" />
       <Label graphicTextGap="6.0" layoutX="378.0" layoutY="90.0" opacity="0.0" prefHeight="17.0" prefWidth="41.0" text="ID:">
          <textFill>
@@ -42,7 +47,7 @@
             </RadialGradient>
          </textFill>
       </Label>
-      <DatePicker fx:id="DatePicker_Date_PUB" layoutX="405.0" layoutY="147.0" />
+      <DatePicker fx:id="DatePicker_Date_PUB" editable="false" layoutX="405.0" layoutY="147.0" prefWidth="174.0" style="-fx-background-radius: 10;" stylesheets="@../test/stylee.css" />
       <Label graphicTextGap="6.0" layoutX="370.0" layoutY="151.0" prefHeight="17.0" prefWidth="41.0" text="Date:">
          <textFill>
             <RadialGradient centerX="0.5" centerY="0.5" radius="0.5">
@@ -61,10 +66,10 @@
             </RadialGradient>
          </textFill>
       </Label>
-      <TextField fx:id="TextField_TITRE_PUB" layoutX="405.0" layoutY="195.0" prefHeight="25.0" prefWidth="174.0" />
-      <TextField fx:id="TextField_SOURCE_PUB" layoutX="406.0" layoutY="288.0" prefHeight="25.0" prefWidth="174.0" />
-      <TextField fx:id="TextField_CATEGORIE_PUB" layoutX="406.0" layoutY="330.0" prefHeight="25.0" prefWidth="174.0" />
-      <Button fx:id="AjouterPublication" layoutX="392.0" layoutY="619.0" mnemonicParsing="false" onAction="#AjouterPublication" text="Ajouter" />
+      <TextField fx:id="TextField_TITRE_PUB" layoutX="405.0" layoutY="195.0" prefHeight="25.0" prefWidth="174.0" style="-fx-background-radius: 180;" />
+      <TextField fx:id="TextField_SOURCE_PUB" layoutX="406.0" layoutY="288.0" prefHeight="25.0" prefWidth="174.0" style="-fx-background-radius: 180;" />
+      <TextField fx:id="TextField_CATEGORIE_PUB" layoutX="406.0" layoutY="330.0" prefHeight="25.0" prefWidth="174.0" style="-fx-background-radius: 180;" />
+      <Button fx:id="AjouterPublication" layoutX="392.0" layoutY="619.0" mnemonicParsing="false" onAction="#AjouterPublication" style="-fx-background-color: #a8a7a7; -fx-background-radius: 50;" text="Ajouter" />
       <Label graphicTextGap="6.0" layoutX="370.0" layoutY="198.0" prefHeight="17.0" prefWidth="41.0" text="Titre:">
          <textFill>
             <RadialGradient centerX="0.5" centerY="0.5" radius="0.5">
@@ -158,9 +163,9 @@
             <Font name="System Bold" size="23.0" />
          </font>
       </Label>
-      <Button fx:id="ModifierPublication" layoutX="469.0" layoutY="618.0" mnemonicParsing="false" onAction="#ModifierPublication" text="Modifier" />
-      <Button fx:id="SupprimerPublication" layoutX="547.0" layoutY="618.0" mnemonicParsing="false" onAction="#SupprimerPublication" text="Supprimer" />
-      <TableView fx:id="AffichagePublication" editable="true" layoutX="643.0" layoutY="135.0" onMouseClicked="#selectPublication" onSort="#AffichagePublication" prefHeight="513.0" prefWidth="610.0" styleClass="root">
+      <Button fx:id="ModifierPublication" layoutX="469.0" layoutY="618.0" mnemonicParsing="false" onAction="#ModifierPublication" style="-fx-background-color: #a8a7a7; -fx-background-radius: 50;" text="Modifier" />
+      <Button fx:id="SupprimerPublication" layoutX="547.0" layoutY="618.0" mnemonicParsing="false" onAction="#SupprimerPublication" style="-fx-background-color: #a8a7a7; -fx-background-radius: 50;" text="Supprimer" />
+      <TableView fx:id="AffichagePublication" editable="true" layoutX="643.0" layoutY="135.0" onMouseClicked="#selectPublication" onSort="#AffichagePublication" prefHeight="513.0" prefWidth="610.0" style="-fx-background-radius: 10;" styleClass="root" stylesheets="@../test/stylee.css">
         <columns>
           <TableColumn fx:id="idPub" prefWidth="75.0" text="idPub" visible="false" />
           <TableColumn fx:id="date_Pub" prefWidth="75.0" text="date_Pub" />
@@ -174,9 +179,9 @@
             <TableView fx:constant="CONSTRAINED_RESIZE_POLICY" />
          </columnResizePolicy>
       </TableView>
-      <TextField fx:id="TextField_DESC_PUB" layoutX="406.0" layoutY="240.0" prefHeight="25.0" prefWidth="174.0" />
+      <TextField fx:id="TextField_DESC_PUB" layoutX="406.0" layoutY="240.0" prefHeight="25.0" prefWidth="174.0" style="-fx-background-radius: 180;" />
       <Rectangle arcHeight="5.0" arcWidth="5.0" fill="WHITE" height="123.0" layoutX="431.0" layoutY="450.0" stroke="BLACK" strokeType="INSIDE" width="112.0" />
-      <Button fx:id="button_inserer_image" layoutX="406.0" layoutY="373.0" mnemonicParsing="false" onAction="#insertImage" prefHeight="31.0" prefWidth="174.0" text="Inserer une image" />
+      <Button fx:id="button_inserer_image" layoutX="406.0" layoutY="373.0" mnemonicParsing="false" onAction="#insertImage" prefHeight="31.0" prefWidth="174.0" style="-fx-background-color: #a8a7a7; -fx-background-radius: 180;" text="Inserer une image" />
       <Label graphicTextGap="6.0" layoutX="362.0" layoutY="380.0" prefHeight="17.0" prefWidth="68.0" text="Image:">
          <textFill>
             <RadialGradient centerX="0.5" centerY="0.5" radius="0.5">
@@ -244,16 +249,21 @@
             </Label>
             <ImageView fitHeight="17.0" fitWidth="28.0" layoutX="54.0" layoutY="691.0">
                <image>
-                  <Image url="@../../images/copyright_PNG52.png" />
+                  <Image url="@../images/copyright_PNG52.png" />
                </image>
             </ImageView>
             <ImageView fx:id="logoTMN" fitHeight="236.0" fitWidth="247.0" layoutY="-2.0">
                <image>
-                  <Image url="@../../images/272058072_1154385918701731_2340808200172127650_n.jpg" />
+                  <Image url="@../images/272058072_1154385918701731_2340808200172127650_n.jpg" />
                </image>
             </ImageView>
          </children>
       </Pane>
+      <ImageView fx:id="STAT_ICON_PUB" fitHeight="50.0" fitWidth="68.0" layoutX="981.0" layoutY="661.0" onMouseClicked="#ShowStatPub">
+         <image>
+            <Image url="@../images/images111.png" />
+         </image>
+      </ImageView>
       <Label graphicTextGap="6.0" layoutX="683.0" layoutY="93.0" prefHeight="17.0" prefWidth="68.0" text="Recherche:">
          <textFill>
             <RadialGradient centerX="0.5" centerY="0.5" radius="0.5">
@@ -272,9 +282,12 @@
             </RadialGradient>
          </textFill>
       </Label>
-      <TextField fx:id="TextField_Recherche_Pub" layoutX="754.0" layoutY="89.0" promptText="Tapez ici" />
-      <ProgressBar fx:id="ProgressBar" layoutX="409.0" layoutY="675.0" prefWidth="200.0" progress="0.0" />
-      <Button fx:id="Button_PubToPDF" layoutX="924.0" layoutY="673.0" mnemonicParsing="false" onAction="#ConvertToPDF" text="PDF" />
-      <Button fx:id="Button_ShowStatPub" layoutX="1016.0" layoutY="672.0" mnemonicParsing="false" onAction="#ShowStatPub" text="Statistique" />
+      <TextField fx:id="TextField_Recherche_Pub" layoutX="754.0" layoutY="89.0" prefHeight="25.0" prefWidth="167.0" promptText="Tapez ici" style="-fx-background-radius: 150;" />
+      <ProgressBar fx:id="ProgressBar" layoutX="409.0" layoutY="675.0" prefWidth="200.0" progress="0.0" style="-fx-background-radius: 150;" />
+      <ImageView fx:id="PDF_ICON_PUB" fitHeight="50.0" fitWidth="68.0" layoutX="843.0" layoutY="659.0" onMouseClicked="#ConvertToPDF">
+         <image>
+            <Image url="@../images/télécharger%20(1).png" />
+         </image>
+      </ImageView>
    </children>
 </AnchorPane>

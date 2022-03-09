@@ -53,6 +53,7 @@ import javafx.scene.control.TextField;
 import javafx.scene.control.cell.PropertyValueFactory;
 import javafx.scene.image.Image;
 import javafx.scene.image.ImageView;
+import javafx.scene.input.MouseEvent;
 import javafx.scene.layout.AnchorPane;
 import javafx.stage.FileChooser;
 import javafx.stage.Stage;
@@ -120,11 +121,11 @@ public class GestionPublicationFXMLController implements Initializable {
     @FXML
     private ProgressBar ProgressBar;
     @FXML
-    private Button Button_PubToPDF;
-    @FXML
     private Button button_podc;
     @FXML
-    private Button Button_ShowStatPub;
+    private ImageView STAT_ICON_PUB;
+    @FXML
+    private ImageView PDF_ICON_PUB;
 
     //ProgressBar proBar = new ProgressBar();
     /**
@@ -412,58 +413,8 @@ public class GestionPublicationFXMLController implements Initializable {
 
     }
 
-    @FXML
-    private void ConvertToPDF(ActionEvent event) {
-        try {
-            Publication publication = AffichagePublication.getSelectionModel().getSelectedItem();
-            Document document = new Document();
-
-            PdfWriter.getInstance(document, new FileOutputStream("C:/Users/ffsga/Documents/NetBeansProjects/TMN/images/TMNpublication.pdf"));
-            document.open();
-
-            document.open();
-
-            Paragraph para = new Paragraph("Publications :\n\t");
-            document.add(para);
-
-            //simple paragraph
-            //add table
-            PdfPTable pdfPTable = new PdfPTable(7);
-
-            PdfPCell pdfCell1 = new PdfPCell(new Phrase("idPub"));
-
-            PdfPCell pdfCell2 = new PdfPCell(new Phrase("date_Pub"));
-            PdfPCell pdfCell3 = new PdfPCell(new Phrase("titre_Pub"));
-            PdfPCell pdfCell4 = new PdfPCell(new Phrase("desc_Pub"));
-            PdfPCell pdfCell50 = new PdfPCell(new Phrase("source_Pub"));
-            PdfPCell pdfCell5 = new PdfPCell(new Phrase("categorie_Pub:"));
-            PdfPCell pdfCell555 = new PdfPCell(new Phrase("image_Pub:"));
-
-            pdfPTable.addCell(pdfCell1);
-            pdfPTable.addCell(pdfCell2);
-            pdfPTable.addCell(pdfCell3);
-            pdfPTable.addCell(pdfCell4);
-            pdfPTable.addCell(pdfCell50);
-            pdfPTable.addCell(pdfCell5);
-            pdfPTable.addCell(pdfCell555);
-            pdfPTable.addCell("" + publication.getIdPub() + "");
-            pdfPTable.addCell("" + publication.getDate_Pub() + "");
-            pdfPTable.addCell(publication.getTitre_Pub());
-            pdfPTable.addCell(publication.getDesc_Pub());
-            pdfPTable.addCell(publication.getSource_Pub());
-            pdfPTable.addCell(publication.getCategorie_Pub());
-            pdfPTable.addCell(publication.getImage_Pub());
-            document.add(pdfPTable);
-            // document.add(image);
-            document.close();
-
-        } catch (DocumentException | FileNotFoundException Exception) {
-            System.out.println(Exception);
-        }
-
-    }
-
-    public void Notificationmanager(int mode) {
+ 
+   public void Notificationmanager(int mode) {
         Notifications not = Notifications.create().graphic(null).hideAfter(Duration.seconds(10)).position(Pos.BOTTOM_RIGHT).onAction(new EventHandler<ActionEvent>() {
             @Override
             public void handle(ActionEvent event) {
@@ -549,9 +500,9 @@ public class GestionPublicationFXMLController implements Initializable {
         }
 
     }
-
+   
     @FXML
-    private void ShowStatPub(ActionEvent event) throws IOException {
+    private void ShowStatPub(MouseEvent event) {
         try {
             FXMLLoader fxmlLoader = new FXMLLoader(getClass().getResource("../GUI/PieCharPublicationFXML.fxml"));
             Parent root = (Parent) fxmlLoader.load();
@@ -562,7 +513,57 @@ public class GestionPublicationFXMLController implements Initializable {
 
         } catch (IOException e) {
         }
+    }
 
+    @FXML
+    private void ConvertToPDF(MouseEvent event) {
+        try {
+            Publication publication = AffichagePublication.getSelectionModel().getSelectedItem();
+            Document document = new Document();
+
+            PdfWriter.getInstance(document, new FileOutputStream("C:/Users/ffsga/Documents/NetBeansProjects/TMN/images/TMNpublication.pdf"));
+            document.open();
+
+            document.open();
+
+            Paragraph para = new Paragraph("Publications :\n\t");
+            document.add(para);
+
+            //simple paragraph
+            //add table
+            PdfPTable pdfPTable = new PdfPTable(6);
+
+           // PdfPCell pdfCell1 = new PdfPCell(new Phrase("idPub"));
+
+            PdfPCell pdfCell2 = new PdfPCell(new Phrase("date_Pub"));
+            PdfPCell pdfCell3 = new PdfPCell(new Phrase("titre_Pub"));
+            PdfPCell pdfCell4 = new PdfPCell(new Phrase("desc_Pub"));
+            PdfPCell pdfCell50 = new PdfPCell(new Phrase("source_Pub"));
+            PdfPCell pdfCell5 = new PdfPCell(new Phrase("categorie_Pub:"));
+            PdfPCell pdfCell555 = new PdfPCell(new Phrase("image_Pub:"));
+
+          //  pdfPTable.addCell(pdfCell1);
+            pdfPTable.addCell(pdfCell2);
+            pdfPTable.addCell(pdfCell3);
+            pdfPTable.addCell(pdfCell4);
+            pdfPTable.addCell(pdfCell50);
+            pdfPTable.addCell(pdfCell5);
+            pdfPTable.addCell(pdfCell555);
+          //  pdfPTable.addCell("" + publication.getIdPub() + "");
+            pdfPTable.addCell("" + publication.getDate_Pub() + "");
+            pdfPTable.addCell(publication.getTitre_Pub());
+            pdfPTable.addCell(publication.getDesc_Pub());
+            pdfPTable.addCell(publication.getSource_Pub());
+            pdfPTable.addCell(publication.getCategorie_Pub());
+            pdfPTable.addCell(publication.getImage_Pub());
+            document.add(pdfPTable);
+           // document.add(image);
+            document.close();
+            Notificationmanager(7);
+
+        } catch (DocumentException | FileNotFoundException Exception) {
+            System.out.println(Exception);
+        }
     }
 
 }
