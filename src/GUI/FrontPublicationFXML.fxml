@@ -1,0 +1,107 @@
+<?xml version="1.0" encoding="UTF-8"?>
+
+<?import javafx.scene.control.Button?>
+<?import javafx.scene.control.Label?>
+<?import javafx.scene.control.ScrollPane?>
+<?import javafx.scene.effect.Light.Distant?>
+<?import javafx.scene.effect.Lighting?>
+<?import javafx.scene.effect.Shadow?>
+<?import javafx.scene.image.Image?>
+<?import javafx.scene.image.ImageView?>
+<?import javafx.scene.layout.AnchorPane?>
+<?import javafx.scene.layout.GridPane?>
+<?import javafx.scene.layout.HBox?>
+<?import javafx.scene.layout.Pane?>
+<?import javafx.scene.layout.RowConstraints?>
+<?import javafx.scene.text.Font?>
+
+<AnchorPane id="AnchorPane" prefHeight="720.0" prefWidth="1280.0" xmlns="http://javafx.com/javafx/17" xmlns:fx="http://javafx.com/fxml/1" fx:controller="GUI.FrontPublicationFXMLController">
+   <children>
+      <Pane layoutX="9.0" layoutY="10.0" prefHeight="720.0" prefWidth="247.0" style="-fx-background-color: white;">
+         <children>
+            <Button layoutY="240.0" mnemonicParsing="false" prefHeight="66.0" prefWidth="247.0" text=" Evenements">
+               <font>
+                  <Font name="System Bold" size="20.0" />
+               </font>
+            </Button>
+            <Button layoutY="305.0" mnemonicParsing="false" prefHeight="66.0" prefWidth="247.0" text=" News">
+               <font>
+                  <Font name="System Bold" size="20.0" />
+               </font>
+            </Button>
+            <Button layoutY="371.0" mnemonicParsing="false" prefHeight="66.0" prefWidth="247.0" text="Shop">
+               <font>
+                  <Font name="System Bold" size="20.0" />
+               </font>
+            </Button>
+            <Button layoutY="437.0" mnemonicParsing="false" prefHeight="66.0" prefWidth="247.0" text="Forum">
+               <font>
+                  <Font name="System Bold" size="20.0" />
+               </font>
+            </Button>
+            <Button layoutY="502.0" mnemonicParsing="false" prefHeight="66.0" prefWidth="247.0" text="PodCast">
+               <font>
+                  <Font name="System Bold" size="20.0" />
+               </font>
+            </Button>
+            <Label layoutX="79.0" layoutY="691.0" prefHeight="17.0" prefWidth="104.0" text="TMN COPYRIGHT">
+               <effect>
+                  <Lighting>
+                     <bumpInput>
+                        <Shadow />
+                     </bumpInput>
+                     <light>
+                        <Light.Distant />
+                     </light>
+                  </Lighting>
+               </effect>
+            </Label>
+            <ImageView fitHeight="17.0" fitWidth="28.0" layoutX="54.0" layoutY="691.0">
+               <image>
+                  <Image url="@../../../../../Downloads/copyright_PNG52.png" />
+               </image>
+            </ImageView>
+            <ImageView fitHeight="236.0" fitWidth="247.0" layoutX="1.0">
+               <image>
+                  <Image url="@../images/272058072_1154385918701731_2340808200172127650_n.jpg" />
+               </image>
+            </ImageView>
+         </children>
+      </Pane>
+      <AnchorPane layoutX="256.0" layoutY="9.0" prefHeight="92.0" prefWidth="1041.0" style="-fx-background-color: white;">
+         <children>
+            <Label layoutX="427.0" layoutY="13.0" text="NEWS" textAlignment="JUSTIFY">
+               <font>
+                  <Font size="46.0" />
+               </font>
+            </Label>
+         </children>
+      </AnchorPane>
+      <AnchorPane layoutX="256.0" layoutY="101.0" prefHeight="66.0" prefWidth="1041.0" style="-fx-background-color: black;">
+         <children>
+            <Label layoutX="806.0" layoutY="31.0" textFill="RED">
+               <font>
+                  <Font size="18.0" />
+               </font>
+            </Label>
+         </children>
+      </AnchorPane>
+      <AnchorPane fx:id="AnchorPane_publications" layoutX="256.0" layoutY="167.0" prefHeight="565.0" prefWidth="1035.0" style="-fx-background-color: black;">
+         <children>
+            <HBox layoutX="6.0" layoutY="4.0" prefHeight="567.0" prefWidth="1035.0">
+               <children>
+                  <ScrollPane prefHeight="567.0" prefWidth="1070.0">
+                     <content>
+                        <GridPane fx:id="grid" prefHeight="47.0" prefWidth="52.0">
+                           <rowConstraints>
+                              <RowConstraints minHeight="10.0" prefHeight="30.0" />
+                           </rowConstraints>
+                        </GridPane>
+                     </content>
+                  </ScrollPane>
+               </children>
+            </HBox>
+         </children>
+      </AnchorPane>
+   </children>
+</AnchorPane>
