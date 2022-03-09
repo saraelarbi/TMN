@@ -19,6 +19,7 @@ public class Publicite {
     private String description;
     private String lettre_motivation;
     private String image;
+ 
 
   
 

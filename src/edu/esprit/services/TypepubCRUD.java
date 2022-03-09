@@ -59,7 +59,7 @@ public class TypepubCRUD {
             PreparedStatement ps = cnx.prepareStatement(req);
             ps.setInt(1, id);
             ps.executeUpdate();
-            System.out.println("Typepub Supprimé");
+            System.out.println("Type Supprimé");
         } catch (SQLException ex) {
             Logger.getLogger(TypepubCRUD.class.getName()).log(Level.SEVERE, null, ex);
         }
@@ -84,9 +84,9 @@ public class TypepubCRUD {
         }
         return list;
     }
-    public String gettype(int id) { 
+    public String gettype(int idC) { 
         try {
-            String sql ="SELECT cat from typepub WHERE id="+id;
+            String sql ="SELECT cat from typepub WHERE id="+idC;
             Statement st = cnx.createStatement();
             ResultSet rs = st.executeQuery(sql);
             if (rs.next()){
@@ -97,9 +97,9 @@ public class TypepubCRUD {
         }
         return null;
 }
-    public int getid(String type) { 
+    public int getid(String nom) { 
         try {
-            String sql ="SELECT id from typepub WHERE cat like '%"+type+"%'";
+            String sql ="SELECT id from typepub WHERE cat like '%"+nom+"%'";
             Statement st = cnx.createStatement();
             ResultSet rs = st.executeQuery(sql);
             if (rs.next()){
