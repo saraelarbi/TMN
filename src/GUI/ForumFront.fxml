@@ -1,0 +1,92 @@
+<?xml version="1.0" encoding="UTF-8"?>
+
+<?import javafx.scene.control.Button?>
+<?import javafx.scene.control.Label?>
+<?import javafx.scene.control.TableColumn?>
+<?import javafx.scene.control.TableView?>
+<?import javafx.scene.effect.Light.Distant?>
+<?import javafx.scene.effect.Lighting?>
+<?import javafx.scene.effect.Shadow?>
+<?import javafx.scene.image.Image?>
+<?import javafx.scene.image.ImageView?>
+<?import javafx.scene.layout.AnchorPane?>
+<?import javafx.scene.layout.Pane?>
+<?import javafx.scene.text.Font?>
+
+<AnchorPane id="AnchorPane" prefHeight="658.0" prefWidth="1139.0" style="-fx-background-color: black;" xmlns="http://javafx.com/javafx/17" xmlns:fx="http://javafx.com/fxml/1" fx:controller="GUI.ForumFrontController">
+   <children>
+      <TableView fx:id="tableview2" layoutX="246.0" layoutY="175.0" onMouseClicked="#select_forum" prefHeight="553.0" prefWidth="1050.0">
+         <columns>
+            <TableColumn fx:id="quest" prefWidth="350.0" text="Questions" />
+            <TableColumn fx:id="etatt" prefWidth="350.0" text="Etat" />
+            <TableColumn fx:id="likes" prefWidth="350.0" text="Nbre likes" />
+         </columns>
+      </TableView>
+      <Pane layoutY="-1.0" prefHeight="728.0" prefWidth="247.0" style="-fx-background-color: white;">
+         <children>
+            <Button layoutY="240.0" mnemonicParsing="false" onAction="#evenement" prefHeight="66.0" prefWidth="247.0" style="-fx-background-radius: 10; -fx-font-style: oblique;" text=" Evenements">
+               <font>
+                  <Font name="System Bold" size="20.0" />
+               </font>
+            </Button>
+            <Button layoutY="305.0" mnemonicParsing="false" onAction="#news" prefHeight="66.0" prefWidth="247.0" style="-fx-background-radius: 10; -fx-font-style: oblique;" text=" News">
+               <font>
+                  <Font name="System Bold" size="20.0" />
+               </font>
+            </Button>
+            <Button layoutY="371.0" mnemonicParsing="false" onAction="#shop" prefHeight="66.0" prefWidth="247.0" style="-fx-background-radius: 10; -fx-font-style: oblique;" text="Shop">
+               <font>
+                  <Font name="System Bold" size="20.0" />
+               </font>
+            </Button>
+            <Button layoutY="437.0" mnemonicParsing="false" onAction="#forum" prefHeight="66.0" prefWidth="247.0" style="-fx-background-radius: 10; -fx-font-style: oblique;" text="Forum">
+               <font>
+                  <Font name="System Bold" size="20.0" />
+               </font>
+            </Button>
+            <Button layoutY="502.0" mnemonicParsing="false" onAction="#podcast" prefHeight="66.0" prefWidth="247.0" style="-fx-background-radius: 10; -fx-font-style: oblique;" text="PodCast">
+               <font>
+                  <Font name="System Bold" size="20.0" />
+               </font>
+            </Button>
+            <Label layoutX="79.0" layoutY="691.0" prefHeight="17.0" prefWidth="104.0" style="-fx-font-style: oblique;" text="TMN COPYRIGHT">
+               <effect>
+                  <Lighting>
+                     <bumpInput>
+                        <Shadow />
+                     </bumpInput>
+                     <light>
+                        <Light.Distant />
+                     </light>
+                  </Lighting>
+               </effect>
+            </Label>
+            <ImageView fitHeight="17.0" fitWidth="28.0" layoutX="54.0" layoutY="691.0">
+               <image>
+                  <Image url="@../../../../TMN/TMN_Pidev/images/copyright_PNG52.png" />
+               </image>
+            </ImageView>
+            <ImageView fitHeight="236.0" fitWidth="247.0" layoutX="1.0">
+               <image>
+                  <Image url="@../tmn.jpg" />
+               </image>
+            </ImageView>
+            <Button layoutY="568.0" mnemonicParsing="false" onAction="#blog" prefHeight="66.0" prefWidth="247.0" style="-fx-background-radius: 10; -fx-font-style: oblique;" text="Blog">
+               <font>
+                  <Font name="System Bold" size="20.0" />
+               </font>
+            </Button>
+         </children>
+      </Pane>
+      <AnchorPane layoutX="256.0" layoutY="9.0" prefHeight="92.0" prefWidth="1041.0" style="-fx-background-color: white; -fx-background-radius: 180;">
+         <children>
+            <Label layoutX="504.0" layoutY="13.0" style="-fx-font-style: oblique;" text="Forum" textAlignment="JUSTIFY">
+               <font>
+                  <Font size="46.0" />
+               </font>
+            </Label>
+         </children>
+      </AnchorPane>
+      <AnchorPane layoutX="257.0" layoutY="101.0" prefHeight="74.0" prefWidth="1034.0" style="-fx-background-color: #D3D3D3; -fx-background-radius: 160;" />
+   </children>
+</AnchorPane>
