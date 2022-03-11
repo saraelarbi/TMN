@@ -25,9 +25,9 @@ public class Event77 extends Application {
 //        
 //        stage.setScene(scene);
 //        stage.show();
-  Parent root = FXMLLoader.load(getClass().getResource("/Views/AjoutEvenetFront.fxml")); //ajouter front
+  //Parent root = FXMLLoader.load(getClass().getResource("/Views/AjoutEvenetFront.fxml")); //ajouter front
   //Parent root = FXMLLoader.load(getClass().getResource("/Views/AffichageE.fxml")); //affciher front
-   // Parent root = FXMLLoader.load(getClass().getResource("/Views/Evenement.fxml")); // ajouter + affciher back
+  //Parent root = FXMLLoader.load(getClass().getResource("/Views/Evenement.fxml")); // ajouter + affciher back
       //Parent root = FXMLLoader.load(getClass().getResource("/Views/AffichageReservation.fxml"));
      //  Parent root = FXMLLoader.load(getClass().getResource("/Views/AffichageRate.fxml"));
         Scene scene = new Scene(root);

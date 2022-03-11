@@ -22,16 +22,16 @@
          <children>
             <AnchorPane layoutX="-6.0" layoutY="-2.0" prefHeight="90.0" prefWidth="1293.0" style="-fx-background-color: white;">
                <children>
-                  <Label layoutX="453.0" layoutY="19.0" style="-fx-font-style: oblique;" text="Evenement">
+                  <Label layoutX="670.0" layoutY="19.0" style="-fx-font-style: oblique;" text="Evenement">
                      <font>
                         <Font size="36.0" />
                      </font>
                   </Label>
                </children>
             </AnchorPane>
-            <TextField fx:id="Titre" layoutX="393.0" layoutY="178.0" prefHeight="25.0" prefWidth="288.0" style="-fx-background-radius: 180;" />
-            <TextField fx:id="Prix" layoutX="397.0" layoutY="497.0" prefHeight="25.0" prefWidth="288.0" style="-fx-background-radius: 180;" />
-            <Label graphicTextGap="6.0" layoutX="355.0" layoutY="181.0" prefHeight="17.0" prefWidth="41.0" style="-fx-font-style: oblique;" text="Titre:">
+            <TextField fx:id="Titre" layoutX="608.0" layoutY="175.0" prefHeight="25.0" prefWidth="288.0" style="-fx-background-radius: 180;" />
+            <TextField fx:id="Prix" layoutX="608.0" layoutY="497.0" prefHeight="25.0" prefWidth="288.0" style="-fx-background-radius: 180;" />
+            <Label graphicTextGap="6.0" layoutX="540.0" layoutY="181.0" prefHeight="17.0" prefWidth="41.0" style="-fx-font-style: oblique;" text="Titre:">
                <textFill>
                   <RadialGradient centerX="0.5" centerY="0.5" radius="0.5">
                      <stops>
@@ -49,7 +49,7 @@
                   </RadialGradient>
                </textFill>
             </Label>
-            <Label graphicTextGap="6.0" layoutX="328.0" layoutY="267.0" prefHeight="17.0" prefWidth="68.0" style="-fx-font-style: oblique;" text="Description:">
+            <Label graphicTextGap="6.0" layoutX="540.0" layoutY="267.0" prefHeight="17.0" prefWidth="68.0" style="-fx-font-style: oblique;" text="Description:">
                <textFill>
                   <RadialGradient centerX="0.5" centerY="0.5" radius="0.5">
                      <stops>
@@ -67,7 +67,7 @@
                   </RadialGradient>
                </textFill>
             </Label>
-            <Label graphicTextGap="6.0" layoutX="341.0" layoutY="501.0" prefHeight="17.0" prefWidth="28.0" style="-fx-font-style: oblique;" text="Prix:">
+            <Label graphicTextGap="6.0" layoutX="540.0" layoutY="501.0" prefHeight="17.0" prefWidth="28.0" style="-fx-font-style: oblique;" text="Prix:">
                <textFill>
                   <RadialGradient centerX="0.5" centerY="0.5" radius="0.5">
                      <stops>
@@ -85,8 +85,8 @@
                   </RadialGradient>
                </textFill>
             </Label>
-            <Button fx:id="button_inserer_image" layoutX="396.0" layoutY="393.0" mnemonicParsing="false" onAction="#insertImage" prefHeight="31.0" prefWidth="288.0" style="-fx-background-radius: 180;" text="Inserer une image" />
-            <Label graphicTextGap="6.0" layoutX="342.0" layoutY="400.0" prefHeight="17.0" prefWidth="68.0" style="-fx-font-style: oblique;" text="Image:">
+            <Button fx:id="button_inserer_image" layoutX="608.0" layoutY="393.0" mnemonicParsing="false" onAction="#insertImage" prefHeight="31.0" prefWidth="288.0" style="-fx-background-radius: 180;" text="Inserer une image" />
+            <Label graphicTextGap="6.0" layoutX="540.0" layoutY="400.0" prefHeight="17.0" prefWidth="68.0" style="-fx-font-style: oblique;" text="Image:">
                <textFill>
                   <RadialGradient centerX="0.5" centerY="0.5" radius="0.5">
                      <stops>
@@ -104,8 +104,8 @@
                   </RadialGradient>
                </textFill>
             </Label>
-            <TextField fx:id="Categorie" layoutX="393.0" layoutY="223.0" prefHeight="25.0" prefWidth="288.0" style="-fx-background-radius: 180;" />
-            <Label graphicTextGap="6.0" layoutX="321.0" layoutY="227.0" prefHeight="17.0" prefWidth="55.0" style="-fx-font-style: oblique;" text="Categorie:">
+            <TextField fx:id="Categorie" layoutX="608.0" layoutY="222.0" prefHeight="25.0" prefWidth="288.0" style="-fx-background-radius: 180;" />
+            <Label graphicTextGap="6.0" layoutX="540.0" layoutY="227.0" prefHeight="17.0" prefWidth="55.0" style="-fx-font-style: oblique;" text="Categorie:">
                <textFill>
                   <RadialGradient centerX="0.5" centerY="0.5" radius="0.5">
                      <stops>
@@ -123,15 +123,15 @@
                   </RadialGradient>
                </textFill>
             </Label>
-            <Label layoutX="297.0" layoutY="557.0" style="-fx-font-style: oblique;" text="Nombre de place:" textFill="WHITE" />
-            <TextField fx:id="Nbr_Place" layoutX="400.0" layoutY="555.0" prefHeight="25.0" prefWidth="288.0" style="-fx-background-radius: 180;" />
-            <TextField fx:id="Image" layoutX="393.0" layoutY="442.0" prefHeight="31.0" prefWidth="288.0" style="-fx-background-radius: 180;" />
-            <Button fx:id="ajouterBB" layoutX="471.0" layoutY="621.0" mnemonicParsing="false" onAction="#AjouterButton" prefHeight="44.0" prefWidth="147.0" style="-fx-background-radius: 180;" text="Ajouter">
+            <Label layoutX="540.0" layoutY="557.0" style="-fx-font-style: oblique;" text="Nombre de place:" textFill="WHITE" />
+            <TextField fx:id="Nbr_Place" layoutX="608.0" layoutY="555.0" prefHeight="25.0" prefWidth="288.0" style="-fx-background-radius: 180;" />
+            <TextField fx:id="Image" layoutX="608.0" layoutY="442.0" prefHeight="31.0" prefWidth="288.0" style="-fx-background-radius: 180;" />
+            <Button fx:id="ajouterBB" layoutX="680.0" layoutY="621.0" mnemonicParsing="false" onAction="#AjouterButton" prefHeight="44.0" prefWidth="147.0" style="-fx-background-radius: 180;" text="Ajouter">
                <font>
                   <Font size="20.0" />
                </font>
             </Button>
-            <TextArea fx:id="Description" layoutX="394.0" layoutY="267.0" prefHeight="114.0" prefWidth="288.0" style="-fx-background-radius: 180;" />
+            <TextArea fx:id="Description" layoutX="608.0" layoutY="271.0" prefHeight="114.0" prefWidth="288.0" style="-fx-background-radius: 180;" />
          </children>
       </AnchorPane>
       <Pane layoutX="-1.0" layoutY="-6.0" prefHeight="728.0" prefWidth="247.0" style="-fx-background-color: white;">

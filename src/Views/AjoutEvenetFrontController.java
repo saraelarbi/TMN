@@ -86,10 +86,13 @@ public class AjoutEvenetFrontController implements Initializable {
     @FXML
     private void AjouterButton(ActionEvent event) {
          if (Titre.getText().isEmpty() || Categorie.getText().isEmpty() || Description.getText().isEmpty()
-                || Image.getText().isEmpty() || Prix.getText().isEmpty()    ) {
+                || Image.getText().isEmpty() || Prix.getText().isEmpty()  ) {
             showAlert(Alert.AlertType.ERROR, "Données erronés", "Verifier les données", "Veuillez bien remplir tous les champs !");
            
-        }else {
+        } else if ( parseFloat(Prix.getText()) < 0    ) {
+             showAlert(Alert.AlertType.ERROR, "Données erronés", "Verifier les données", "Prix doit etre positive");
+        }
+        else {
         Evenement P = new Evenement(Titre.getText(), Categorie.getText(), Description.getText(), Image.getText(), parseFloat(Prix.getText()), Entite.Etat.Rejete, Integer.parseInt(Nbr_Place.getText()));
         EvenementService Ps = new EvenementService();
         Ps.Ajouter(P);
